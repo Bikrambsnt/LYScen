@@ -4,14 +4,31 @@ if(!apiUrl){
     throw new Error("ERROR: Environment variable not found!");
 }
 
+//Global search
+
+export const globalSearch = async (query)=>{
+try {
+    const response = await fetch(`${apiUrl}search?query=${query}`)
+    if(!response.ok){
+        throw new Error('throw new Error');
+    }
+    const data =await  response.json();
+    console.log(data)
+    return data;
+} catch (error) {
+    console.log(`ERROR: While Fetching for ${query}`)
+}
+}
+
 // Search by query
 
 export  const searchSongsByQuery= async (query)=>{
    try {
-    const data= await fetch(`${apiUrl}search/songs?query=${query}`);
+    const response= await fetch(`${apiUrl}search/songs?query=${query}`);
     if(!response.ok){
         throw new Error('Network response was not ok');
     }
+    const data =await response.json();
     console.log(data)
     return data;
    } catch (error) {
@@ -36,9 +53,9 @@ export const searchById= async (id) =>{
 
 //Search for albums
 
-    export const searchForAlbum = async (album) =>{
+    export const searchForAlbum = async (album,limit,page) =>{
         try {
-            const data = await fetch(`${apiUrl}search/albums?query=${album}`)
+            const data = await fetch(`${apiUrl}search/albums?query=${album}&limit=${limit}&page=${page}`)
             if(!response.ok){
                 throw new Error('Network response was not ok');
             }
