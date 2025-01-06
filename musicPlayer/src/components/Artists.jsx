@@ -14,12 +14,12 @@ const Artists = () => {
   useEffect(()=>{
     const getArtists = async ()=>{
     try {
-       const response = await searchForArtist("Top Artist");
+       const response = await searchForArtist("Artists",30,1);
        
        const data = response?.data?.results || [];
        console.log("Artists.jsx Data" ,data);
 
-       setArtists(Array.isArray(data) ? data.slice(0,10):[]);
+       setArtists(Array.isArray(data) ? data.slice(0,30):[]);
        setLoading(false);
     
     } catch (error) {
@@ -54,7 +54,7 @@ const Artists = () => {
                   alt={artist.name}
                   className="h-[100%] w-[100%] text-center text-white object-cover rounded-full shadow-md hover:scale-105 transition-transform"
                 />
-                <p className="text-white text-center mb-4 text-lg font-light">{artist.name}</p>
+                <p>{artist.name}</p>
               </ArtistsCards>
             </SwiperSlide>
           ))}

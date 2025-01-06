@@ -51,9 +51,9 @@ export const searchById= async (id) =>{
 
     // Search for artist
 
-    export const searchForArtist =async (artist) =>{
+    export const searchForArtist =async (artist,limit,page) =>{
         try{
-        const response = await fetch(`${apiUrl}search/artists?query=${artist}`)
+        const response = await fetch(`${apiUrl}search/artists?query=${artist}&limit=${limit}&page=${page}`)
         if(!response.ok){
             throw new Error('Network response was not ok');
         }

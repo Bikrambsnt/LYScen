@@ -16,7 +16,7 @@ function Songs(){
     const getSongs =['','' ,'' ,''];
 
     return(
-        <div className="mt-1">
+        <div className="mt-[0.75rem]">
             <h1 className="text-white font-rubik tracking-wide text-2xl font-[500] mb-2">Songs</h1>
 
         <Swiper

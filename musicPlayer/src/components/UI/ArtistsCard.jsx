@@ -1,14 +1,14 @@
 import React from "react";
 
-function ArtistsCards({children}){
+function ArtistsCards({children,name}){
 
     return(
-        <div>
+        <div className="text-center overflow-hidden">
         <div className={` border-2 border-[#ffffff] rounded-full w-28 h-28 mt-3 text-white overflow-visible`}>
             {children}
 
         </div>
-            <div className="text-white text-xl">{}</div>
+            <div className="text-white text-center mt-9 text-lg font-light">{name}</div>
             </div>
     )
 }
