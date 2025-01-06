@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
+import { searchSongsByQuery,searchById,searchForAlbum,searchForArtist,searchForPlaylist} from "../../config/fetch";
+
 
 function SearchBar() {
 
@@ -9,9 +11,25 @@ function SearchBar() {
     const [isExpended, setIsExpended] = useState(false);
 
   
-    const handleSearch = () => {
-        if(query.trim() != ''){
-            onSearch(query)
+    const handleSearch = async () => {
+       
+        if(query.trim() !==''){
+
+            const getSong= [
+                searchSongsByQuery,
+                searchById,
+                searchForAlbum,
+                searchForArtist,
+                searchForPlaylist
+            ];
+            return await Promise.all(
+                getSong.map((song)=>song(query))
+            );
+           
+        }
+
+        else{
+            console.log('Enter the input');
         }
 
     };
