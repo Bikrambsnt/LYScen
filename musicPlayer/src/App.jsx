@@ -8,17 +8,17 @@ import Logo from './components/navBar/Logo'
 function App() {
   return (
     <div className=' w-screen h-screen  bg-[#1f1f1f]'>
-      <div className='flex justify-between items-center p-5 overflow-hidden'>
+      <div className='flex justify-between items-center p-2 overflow-hidden'>
       <Logo/>
       <SearchBar/> 
      
       </div>
      
-     <div className='overflow-visible w-screen p-3 '>
+     <div className='overflow-visible w-screen p-2'>
      <Artists/>
      </div>
 
-     <div className='w-screen p-3'>
+     <div className='w-screen p-2'>
       <Songs/>
      </div>
 

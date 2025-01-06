@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
-import { searchSongsByQuery,searchById,searchForAlbum,searchForArtist,searchForPlaylist} from "../../config/fetch";
+import { searchSongsByQuery,globalSearch} from "../../config/fetch";
 
 
 function SearchBar() {
@@ -17,10 +17,7 @@ function SearchBar() {
 
             const getSong= [
                 searchSongsByQuery,
-                searchById,
-                searchForAlbum,
-                searchForArtist,
-                searchForPlaylist
+               globalSearch
             ];
             return await Promise.all(
                 getSong.map((song)=>song(query))
