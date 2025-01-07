@@ -18,7 +18,6 @@ const Artists = () => {
 
         const data = response?.data?.results || [];
         console.log("Artists.jsx Data", data);
-
         setArtists(Array.isArray(data) ? data.slice(0, 30) : []);
         setLoading(false);
       } catch (error) {

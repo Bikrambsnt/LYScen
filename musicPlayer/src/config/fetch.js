@@ -90,11 +90,11 @@ export const searchById= async (id) =>{
     export const searchForTrending= async (trending,limit,page)=>{
 
         try {
-            const response = await fetch(`${apiUrl}search/playlists?query=${trending}&limit=${limit}&page=${page}`)
+            const response = await fetch(`${apiUrl}search/songs?query=${trending}&limit=${limit}&page=${page}`)
             if(!response.ok){
                 throw new Error('Network response was not ok');
             }
-            const data = response.json();
+            const data = await response.json();
             console.log(data);
             return data;
         } catch (error) {

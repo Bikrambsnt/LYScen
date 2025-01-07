@@ -7,7 +7,6 @@ import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
 import { searchForAlbum } from "../config/fetch";
 
-
 function Songs() {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,12 +16,12 @@ function Songs() {
       try {
         const response = await searchForAlbum("Top Hindi", 40, 1);
         const data = response?.data?.results || [];
-        setLoading(false)
         console.log("Hindi Songs:", data);
-        setSongs(Array.isArray(data)? data.slice(0,40):[]);
+        setSongs(Array.isArray(data) ? data.slice(0, 40) : []);
+        setLoading(false);
       } catch (error) {
         console.log("ERROR while fetching latest Hindi songs", error);
-        setLoading(false)
+        setLoading(false);
       }
     };
 
@@ -38,7 +37,9 @@ function Songs() {
         Popular Hindi Songs
       </p>
       {loading ? (
-        <p className="text-red-400 font-light col-span-4 text-center">Songs Loading ...</p>
+        <p className="text-red-400 font-light col-span-4 text-center">
+          Songs Loading ...
+        </p>
       ) : (
         <Swiper
           slidesPerView={2}
@@ -46,51 +47,44 @@ function Songs() {
           modules={[FreeMode]}
           centeredSlides={false}
           freeMode={true}
-
-
-        breakpoints={{
-          400:{
-            slidesPerView:3,
-            spaceBetween:150,
-          },
-          640:{
-            slidesPerView:4,
-            spaceBetween:150,
-          },
-          768:{
-            slidesPerView:5,
-            spaceBetween:180,
-            
-          },
-          1024:{
-            slidesPerView:6,
-            spaceBetween:180,
-
-          },
-
-        }}
-         
-
-
-          
+          breakpoints={{
+            400: {
+              slidesPerView: 3,
+              spaceBetween: 150,
+            },
+            640: {
+              slidesPerView: 4,
+              spaceBetween: 150,
+            },
+            768: {
+              slidesPerView: 5,
+              spaceBetween: 180,
+            },
+            1024: {
+              slidesPerView: 6,
+              spaceBetween: 180,
+            },
+          }}
         >
-           {songs.map((songs,index)=>(
-            <SwiperSlide key={index}
-            className="flex justify-center items-center"
+          {songs.map((songs, index) => (
+            <SwiperSlide
+              key={index}
             >
-            <SongsCard>
+              <SongsCard>
                 <img
-                src={songs.image[2]?.url}
-                alt={songs.name}
-                className="h-[100%] w-[100%] text-center text-white object-cover rounded-[4px] shadow-md hover:scale-105 hover:rounded-[4px] transition duration-300 ease-in-out"
-
+                  src={songs.image[2]?.url}
+                  alt={songs.name}
+                  className="h-[100%] w-[100%] text-center text-white object-cover rounded-[4px] shadow-md hover:scale-105 hover:rounded-[4px] transition duration-300 ease-in-out"
                 />
-            <p className="text-white text-xs font-[400] text-left font-rubik mt-1">{songs.name}</p>
-            <p className="text-white text-xs font-[300] text-left font-rubik mt-1">{songs.artists.primary[0].name}</p>
-            </SongsCard>
-
+                <p className="text-white text-xs font-[400] text-left font-rubik mt-1">
+                  {songs.name}
+                </p>
+                <p className="text-white text-xs font-[300] text-left font-rubik mt-1">
+                  {songs.artists.primary[0].name}
+                </p>
+              </SongsCard>
             </SwiperSlide>
-           ))}
+          ))}
         </Swiper>
       )}
     </div>
