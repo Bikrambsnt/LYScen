@@ -55,12 +55,13 @@ export const searchById= async (id) =>{
 
     export const searchForAlbum = async (album,limit,page) =>{
         try {
-            const data = await fetch(`${apiUrl}search/albums?query=${album}&limit=${limit}&page=${page}`)
+            const response= await fetch(`${apiUrl}search/albums?query=${album}&limit=${limit}&page=${page}`)
             if(!response.ok){
                 throw new Error('Network response was not ok');
             }
-            console.log(data);
-            return data;
+            return await response.json();
+            // console.log(data);
+            // return data;
         } catch (error) {
             console.log(`ERROR: while fetching album`,error);
         }
@@ -84,19 +85,20 @@ export const searchById= async (id) =>{
     }
     }
 
-    //serch for Playlists
+    //serch for Trending songs
 
-    export const searchForPlaylist= async (playlist)=>{
+    export const searchForTrending= async (trending,limit,page)=>{
 
         try {
-            const data = await fetch(`${apiUrl}search/playlists?query=${playlist}`)
+            const response = await fetch(`${apiUrl}search/playlists?query=${trending}&limit=${limit}&page=${page}`)
             if(!response.ok){
                 throw new Error('Network response was not ok');
             }
+            const data = response.json();
             console.log(data);
             return data;
         } catch (error) {
-            console.log('ERROR: while fetching Playlists',error);
+            console.log('ERROR: while fetching Trending songs',error);
         }
 
     }

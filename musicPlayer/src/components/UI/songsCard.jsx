@@ -1,9 +1,14 @@
 import React from "react";
 
-function SongsCard({children}) {
+function SongsCard({children,name,artists }) {
     return (
-        <div className={`w-40 h-40 border-2 border-[#ffffff] rounded-[4px] mb-3`}>
+        <div>
+        <div className={`w-[11.5rem] h-52 border-[1px] border-[#ffffff] rounded-[4px] mb-16`}>
             {children}
+
+        </div>
+        <p>{name}</p>
+        <p>{artists}</p>
 
         </div>
     )

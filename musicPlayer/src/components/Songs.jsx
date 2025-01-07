@@ -7,22 +7,22 @@ import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
 import { searchForAlbum } from "../config/fetch";
 
+
 function Songs() {
-  const [songs, setSongs] = useState("");
+  const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getHindiSongs = async () => {
       try {
-        const response = await searchForAlbum("Top Hindi", 30, 1);
-        if (!response.ok) {
-          throw new Error("ERROR: while getting Songs");
-        }
-        const data = await response.json();
-        console.log(data);
-        return data;
+        const response = await searchForAlbum("Top Hindi", 40, 1);
+        const data = response?.data?.results || [];
+        setLoading(false)
+        console.log("Hindi Songs:", data);
+        setSongs(Array.isArray(data)? data.slice(0,40):[]);
       } catch (error) {
         console.log("ERROR while fetching latest Hindi songs", error);
+        setLoading(false)
       }
     };
 
@@ -31,22 +31,68 @@ function Songs() {
 
   return (
     <div className="mt-[0.75rem]">
-      <h1 className="text-white font-rubik tracking-wide text-xl font-[400] mb-2">
-        Top Hindi Songs
+      <h1 className="text-white font-rubik tracking-wide text-2xl font-[500] mb-0">
+        Songs
       </h1>
+      <p className="text-gray-300 font-rubik tracking-wide text-xs font-[400] mb-3">
+        Popular Hindi Songs
+      </p>
+      {loading ? (
+        <p className="text-red-400 font-light col-span-4 text-center">Songs Loading ...</p>
+      ) : (
+        <Swiper
+          slidesPerView={2}
+          spaceBetween={100}
+          modules={[FreeMode]}
+          centeredSlides={false}
+          freeMode={true}
 
-      <Swiper
-        slidesPerView={"auto"}
-        // spaceBetween={-100}
-        modules={[FreeMode]}
-        className="flex justify-between p-10"
-      >
-        {getSongs.map((songs, index) => (
-          <SwiperSlide key={index}>
-            <SongsCard>{songs}</SongsCard>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+
+        breakpoints={{
+          400:{
+            slidesPerView:3,
+            spaceBetween:150,
+          },
+          640:{
+            slidesPerView:4,
+            spaceBetween:150,
+          },
+          768:{
+            slidesPerView:5,
+            spaceBetween:180,
+            
+          },
+          1024:{
+            slidesPerView:6,
+            spaceBetween:180,
+
+          },
+
+        }}
+         
+
+
+          
+        >
+           {songs.map((songs,index)=>(
+            <SwiperSlide key={index}
+            className="flex justify-center items-center"
+            >
+            <SongsCard>
+                <img
+                src={songs.image[2]?.url}
+                alt={songs.name}
+                className="h-[100%] w-[100%] text-center text-white object-cover rounded-[4px] shadow-md hover:scale-105 hover:rounded-[4px] transition duration-300 ease-in-out"
+
+                />
+            <p className="text-white text-xs font-[400] text-left font-rubik mt-1">{songs.name}</p>
+            <p className="text-white text-xs font-[300] text-left font-rubik mt-1">{songs.artists.primary[0].name}</p>
+            </SongsCard>
+
+            </SwiperSlide>
+           ))}
+        </Swiper>
+      )}
     </div>
   );
 }

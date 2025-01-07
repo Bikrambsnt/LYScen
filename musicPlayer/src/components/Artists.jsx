@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-import { FreeMode } from "swiper/modules";
+import { FreeMode} from "swiper/modules";
 import ArtistsCards from "./UI/ArtistsCard";
 import { searchForArtist } from "../config/fetch";
 
@@ -31,10 +31,12 @@ const Artists = () => {
 
   return (
     <div className="mt-0">
-      <h2 className="text-xl font-rubik font-[400] text-white tracking-wide mb-2">
+      <h2 className="text-xl font-rubik font-[400] text-white tracking-wide mb-0">
         Artists
       </h2>
-
+      <p className="text-gray-300 font-rubik tracking-wide text-xs font-[400] mb-1">
+        Most search artists
+      </p>
       {loading ? (
         // Show loading message
         <p className="text-center font-light text-red-400 col-span-4">
@@ -42,11 +44,35 @@ const Artists = () => {
         </p>
       ) : (
         <Swiper
-          slidesPerView={"auto"}
-          spaceBetween={-115}
+          slidesPerView={3}
+          spaceBetween={80}
           loop={true}
           modules={[FreeMode]}
-          className="flex"
+          freeMode={true}
+          centeredSlides={false}
+          
+
+          breakpoints={{
+            400:{
+              slidesPerView:4,
+              spaceBetween:50,
+            },
+            640:{
+              slidesPerView:5,
+              spaceBetween:10,
+            },
+            768:{
+              slidesPerView:7,
+              spaceBetween:25,
+              
+            },
+            1024:{
+              slidesPerView:8,
+              spaceBetween:25,
+
+            },
+           
+          }}
         >
           {artists.map((artist, index) => (
             <SwiperSlide
