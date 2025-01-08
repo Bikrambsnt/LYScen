@@ -7,6 +7,9 @@ import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
 import { searchForAlbum } from "../config/fetch";
 
+
+
+
 function Songs() {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -67,9 +70,7 @@ function Songs() {
           }}
         >
           {songs.map((songs, index) => (
-            <SwiperSlide
-              key={index}
-            >
+            <SwiperSlide key={index}>
               <SongsCard>
                 <img
                   src={songs.image[2]?.url}

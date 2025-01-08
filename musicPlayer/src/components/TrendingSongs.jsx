@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import TrendingCards from "./UI/TrendingCard";
+import SongsCard from "./UI/songsCard";
 import { searchForTrending } from "../config/fetch";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -66,14 +66,10 @@ function TrendingSongs() {
             },
           }}
         >
-
-          {trending.map((songs,index)=>(
-            <SwiperSlide
-            key={index}
-            >
-                <TrendingCards
-                >
-                      <img
+          {trending.map((songs, index) => (
+            <SwiperSlide key={index}>
+              <SongsCard>
+                <img
                   src={songs.image[2]?.url}
                   alt={songs.name}
                   className="h-[100%] w-[100%] text-center text-white object-cover rounded-[4px] shadow-md hover:scale-105 hover:rounded-[4px] transition duration-300 ease-in-out"
@@ -84,18 +80,13 @@ function TrendingSongs() {
                 <p className="text-white text-xs font-[300] text-left font-rubik mt-1">
                   {songs.artists.primary[0].name}
                 </p>
-
-                </TrendingCards>
-
+              </SongsCard>
             </SwiperSlide>
           ))}
-
-
         </Swiper>
       )}
     </div>
   );
 }
-
 
 export default TrendingSongs;
