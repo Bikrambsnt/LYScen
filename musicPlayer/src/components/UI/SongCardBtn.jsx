@@ -21,11 +21,11 @@ export default function CardBtn({
 
       if (isPlaying) {
         await audioRef.current.pause();
-        setIsplaying(false);
+        setIsplaying(true);
    
       } else {
         await audioRef.current.play();
-        setIsplaying(true);
+        setIsplaying(false);
         setCurrentlyPlaying(audioRef.current);
        
       }
@@ -42,7 +42,7 @@ export default function CardBtn({
       className="h-9 w-9 rounded-full border-[1px] border-[#9c227c] bg-white/30 backdrop-blur-[3px] flex justify-center items-center cursor-pointer "
     >
       <FontAwesomeIcon
-        icon={isPlaying ? faPause : faPlay}
+        icon={isPlaying  ? faPause : faPlay}
         className="text-white/50 text-[16px] hover:text-white"
       />
     </button>

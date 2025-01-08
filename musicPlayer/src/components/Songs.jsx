@@ -5,7 +5,8 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
-import { searchForAlbum } from "../config/fetch";
+import {searchSongsByQuery} from "../config/fetch";
+
 
 
 
@@ -13,11 +14,12 @@ import { searchForAlbum } from "../config/fetch";
 function Songs() {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentlyPlaying,setCurrentlyPlaying] = useState(null);
 
   useEffect(() => {
     const getHindiSongs = async () => {
       try {
-        const response = await searchForAlbum("Top Hindi", 40, 1);
+        const response = await searchSongsByQuery("Latest Hindi", 40, 1);
         const data = response?.data?.results || [];
         console.log("Hindi Songs:", data);
         setSongs(Array.isArray(data) ? data.slice(0, 40) : []);
@@ -71,7 +73,12 @@ function Songs() {
         >
           {songs.map((songs, index) => (
             <SwiperSlide key={index}>
-              <SongsCard>
+              <SongsCard
+                 songUrl={songs.downloadUrl[4]?.url}
+                 key={songs.id}
+                 currentlyPlaying={currentlyPlaying}
+                 setCurrentlyPlaying={setCurrentlyPlaying}
+              >
                 <img
                   src={songs.image[2]?.url}
                   alt={songs.name}

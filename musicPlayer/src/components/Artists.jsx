@@ -14,11 +14,11 @@ const Artists = () => {
   useEffect(() => {
     const getArtists = async () => {
       try {
-        const response = await searchForArtist("Artists", 30, 1);
+        const response = await searchForArtist("popular artist", 40, 1);
 
         const data = response?.data?.results || [];
-        console.log("Artists.jsx Data", data);
-        setArtists(Array.isArray(data) ? data.slice(0, 30) : []);
+        // console.log("Artists.jsx Data", data);
+        setArtists(Array.isArray(data) ? data.slice(0, 40) : []);
         setLoading(false);
       } catch (error) {
         console.log("ERROR: while getting artists", error);

@@ -5,9 +5,9 @@ if (!apiUrl) {
 
 //Global search
 
-export const globalSearch = async (query) => {
+export const globalSearch = async (query,limit,page) => {
   try {
-    const response = await fetch(`${apiUrl}search?query=${query}`);
+    const response = await fetch(`${apiUrl}search?query=${query}&limit=${limit}&page=${page}`);
     if (!response.ok) {
       throw new Error("throw new Error");
     }
@@ -21,9 +21,9 @@ export const globalSearch = async (query) => {
 
 // Search by query
 
-export const searchSongsByQuery = async (query) => {
+export const searchSongsByQuery = async (query,limit,page) => {
   try {
-    const response = await fetch(`${apiUrl}search/songs?query=${query}`);
+    const response = await fetch(`${apiUrl}search/songs?query=${query}&limit=${limit}&page=${page}`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
