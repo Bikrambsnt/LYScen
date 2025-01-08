@@ -1,4 +1,4 @@
-import "./App.css";
+
 import {Header,Artist,Song,Trending,ProgressBar} from './components/index'
 
 
