@@ -8,7 +8,6 @@ function SearchBar() {
 
     const [query ,setQuery] = useState('');
 
-    const [isExpended, setIsExpended] = useState(false);
 
   
     const handleSearch = async () => {
@@ -33,34 +32,36 @@ function SearchBar() {
 
     return(
         <div
-         className={`max-w-80 flex items-center justify-center bg-[#636366] rounded-full shadow-searchShadow text-sm sm:text-xl transition-all duration-300 ${isExpended ? 'w-full h-12 px-4' : 'w-12 h-12'}`}
+         className={` w-[98%] h-10 flex items-center justify-evenly bg-[#636366] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300 `}
         
         >
         
-        {isExpended &&(
+       
             <input
             value={query}
             placeholder="Search..."
             type="text"
             onChange={ (e) => setQuery(e.target.value)}
-            className="flex-grow  outline-none bg-transparent text-white placeholder-white p-2 w-[150px]"
+            className="outline-none bg-transparent text-white placeholder-white w-[80%]"
             />
-        )}
+        
        
         
 
         <button
        
         onClick={()=>{
-            if(isExpended){
+            
                 handleSearch();
-            }
-            setIsExpended(!isExpended);
+                setQuery('');
+            
+
+            
         }}
         className=" text-white bg-transparent"
 
         >
-        <FontAwesomeIcon icon={faSearch} className='flex   text-white text-lg'/>
+        <FontAwesomeIcon icon={faSearch} className='flex    text-white text-lg'/>
         </button>
         
         </div>
