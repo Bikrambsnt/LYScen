@@ -10,13 +10,14 @@ import { FreeMode } from "swiper/modules";
 function TrendingSongs() {
   const [trending, setTrending] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentlyPlaying,setCurrentlyPlaying] = useState(null)
 
   useEffect(() => {
     const getTrending = async () => {
       try {
         const response = await searchForTrending("Hindi Trending", 40, 1);
         const data = response?.data?.results || [];
-        console.log("Trending Songs:", data);
+        // console.log("Trending Songs:", data);
         setTrending(Array.isArray(data) ? data.slice(0, 30) : []);
         setLoading(false);
       } catch (error) {
@@ -68,7 +69,14 @@ function TrendingSongs() {
         >
           {trending.map((songs, index) => (
             <SwiperSlide key={index}>
-              <SongsCard>
+              <SongsCard
+              //passing prop to get the song url in CardButton
+                  songUrl={songs.downloadUrl[4]?.url}
+                  key={songs.id}
+                  currentlyPlaying={currentlyPlaying}
+                  setCurrentlyPlaying={setCurrentlyPlaying}
+              >
+                
                 <img
                   src={songs.image[2]?.url}
                   alt={songs.name}
@@ -80,10 +88,13 @@ function TrendingSongs() {
                 <p className="text-white text-xs font-[300] text-left font-rubik mt-1">
                   {songs.artists.primary[0].name}
                 </p>
+                
               </SongsCard>
             </SwiperSlide>
+            
           ))}
         </Swiper>
+        
       )}
     </div>
   );
