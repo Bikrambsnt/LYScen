@@ -4,7 +4,7 @@ import Artists from "../components/Artists";
 function Artist (){
 
     return(
-        <div className="overflow-visible w-screen p-2">
+        <div className="overflow-hidden w-screen p-2">
         <Artists />
       </div>
     )
