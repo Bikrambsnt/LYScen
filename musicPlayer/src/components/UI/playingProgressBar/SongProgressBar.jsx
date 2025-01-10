@@ -2,20 +2,36 @@ import {React,useState,useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faPlay,faPause}from "@fortawesome/free-solid-svg-icons"
 
-function SongProgressBar(){
+function SongProgressBar({audioRef ,progress}){
 
-    const [progress,setProgress] = useState(0)
-    const [duration,setDuration] = useState(0);
+   const handleSeek = (e) =>{
+        const playTime = (e.target.value / 100) * audioRef.current.duration;
+        console.log(e)
+
+        audioRef.current.currentTime = playTime;
+
+        console.log(playTime);
+        console.log(audioRef.current.duration);
+   }
 
 
 
 
     return(
-        <div className="w-full h-28 flex justify-between items-center bg-black/40 backdrop-blur-sm">
+        <div className="w-full h-28 flex justify-between items-center bg-white">
 
-            <div>
+            <input 
+            type="range"
+            max='100'
+            min='0'
+            value={progress}
+            onChange={handleSeek}
+            // draggable={true}
+
             
-            </div>
+            
+            />
+
         </div>
     )
 

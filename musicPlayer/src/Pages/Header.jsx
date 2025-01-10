@@ -13,7 +13,7 @@ function Header(){
 
     const checkForScroll= () =>{
 
-        if(window.scrollY>0){
+        if(window.scrollY > 0){
             setIsScrolled(true);
             // console.log('Scrolled');
         }
@@ -34,7 +34,7 @@ function Header(){
 
 return (
 
-    <div className={`${isScrolled ? 'bg-black/60 backdrop-blur-md' : 'bg-none'} p-2  sticky top-0 z-50 overflow-hidden`}>
+    <div className={`${isScrolled ? 'bg-black/60 backdrop-blur-md' : 'bg-none'} p-2 sticky top-0 z-50 overflow-hidden`}>
     <div className="flex justify-between items-center mb-3">
     <Logo/>
     <Greet/>

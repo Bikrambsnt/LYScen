@@ -34,7 +34,7 @@ function Songs() {
   }, []);
 
   return (
-    <div className="mt-[0.75rem]">
+    <div className="mt-[-1rem]">
       <h1 className="text-white font-rubik tracking-wide text-2xl font-[500] mb-0">
         Songs
       </h1>

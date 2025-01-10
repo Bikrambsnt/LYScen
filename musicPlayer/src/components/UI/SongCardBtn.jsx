@@ -1,6 +1,7 @@
-import { React, useState, useRef } from "react";
+import { React, useState, useRef  ,useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
+import SongProgressBar from "./playingProgressBar/SongProgressBar";
 
 
 export default function CardBtn({
@@ -8,9 +9,38 @@ export default function CardBtn({
   currentlyPlaying,
   setCurrentlyPlaying,
 }) {
+
   // console.log(songData)
   const [isPlaying, setIsplaying] = useState(false);
+  const [progress , setProgress] = useState(0);
   const audioRef = useRef(new Audio(songData));
+
+
+  //To display the playing song progress
+
+  useEffect(()=>{
+
+    const audioProgress = audioRef.current;
+
+      const updateProgressBar =()=>{
+        setProgress((audioProgress.currentTime / audioProgress.duration) *100 || 0);
+      }
+
+
+      audioProgress.addEventListener("timeupdate" , updateProgressBar);
+
+      return ()=>{
+        audioProgress.removeEventListener("timeupdate" ,updateProgressBar);
+      }
+
+
+  },[]);
+  
+
+
+
+
+
 
   const playSong = async () => {
     try {
@@ -37,6 +67,7 @@ export default function CardBtn({
   };
 
   return (
+    <div>
     <button
       onClick={playSong}
       className="h-9 w-9 rounded-full border-[1px] border-[#9c227c] bg-white/30 backdrop-blur-[3px] flex justify-center items-center cursor-pointer "
@@ -46,5 +77,8 @@ export default function CardBtn({
         className="text-white/50 text-[16px] hover:text-white"
       />
     </button>
+
+      <SongProgressBar audioRef={audioRef} progress={progress}/>
+    </div>
   );
 }

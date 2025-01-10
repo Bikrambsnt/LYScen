@@ -93,7 +93,7 @@ function TrendingSongs() {
   );
 
   return (
-    <div className="mt-1">
+    <div className="-mt-1">
 
     {loading?(
          <p className="text-red-400 font-light col-span-4 text-center">
