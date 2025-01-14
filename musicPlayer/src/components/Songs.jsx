@@ -74,7 +74,7 @@ function Songs() {
           {songs.map((songs, index) => (
             <SwiperSlide key={index}>
               <SongsCard
-                 songUrl={songs.downloadUrl[4]?.url}
+                 songUrl={songs.downloadUrl[0]?.url}
                  key={songs.id}
                  currentlyPlaying={currentlyPlaying}
                  setCurrentlyPlaying={setCurrentlyPlaying}

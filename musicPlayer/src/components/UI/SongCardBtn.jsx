@@ -37,7 +37,7 @@ export default function CardBtn({
   },[]);
   
 
-
+<SongProgressBar audioRef={audioRef} progress={progress}/>
 
 
 
@@ -77,8 +77,9 @@ export default function CardBtn({
         className="text-white/50 text-[16px] hover:text-white"
       />
     </button>
+      
 
-      <SongProgressBar audioRef={audioRef} progress={progress}/>
+      
     </div>
   );
 }

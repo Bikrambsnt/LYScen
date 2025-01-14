@@ -1,7 +1,7 @@
 import {useState,useEffect,React} from "react";
 import SearchBar from "../components/navBar/Search";
 import Logo from "../components/navBar/Logo";
-import { Greet } from "../components/index";
+import { Greet, ToggleTheme } from "../components/index";
 
 
 
@@ -32,12 +32,16 @@ function Header(){
         }
     },[isScrolled])
 
+
+    
+
 return (
 
     <div className={`${isScrolled ? 'bg-black/60 backdrop-blur-md' : 'bg-none'} p-2 sticky top-0 z-50 overflow-hidden`}>
     <div className="flex justify-between items-center mb-3">
     <Logo/>
     <Greet/>
+    <ToggleTheme/>
     
 
   </div>

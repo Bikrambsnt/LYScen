@@ -31,7 +31,7 @@ function Greet(){
 
     return(
         <div>
-            <h1 className="text-white font-[400] font-rubik text-lg pr-2">{greeting}</h1>
+            <h1 className="text-white font-[400] font-rubik text-lg">{greeting}</h1>
         </div>
     )
 }
