@@ -30,7 +30,7 @@ const Artists = () => {
 
   return (
     <div className="mt-0">
-      <h2 className="text-xl font-rubik font-[400] text-white tracking-wide mb-0">
+      <h2 className="text-2xl font-rubik font-[500]  tracking-wide mb-0">
         Artists
       </h2>
       <p className="text-gray-300 font-rubik tracking-wide text-xs font-[400] mb-1">
@@ -81,10 +81,10 @@ const Artists = () => {
               <ArtistsCards>
                 <img
                   src={
-                    artist.image[2]?.url || "https://via.placeholder.com/150"
+                    artist.image[1]?.url || "https://via.placeholder.com/150"
                   } // Use fallback image
                   alt={artist.name}
-                  className="h-[100%] w-[100%] text-center text-white object-cover rounded-full shadow-md hover:scale-105 transition-transform"
+                  className="h-[100%] w-[100%] text-center  object-cover rounded-full shadow-md hover:scale-105 transition-transform"
                 />
                 <p>{artist.name}</p>
               </ArtistsCards>

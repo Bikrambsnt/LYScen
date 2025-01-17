@@ -18,7 +18,7 @@ function SongProgressBar({audioRef ,progress}){
 
 
     return(
-        <div className="w-full h-28 flex justify-between items-center bg-white">
+        <div className="flex justify-between items-center bg-white">
 
             <input 
             type="range"

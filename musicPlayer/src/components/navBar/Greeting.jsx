@@ -9,29 +9,32 @@ function Greet(){
             const date = new Date;
             const currentTime=date.getHours()
 
-            if(currentTime>=0 && currentTime<12){
+            if(currentTime >= 0 && currentTime < 12){
+                // console.log(currentTime)
                 return 'Good Morning'
             }
 
-            else if(currentTime>=12 && currentTime <6){
+            else if(currentTime >= 12 && currentTime < 18){
+                console.log(currentTime)
                 return 'Good Afternoon'
             }
 
             else{
+                // console.log(currentTime)
                 return 'Good Evening'
             }
 
         };
 
         useEffect(()=>{
-            setGreeting(getGreeting);
-        },[getGreeting])
+            setGreeting(getGreeting());
+        },[])
 
 
 
     return(
         <div>
-            <h1 className="text-white font-[400] font-rubik text-lg">{greeting}</h1>
+            <h1 className=" font-[400] font-rubik text-lg">{greeting}</h1>
         </div>
     )
 }

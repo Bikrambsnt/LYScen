@@ -61,7 +61,7 @@ function SearchBar() {
         className=" text-white bg-transparent"
 
         >
-        <FontAwesomeIcon icon={faSearch} className='flex    text-white text-lg'/>
+        <FontAwesomeIcon icon={faSearch} className='flex text-lg'/>
         </button>
         
         </div>

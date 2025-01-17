@@ -7,7 +7,7 @@ import { Greet, ToggleTheme } from "../components/index";
 
 
 
-function Header(){
+function Header({darkMode,setDarkMode}){
     
     const [isScrolled ,setIsScrolled] = useState(false)
 
@@ -41,7 +41,7 @@ return (
     <div className="flex justify-between items-center mb-3">
     <Logo/>
     <Greet/>
-    <ToggleTheme/>
+    <ToggleTheme darkMode={darkMode} setDarkMode={setDarkMode}/>
     
 
   </div>

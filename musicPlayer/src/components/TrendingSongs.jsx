@@ -74,15 +74,15 @@ function TrendingSongs() {
           setCurrentlyPlaying={setCurrentlyPlaying}
         >
           <img
-            src={songs.image[2]?.url}
+            src={songs.image[1]?.url}
             alt={songs.name}
             loading="lazy"
-            className="h-[100%] w-[100%] text-center text-white object-cover rounded-[4px] shadow-md hover:scale-105 hover:rounded-[4px] transition duration-300 ease-in-out"
+            className="h-[100%] w-[100%] text-center object-cover rounded-[4px] shadow-md hover:scale-105 hover:rounded-[4px] transition duration-300 ease-in-out"
           />
-          <p className="text-white text-xs font-[400] text-left font-rubik mt-1">
+          <p className="] text-xs font-[400] text-left font-rubik mt-1">
             {songs.name}
           </p>
-          <p className="text-white text-xs font-[300] text-left font-rubik mt-1">
+          <p className="] text-xs font-[300] text-left font-rubik mt-1">
             {songs.artists.primary[0].name}
           </p>
         </SongsCard>
@@ -101,7 +101,7 @@ function TrendingSongs() {
                  </p>
     ):(
         <>
-            <h1 className="text-white font-rubik tracking-wide text-2xl font-[500] mb-0">
+            <h1 className=" font-rubik tracking-wide text-2xl font-[500] mb-0">
         Trending
       </h1>
       <p className="text-gray-300 font-rubik tracking-wide text-xs font-[400] mb-3">

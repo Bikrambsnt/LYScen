@@ -1,48 +1,44 @@
-
-import {Header,Artist,Song,Trending,ProgressBar,ToggleTheme} from './components/index'
-import {React,useState,useEffect} from 'react';
+import {
+  Header,
+  Artist,
+  Song,
+  Trending,
+  ProgressBar,
+} from "./components/index";
+import { React, useState, useEffect } from "react";
 
 function App() {
+  // Toggle Bg theme
+  const [darkMode, setDarkMode] = useState(() => {
+    // Get theme from localStorage or default to true (dark mode)
 
-// Toggle Bg theme
-const [darkMode,setDarkMode] = useState(true);
+    let savedTheme = localStorage.getItem("theme");
+    return savedTheme ? savedTheme === 'dark' : true
+  });
 
-// Store selected theme on localStorage
-useEffect(()=>{
+  // Toggle Theme
 
-  const saveTheme = localStorage.getItem('theme');
-  if(saveTheme=== 'light'){
-    setDarkMode(false);
-  }
-
-
-},[])
-
-// Toggle Theme 
-
-useEffect(()=>{
-  localStorage.setItem('theme', darkMode ? 'dark' : 'light');
-  document.documentElement.classList.toggle('dark' ,darkMode);
-
-},[darkMode])
-
-
-
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
 
   return (
-    <div className={`w-screen h-max transition-colors duration-500 ${darkMode ? 'bg-[#080808] text-white' : 'bg-white text-black border-black'}`}>
-    <Header/>
-    <ToggleTheme darkMode={darkMode} setDarkMode={setDarkMode}/>
-    <Artist/>
-    <Song/>
-    <Trending/>
-    <ProgressBar/>
-    
-
-     
-
-    
-     
+    <div
+      className={` w-screen h-max transition-colors duration-700 ease-in-out ${
+        darkMode ? "bg-[#080808] text-white" : "bg-white text-black"
+      }`}
+    >
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Artist />
+      <Song />
+      <Trending />
+      <ProgressBar />
     </div>
   );
 }
