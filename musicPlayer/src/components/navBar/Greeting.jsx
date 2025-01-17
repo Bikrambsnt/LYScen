@@ -15,7 +15,7 @@ function Greet(){
             }
 
             else if(currentTime >= 12 && currentTime < 18){
-                console.log(currentTime)
+                // console.log(currentTime)
                 return 'Good Afternoon'
             }
 
@@ -33,9 +33,9 @@ function Greet(){
 
 
     return(
-        <div>
+        
             <h1 className=" font-[400] font-rubik text-lg">{greeting}</h1>
-        </div>
+        
     )
 }
 

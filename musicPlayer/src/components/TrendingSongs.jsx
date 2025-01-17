@@ -18,9 +18,9 @@ function TrendingSongs() {
     const getTrending = async () => {
       try {
         const [englishResponse, hindiResponse, nepaliResponse] = await Promise.all([
-            searchForTrending("English" ,10,1),
-            searchForTrending("Trending Hindi" ,10,1),
-            searchForTrending("Nepali" ,10,1)
+            searchForTrending("English" ,2,1),
+            searchForTrending("Trending Hindi" ,2,1),
+            searchForTrending("Nepali" ,2,1)
           ]);
 
           setEnglishSong(Array.isArray (englishResponse?.data?.results) ? englishResponse.data.results.slice(0,25) :[] );

@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div
-      className={` w-screen h-max transition-colors duration-700 ease-in-out ${
+      className={` w-screen h-max transition-colors duration-200 ease-in ${
         darkMode ? "bg-[#080808] text-white" : "bg-white text-black"
       }`}
     >
@@ -38,7 +38,7 @@ function App() {
       <Artist />
       <Song />
       <Trending />
-      <ProgressBar />
+      {/* <ProgressBar /> */}
     </div>
   );
 }

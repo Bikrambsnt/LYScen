@@ -14,7 +14,7 @@ const Artists = () => {
   useEffect(() => {
     const getArtists = async () => {
       try {
-        const response = await searchForArtist("popular artist", 40, 1);
+        const response = await searchForArtist("popular artist", 2, 1);
 
         const data = response?.data?.results || [];
         // console.log("Artists.jsx Data", data);

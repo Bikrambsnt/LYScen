@@ -12,32 +12,32 @@ export default function CardBtn({
 
   // console.log(songData)
   const [isPlaying, setIsplaying] = useState(false);
-  const [progress , setProgress] = useState(0);
+  // const [progress , setProgress] = useState(0);
   const audioRef = useRef(new Audio(songData));
 
 
-  //To display the playing song progress
+//   //To display the playing song progress
 
-  useEffect(()=>{
+//   useEffect(()=>{
 
-    const audioProgress = audioRef.current;
+//     const audioProgress = audioRef.current;
 
-      const updateProgressBar =()=>{
-        setProgress((audioProgress.currentTime / audioProgress.duration) *100 || 0);
-      }
-
-
-      audioProgress.addEventListener("timeupdate" , updateProgressBar);
-
-      return ()=>{
-        audioProgress.removeEventListener("timeupdate" ,updateProgressBar);
-      }
+//       const updateProgressBar =()=>{
+//         setProgress((audioProgress.currentTime / audioProgress.duration) *100 || 0);
+//       }
 
 
-  },[]);
+//       audioProgress.addEventListener("timeupdate" , updateProgressBar);
+
+//       return ()=>{
+//         audioProgress.removeEventListener("timeupdate" ,updateProgressBar);
+//       }
+
+
+//   },[]);
   
 
-<SongProgressBar audioRef={audioRef} progress={progress}/>
+// <SongProgressBar audioRef={audioRef} progress={progress} />
 
 
 
