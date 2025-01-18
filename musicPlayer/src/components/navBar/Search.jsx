@@ -32,7 +32,7 @@ function SearchBar() {
 
     return(
         <div
-         className={` w-[98%] h-10 flex items-center justify-evenly bg-[#636366] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300 `}
+         className={` w-[98%] h-10 flex items-center justify-evenly bg-[#636366] border-[1px] border-transparent focus-within:border-[#9c227c] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300 `}
         
         >
         
@@ -58,7 +58,7 @@ function SearchBar() {
 
             
         }}
-        className=" text-white bg-transparent"
+        className=" text-white bg-transparent "
 
         >
         <FontAwesomeIcon icon={faSearch} className='flex text-lg'/>

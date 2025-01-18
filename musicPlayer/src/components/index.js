@@ -5,6 +5,7 @@ import Trending from "../Pages/Trending";
 import ProgressBar from "../Pages/ProgressBar";
 import Greet from "./navBar/Greeting";
 import ToggleTheme from "./navBar/BgThemeToggle";
+import RecentlyPlayed from "./RecentlyPlayed";
 
 
 export{
@@ -16,5 +17,6 @@ export{
     ProgressBar,
     Greet,
     ToggleTheme,
+    RecentlyPlayed,
 
 }

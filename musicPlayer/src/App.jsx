@@ -2,8 +2,8 @@ import {
   Header,
   Artist,
   Song,
-  Trending,
-  ProgressBar,
+  Trending
+ 
 } from "./components/index";
 import { React, useState, useEffect } from "react";
 
@@ -35,10 +35,11 @@ function App() {
       }`}
     >
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-      <Artist />
       <Song />
       <Trending />
-      {/* <ProgressBar /> */}
+      <Artist />
+      
+     
     </div>
   );
 }

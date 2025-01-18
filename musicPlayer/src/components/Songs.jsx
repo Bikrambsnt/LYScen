@@ -19,7 +19,7 @@ function Songs() {
   useEffect(() => {
     const getHindiSongs = async () => {
       try {
-        const response = await searchSongsByQuery("Latest Hindi", 2, 1);
+        const response = await searchSongsByQuery("Latest Hindi", 10, 1);
         const data = response?.data?.results || [];
         console.log("Hindi Songs:", data);
         setSongs(Array.isArray(data) ? data.slice(0, 40) : []);
@@ -74,7 +74,7 @@ function Songs() {
           {songs.map((songs, index) => (
             <SwiperSlide key={index}>
               <SongsCard
-                 songUrl={songs.downloadUrl[0]?.url}
+                 songUrl={songs.downloadUrl[4]?.url}
                  key={songs.id}
                  currentlyPlaying={currentlyPlaying}
                  setCurrentlyPlaying={setCurrentlyPlaying}
