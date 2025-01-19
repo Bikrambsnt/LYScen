@@ -14,7 +14,7 @@ const Artists = () => {
   useEffect(() => {
     const getArtists = async () => {
       try {
-        const response = await searchForArtist("popular artist", 2, 1);
+        const response = await searchForArtist("popular artist", 30, 1);
 
         const data = response?.data?.results || [];
         // console.log("Artists.jsx Data", data);
@@ -81,7 +81,7 @@ const Artists = () => {
               <ArtistsCards>
                 <img
                   src={
-                    artist.image[1]?.url || "https://via.placeholder.com/150"
+                    artist.image[2]?.url || "https://via.placeholder.com/150"
                   } // Use fallback image
                   alt={artist.name}
                   className="h-[100%] w-[100%] text-center  object-cover rounded-full shadow-md hover:scale-105 transition-transform"

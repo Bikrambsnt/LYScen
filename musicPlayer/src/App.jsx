@@ -2,10 +2,16 @@ import {
   Header,
   Artist,
   Song,
-  Trending
+  Trending,
+  ProgressBar,
  
 } from "./components/index";
 import { React, useState, useEffect } from "react";
+import { useAudioProvider } from "./hook/useAudioProvider";
+import SongProgressBar from "./components/UI/playingProgressBar/SongProgressBar";
+
+
+
 
 function App() {
   // Toggle Bg theme
@@ -15,6 +21,13 @@ function App() {
     let savedTheme = localStorage.getItem("theme");
     return savedTheme ? savedTheme === 'dark' : true
   });
+
+  // Custom hook
+
+  const {progress,handleSeek} = useAudioProvider()
+
+
+
 
   // Toggle Theme
 
@@ -28,6 +41,10 @@ function App() {
     }
   }, [darkMode]);
 
+
+
+  // Progress Bar 
+
   return (
     <div
       className={` w-screen h-max transition-colors duration-200 ease-in ${
@@ -38,6 +55,9 @@ function App() {
       <Song />
       <Trending />
       <Artist />
+      <SongProgressBar progress={progress} handleSeek={handleSeek}/>
+     
+    
       
      
     </div>

@@ -74,7 +74,7 @@ function TrendingSongs() {
           setCurrentlyPlaying={setCurrentlyPlaying}
         >
           <img
-            src={songs.image[1]?.url}
+            src={songs.image[2]?.url}
             alt={songs.name}
             loading="lazy"
             className="h-[100%] w-[100%] text-center object-cover rounded-[4px] shadow-md hover:scale-105 hover:rounded-[4px] transition duration-300 ease-in-out"
