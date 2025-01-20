@@ -2,6 +2,7 @@ import { React, useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import { useAudioProvider } from "../../hook/useAudioProvider";
+import SongProgressBar from "./playingProgressBar/SongProgressBar";
 
 
 export default function CardBtn({
@@ -24,6 +25,11 @@ export default function CardBtn({
           className="text-white/50 text-[16px] hover:text-white"
         />
       </button>
+
+      {/* {
+        showProgressBar&&(
+       <SongProgressBar progress={progress} handleSeek={handleSeek}/>
+      )} */}
 
       
        

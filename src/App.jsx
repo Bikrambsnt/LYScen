@@ -22,9 +22,8 @@ function App() {
     return savedTheme ? savedTheme === 'dark' : true
   });
 
-  // Custom hook
-
-  const {progress,showProgressBar,handleSeek} = useAudioProvider()
+  // Custom hook call
+  // const {progress,showProgressBar,handleSeek} = useAudioProvider()
 
 
 
@@ -56,7 +55,7 @@ function App() {
       <Song />
       <Trending />
       <Artist />
-      <SongProgressBar progress={progress} handleSeek={handleSeek}/>
+      {/* <SongProgressBar progress={progress} handleSeek={handleSeek}/> */}
      
     
       
