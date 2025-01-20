@@ -65,5 +65,6 @@ export const useAudioProvider = (songData,currentlyPlaying,setCurrentlyPlaying) 
     isPlaying,
     progress,
     showProgressBar,
+    audioRef
   };
 };

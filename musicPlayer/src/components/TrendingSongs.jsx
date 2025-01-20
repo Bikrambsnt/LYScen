@@ -18,14 +18,14 @@ function TrendingSongs() {
     const getTrending = async () => {
       try {
         const [englishResponse, hindiResponse, nepaliResponse] = await Promise.all([
-            searchForTrending("English" ,10,1),
-            searchForTrending("Trending Hindi" ,10,1),
-            searchForTrending("Nepali" ,10,1)
+            searchForTrending("English" ,40,1),
+            searchForTrending("Trending Hindi" ,30,1),
+            searchForTrending("Nepali" ,40,1)
           ]);
 
-          setEnglishSong(Array.isArray (englishResponse?.data?.results) ? englishResponse.data.results.slice(0,25) :[] );
-          setHindiSong (Array.isArray(hindiResponse?.data?.results)?hindiResponse.data.results.slice(0,25) :[]);
-          setNepaliSong (Array.isArray(nepaliResponse?.data?.results) ? nepaliResponse.data.results.slice(0,25) : []);
+          setEnglishSong(Array.isArray (englishResponse?.data?.results) ? englishResponse.data.results.slice(0,40) :[] );
+          setHindiSong (Array.isArray(hindiResponse?.data?.results)?hindiResponse.data.results.slice(0,30) :[]);
+          setNepaliSong (Array.isArray(nepaliResponse?.data?.results) ? nepaliResponse.data.results.slice(0,40) : []);
           setLoading(false);
 
 

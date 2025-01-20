@@ -24,7 +24,8 @@ function App() {
 
   // Custom hook
 
-  const {progress,handleSeek} = useAudioProvider()
+  const {progress,showProgressBar,handleSeek} = useAudioProvider()
+
 
 
 
@@ -43,7 +44,7 @@ function App() {
 
 
 
-  // Progress Bar 
+
 
   return (
     <div

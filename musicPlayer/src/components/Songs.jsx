@@ -19,7 +19,7 @@ function Songs() {
   useEffect(() => {
     const getHindiSongs = async () => {
       try {
-        const response = await searchSongsByQuery("Latest Hindi", 10, 1);
+        const response = await searchSongsByQuery("Latest Hindi", 40, 1);
         const data = response?.data?.results || [];
         console.log("Hindi Songs:", data);
         setSongs(Array.isArray(data) ? data.slice(0, 40) : []);
