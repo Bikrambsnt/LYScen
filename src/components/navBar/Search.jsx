@@ -15,8 +15,8 @@ function SearchBar() {
         if(query.trim() !==''){
 
             const getSong= [
-                searchSongsByQuery,
-               globalSearch
+               globalSearch,
+               searchSongsByQuery
             ];
             return await Promise.all(
                 getSong.map((song)=>song(query))
@@ -39,7 +39,7 @@ function SearchBar() {
        
             <input
             value={query}
-            placeholder="Search..."
+            placeholder="Search what you love to listen..."
             type="text"
             onChange={ (e) => setQuery(e.target.value)}
             className="outline-none bg-transparent text-white placeholder-white w-[80%]"

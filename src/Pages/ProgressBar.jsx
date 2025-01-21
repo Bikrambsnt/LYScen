@@ -5,7 +5,7 @@ function ProgressBar(){
 
     return(
     <div className="flex justify-start items-end">
-  
+  <SongProgressBar/>
 
     
   </div>

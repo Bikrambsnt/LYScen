@@ -7,12 +7,12 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
 
-function TrendingSongs({currentlyPlaying,setCurrentlyPlaying}) {
+function TrendingSongs() {
   const [englishSong, setEnglishSong] = useState([]);
   const [hindiSong, setHindiSong] = useState([]);
   const [nepaliSong, setNepaliSong] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
+  const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
 
   useEffect(() => {
     const getTrending = async () => {

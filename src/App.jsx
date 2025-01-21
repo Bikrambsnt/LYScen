@@ -22,9 +22,9 @@ function App() {
     return savedTheme ? savedTheme === 'dark' : true
   });
 
-  const  [currentlyPlaying,setCurrentlyPlaying] = useState(null)
-  const { handleSeek, playSong, isPlaying, progress, showProgressBar,audioRef } =
-    useAudioProvider(currentlyPlaying, setCurrentlyPlaying);
+  // const  [currentlyPlaying,setCurrentlyPlaying] = useState(null)
+  // const { playSong, isPlaying, progress, showProgressBar,audioRef,handleSeek } =
+  //   useAudioProvider(currentlyPlaying, setCurrentlyPlaying);
   // Toggle Theme
 
   useEffect(() => {
@@ -37,9 +37,8 @@ function App() {
     }
   }, [darkMode]);
 
-
-
-
+// console.log("App jsx audioRef",audioRef )
+ 
 
   return (
     <div
@@ -49,20 +48,20 @@ function App() {
     >
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       <Song
-      currentlyPlaying={currentlyPlaying}
-      setCurrentlyPlaying={setCurrentlyPlaying}
+      // currentlyPlaying={currentlyPlaying}
+      // setCurrentlyPlaying={setCurrentlyPlaying}
       />
       <Trending 
-       currentlyPlaying={currentlyPlaying}
-       setCurrentlyPlaying={setCurrentlyPlaying}
+      //  currentlyPlaying={currentlyPlaying}
+      //  setCurrentlyPlaying={setCurrentlyPlaying}
       />
       <Artist />
-      <SongProgressBar
-        progress={progress}
-        handleSeek={handleSeek}
-        showProgressBar={showProgressBar}
+      {/* <SongProgressBar
+        // progress={progress}
+        // handleSeek={handleSeek}
+        // showProgressBar={showProgressBar}
       />
-      
+       */}
      
     
       

@@ -11,10 +11,10 @@ import {searchSongsByQuery} from "../config/fetch";
 
 
 
-function Songs({currentlyPlaying,setCurrentlyPlaying}) {
+function Songs() {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [currentlyPlaying,setCurrentlyPlaying] = useState(null);
+  const [currentlyPlaying,setCurrentlyPlaying] = useState(null);
 
   useEffect(() => {
     const getHindiSongs = async () => {
