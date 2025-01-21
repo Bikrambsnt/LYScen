@@ -54,7 +54,7 @@ export const useAudioProvider = (songData,currentlyPlaying,setCurrentlyPlaying) 
 
     return () => {
       if (audioRef.current) {
-        audioRef.current.removeEventListener("timeUpdate", updateProgress);
+        audioRef.current.removeEventListener("timeupdate", updateProgress);
       }
     };
   }, [audioRef, updateProgress]);

@@ -1,10 +1,13 @@
 import {React,useState,useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faPlay,faPause}from "@fortawesome/free-solid-svg-icons"
+import { useAudioProvider } from "../../../hook/useAudioProvider";
 
-function SongProgressBar({handleSeek,progress}){
+function SongProgressBar({progress,handleSeek,showProgressBar}){
 
-
+   if(!showProgressBar){
+    return null;
+   }
 
     return(
         <div className="flex justify-center items-center bg-black/60 backdrop-blur-md  h-24 w-full p-3 ">

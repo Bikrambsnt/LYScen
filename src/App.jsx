@@ -3,7 +3,7 @@ import {
   Artist,
   Song,
   Trending,
-  ProgressBar,
+ 
  
 } from "./components/index";
 import { React, useState, useEffect } from "react";
@@ -22,13 +22,9 @@ function App() {
     return savedTheme ? savedTheme === 'dark' : true
   });
 
-  // Custom hook call
-  // const {progress,showProgressBar,handleSeek} = useAudioProvider()
-
-
-
-
-
+  const  [currentlyPlaying,setCurrentlyPlaying] = useState(null)
+  const { handleSeek, playSong, isPlaying, progress, showProgressBar,audioRef } =
+    useAudioProvider(currentlyPlaying, setCurrentlyPlaying);
   // Toggle Theme
 
   useEffect(() => {
@@ -52,10 +48,21 @@ function App() {
       }`}
     >
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-      <Song />
-      <Trending />
+      <Song
+      currentlyPlaying={currentlyPlaying}
+      setCurrentlyPlaying={setCurrentlyPlaying}
+      />
+      <Trending 
+       currentlyPlaying={currentlyPlaying}
+       setCurrentlyPlaying={setCurrentlyPlaying}
+      />
       <Artist />
-      {/* <SongProgressBar progress={progress} handleSeek={handleSeek}/> */}
+      <SongProgressBar
+        progress={progress}
+        handleSeek={handleSeek}
+        showProgressBar={showProgressBar}
+      />
+      
      
     
       

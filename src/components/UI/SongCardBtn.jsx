@@ -15,6 +15,7 @@ export default function CardBtn({
 
 
   return (
+   
     <div>
       <button
         onClick={playSong}
@@ -25,20 +26,8 @@ export default function CardBtn({
           className="text-white/50 text-[16px] hover:text-white"
         />
       </button>
-
-      {/* {
-        showProgressBar&&(
-       <SongProgressBar progress={progress} handleSeek={handleSeek}/>
-      )} */}
-
-      
-       
-    
-
-
-
-      
-    
     </div>
+    
+  
   );
 }

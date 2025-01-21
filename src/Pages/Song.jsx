@@ -1,10 +1,13 @@
 import React from "react";
 import Songs from "../components/Songs";
 
-function Song() {
+function Song({currentlyPlaying,setCurrentlyPlaying}) {
     return(
         <div className="w-screen p-2">
-        <Songs />
+        <Songs
+        currentlyPlaying={currentlyPlaying}
+        setCurrentlyPlaying={setCurrentlyPlaying}
+        />
       </div>
     )
 }
