@@ -1,5 +1,6 @@
 import {useState,useEffect,React} from "react";
 import SearchBar from "../components/navBar/Search";
+import SearchBtn from "../components/navBar/SearchBtn";
 import Logo from "../components/navBar/Logo";
 import { Greet, ToggleTheme } from "../components/index";
 
@@ -47,8 +48,8 @@ return (
   </div>
 
     <div className="flex justify-between items-center mr-1 mb-2">
-        {/* <p className="flex flex-wrap ">Good Evening</p> */}
-    <SearchBar />
+       
+    <SearchBtn />
     </div>
     </div>
 

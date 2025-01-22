@@ -62,7 +62,7 @@ function SearchBar() {
             debouncedSearch(query); // Handle search explicitly on button click
             setQuery(""); // Clear input field
           }}
-          className="text-white bg-transparent"
+          className=" bg-transparent"
         >
           <FontAwesomeIcon icon={faSearch} className="flex text-lg" />
         </button>
@@ -73,8 +73,8 @@ function SearchBar() {
 
       {/* Display search results */}
       {!loading && results.length > 0 && (
-        <div className="mt-4 text-white">
-          <h3 className="text-lg mb-2">Search Results:</h3>
+        <div className="mt-4 ">
+          <h3 className="text-lg mb-2">Search Results</h3>
           <ul className="">
            {results.map((results)=>(
               <li key={results.id} className="bg-[#444] p-2 rounded w-full">

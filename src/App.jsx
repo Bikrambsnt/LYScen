@@ -9,6 +9,7 @@ import {
 import { React, useState, useEffect } from "react";
 import { useAudioProvider } from "./hook/useAudioProvider";
 import SongProgressBar from "./components/UI/playingProgressBar/SongProgressBar";
+import SearchBar from "./components/navBar/Search";
 
 
 
@@ -46,6 +47,7 @@ function App() {
         darkMode ? "bg-[#080808] text-white" : "bg-white text-black"
       }`}
     >
+      <SearchBar/>
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       <Song
       // currentlyPlaying={currentlyPlaying}
