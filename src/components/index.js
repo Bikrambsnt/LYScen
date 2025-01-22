@@ -6,6 +6,8 @@ import ProgressBar from "../Pages/ProgressBar";
 import Greet from "./navBar/Greeting";
 import ToggleTheme from "./navBar/BgThemeToggle";
 import RecentlyPlayed from "./RecentlyPlayed";
+import SearchBar from "./navBar/Search";
+import SearchBtn from "./navBar/SearchBtn";
 
 
 export{
@@ -18,5 +20,7 @@ export{
     Greet,
     ToggleTheme,
     RecentlyPlayed,
+    SearchBar,
+    SearchBtn,
 
 }

@@ -1,11 +1,4 @@
-import {
-  Header,
-  Artist,
-  Song,
-  Trending,
- 
- 
-} from "./components/index";
+import { Header, Artist, Song, Trending } from "./components/index";
 import { React, useState, useEffect } from "react";
 import { useAudioProvider } from "./hook/useAudioProvider";
 import SongProgressBar from "./components/UI/playingProgressBar/SongProgressBar";
@@ -20,7 +13,7 @@ function App() {
     // Get theme from localStorage or default to true (dark mode)
 
     let savedTheme = localStorage.getItem("theme");
-    return savedTheme ? savedTheme === 'dark' : true
+    return savedTheme ? savedTheme === "dark" : true;
   });
 
   // const  [currentlyPlaying,setCurrentlyPlaying] = useState(null)
@@ -38,8 +31,7 @@ function App() {
     }
   }, [darkMode]);
 
-// console.log("App jsx audioRef",audioRef )
- 
+  // console.log("App jsx audioRef",audioRef )
 
   return (
     <div
@@ -47,27 +39,10 @@ function App() {
         darkMode ? "bg-[#080808] text-white" : "bg-white text-black"
       }`}
     >
-      {/* <SearchBar/> */}
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-      <Song
-      // currentlyPlaying={currentlyPlaying}
-      // setCurrentlyPlaying={setCurrentlyPlaying}
-      />
-      <Trending 
-      //  currentlyPlaying={currentlyPlaying}
-      //  setCurrentlyPlaying={setCurrentlyPlaying}
-      />
+      <Song />
+      <Trending />
       <Artist />
-      {/* <SongProgressBar
-        // progress={progress}
-        // handleSeek={handleSeek}
-        // showProgressBar={showProgressBar}
-      />
-       */}
-     
-    
-      
-     
     </div>
   );
 }

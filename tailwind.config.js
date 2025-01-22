@@ -15,6 +15,7 @@ export default {
        roboto:['Roboto', ...defaultTheme.fontFamily.sans],
        jost:['Jost', ...defaultTheme.fontFamily.sans],
        poppins:['Poppins', ...defaultTheme.fontFamily.sans],
+       pacifico:['Pacifico', ...defaultTheme.fontFamily.sans],
       },
      
     },

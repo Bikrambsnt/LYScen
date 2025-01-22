@@ -45,9 +45,11 @@ function SearchBar() {
   };
 
   return (
-    <div className="flex flex-col items-center w-full">
+   
+    
+    <div className="w-full">
       <div
-        className={` relative w-[98%] h-10 flex items-center  bg-[#636366] border-[1px] border-transparent focus-within:border-[#9c227c] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300`}
+        className={` relative w-full h-10 flex items-center  bg-[#636366] border-[1px] border-transparent focus-within:border-[#9c227c] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300`}
       >
         <input
           value={query}
@@ -68,10 +70,14 @@ function SearchBar() {
         </button>
       </div>
 
-      {/* Display loading text */}
+     
+
+
+
+{/*      
       {loading && <div className="text-white mt-4">Loading...</div>}
 
-      {/* Display search results */}
+      
       {!loading && results.length > 0 && (
         <div className="mt-4 ">
           <h3 className="text-lg mb-2">Search Results</h3>
@@ -85,7 +91,7 @@ function SearchBar() {
                 className="h-full w-full object-cover"/>
                 </span>
                 <span className="">
-                <h3 className="font-[500] text-sm font-poppins whitespace-nowrap  text-ellipsis overflow-hidden">{results.name}</h3>
+                <h3 className="font-[500] text-sm font-poppins ">{results.name}</h3>
                 <p className="font-light text-xs font-poppins ">{results.artists.primary
                 .map((artists)=> artists.name)
                 .join(',')}</p>
@@ -94,8 +100,12 @@ function SearchBar() {
            ))}
           </ul>
         </div>
-      )}
+      )} */}
+      
+
+      
     </div>
+   
   );
 }
 

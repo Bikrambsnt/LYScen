@@ -4,8 +4,8 @@ function Logo(){
 
     return(
         <div
-        className="font-rubik text-2xl ">
-            Lis<span className="text-[#9c227c]">ten</span>
+        className="font-pacifico font-[500] tracking-wide text-2xl ">
+            LYS<span className="text-[#9c227c]">cen</span>
         </div>
     )
 
