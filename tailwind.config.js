@@ -12,7 +12,9 @@ export default {
   
       fontFamily:{
         rubik:['Rubik',...defaultTheme.fontFamily.sans],
-        gotham:['Gotham', ...defaultTheme.fontFamily.sans],
+       roboto:['Roboto', ...defaultTheme.fontFamily.sans],
+       jost:['Jost', ...defaultTheme.fontFamily.sans],
+       poppins:['Poppins', ...defaultTheme.fontFamily.serif],
       },
      
     },
