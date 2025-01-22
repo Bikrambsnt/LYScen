@@ -79,11 +79,13 @@ function TrendingSongs() {
             loading="lazy"
             className="h-[100%] w-[100%] text-center object-cover rounded-[4px] shadow-md hover:scale-105 hover:rounded-[4px] transition duration-300 ease-in-out"
           />
-          <p className="] text-xs font-[400] text-left font-rubik mt-1">
+          <p className="] text-xs font-[400] text-left font-rubik mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
             {songs.name}
           </p>
-          <p className="] text-xs font-[300] text-left font-rubik mt-1">
-            {songs.artists.primary[0].name}
+          <p className="] text-xs font-[300] text-left font-rubik mt-1 whitespace-nowrap text-ellipsis overflow-hidden"
+          >
+           {songs.artists.primary.map((artists)=>artists.name).join(', ')}
+            
           </p>
         </SongsCard>
       </SwiperSlide>

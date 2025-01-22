@@ -77,12 +77,19 @@ function SearchBar() {
           <h3 className="text-lg mb-2">Search Results</h3>
           <ul className="">
            {results.map((results)=>(
-              <li key={results.id} className="bg-[#444] p-2 rounded w-full">
-              <h3 className="font-bold">{results.name}</h3>
-              <p>{results.album.name}</p>
-              <img 
-              src={results.image[2]?.url}
-              alt={results.name}/>
+              <li key={results.id} className="h-14  p-2 mb-3 rounded w-full flex space-x-5 items-center">
+                <span className=" w-12 h-12 rounded-[4px] border-[1px] border-[white]">
+                <img 
+                src={results.image[2]?.url}
+                alt={results.name}
+                className="h-full w-full object-cover"/>
+                </span>
+                <span className="">
+                <h3 className="font-[500] text-sm font-poppins whitespace-nowrap  text-ellipsis overflow-hidden">{results.name}</h3>
+                <p className="font-light text-xs font-poppins ">{results.artists.primary
+                .map((artists)=> artists.name)
+                .join(',')}</p>
+                </span>
             </li>
            ))}
           </ul>
