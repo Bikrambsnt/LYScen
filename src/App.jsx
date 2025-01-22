@@ -47,7 +47,7 @@ function App() {
         darkMode ? "bg-[#080808] text-white" : "bg-white text-black"
       }`}
     >
-      <SearchBar/>
+      {/* <SearchBar/> */}
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       <Song
       // currentlyPlaying={currentlyPlaying}

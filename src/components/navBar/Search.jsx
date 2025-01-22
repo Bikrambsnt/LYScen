@@ -47,14 +47,14 @@ function SearchBar() {
   return (
     <div className="flex flex-col items-center w-full">
       <div
-        className={`w-[98%] h-10 flex items-center justify-evenly bg-[#636366] border-[1px] border-transparent focus-within:border-[#9c227c] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300`}
+        className={` relative w-[98%] h-10 flex items-center  bg-[#636366] border-[1px] border-transparent focus-within:border-[#9c227c] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300`}
       >
         <input
           value={query}
-          placeholder="Search what you love to listen..."
+          placeholder="What's playing in your mind?"
           type="text"
           onChange={handleInputChange}
-          className="outline-none bg-transparent text-white placeholder-white w-[80%]"
+          className="absolute left-3 outline-none bg-transparent font-jost font-[300] text-sm tracking-wide text-white placeholder-white w-[80%]"
         />
 
         <button
@@ -62,9 +62,9 @@ function SearchBar() {
             debouncedSearch(query); // Handle search explicitly on button click
             setQuery(""); // Clear input field
           }}
-          className=" bg-transparent"
+          className=" bg-transparent absolute right-3 flex items-center"
         >
-          <FontAwesomeIcon icon={faSearch} className="flex text-lg" />
+          <FontAwesomeIcon icon={faSearch} className="text-lg" />
         </button>
       </div>
 

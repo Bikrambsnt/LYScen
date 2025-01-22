@@ -33,12 +33,12 @@ const Artists = () => {
       <h2 className="text-2xl font-rubik font-[500]  tracking-wide mb-0">
         Artists
       </h2>
-      <p className="text-gray-300 font-rubik tracking-wide text-xs font-[400] mb-1">
+      <p className="text-[#b9b9b9]  font-jost tracking-wide text-xs font-[400] mb-1">
         Most search artists
       </p>
       {loading ? (
         // Show loading message
-        <p className="text-center font-light text-red-400 col-span-4">
+        <p className="text-center font-roboto font-light text-red-400 col-span-4">
           Loading artists...
         </p>
       ) : (
@@ -76,7 +76,7 @@ const Artists = () => {
           {artists.map((artist, index) => (
             <SwiperSlide
               key={index}
-              className="flex items-center justify-center"
+              className="flex items-center "
             >
               <ArtistsCards>
                 <img
@@ -84,9 +84,9 @@ const Artists = () => {
                     artist.image[2]?.url || "https://via.placeholder.com/150"
                   } // Use fallback image
                   alt={artist.name}
-                  className="h-[100%] w-[100%] text-center  object-cover rounded-full shadow-md hover:scale-105 transition-transform"
+                  className="h-[100%] w-[100%] text-center   object-cover rounded-full shadow-md hover:scale-105 transition-transform"
                 />
-                <p>{artist.name}</p>
+                <p className="overflow-hidden whitespace-nowrap text-ellipsis font-[300] tracking-wide text-center font-roboto mt-1">{artist.name}</p>
               </ArtistsCards>
             </SwiperSlide>
           ))}

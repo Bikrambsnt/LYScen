@@ -14,7 +14,7 @@ export default {
         rubik:['Rubik',...defaultTheme.fontFamily.sans],
        roboto:['Roboto', ...defaultTheme.fontFamily.sans],
        jost:['Jost', ...defaultTheme.fontFamily.sans],
-       poppins:['Poppins', ...defaultTheme.fontFamily.serif],
+       poppins:['Poppins', ...defaultTheme.fontFamily.sans],
       },
      
     },

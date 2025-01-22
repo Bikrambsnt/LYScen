@@ -79,10 +79,10 @@ function TrendingSongs() {
             loading="lazy"
             className="h-[100%] w-[100%] text-center object-cover rounded-[4px] shadow-md hover:scale-105 hover:rounded-[4px] transition duration-300 ease-in-out"
           />
-          <p className="] text-xs font-[400] text-left font-rubik mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
+          <p className="] text-sm font-[400] text-left font-roboto mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
             {songs.name}
           </p>
-          <p className="] text-xs font-[300] text-left font-rubik mt-1 whitespace-nowrap text-ellipsis overflow-hidden"
+          <p className="] text-xs font-[300] text-left font-jost tracking-wide  whitespace-nowrap text-ellipsis overflow-hidden"
           >
            {songs.artists.primary.map((artists)=>artists.name).join(', ')}
             
@@ -98,7 +98,7 @@ function TrendingSongs() {
     <div className="-mt-1">
 
     {loading?(
-         <p className="text-red-400 font-light col-span-4 text-center">
+         <p className="text-red-400 font-light font-roboto col-span-4 text-center">
                    Songs Loading ...
                  </p>
     ):(
@@ -106,7 +106,7 @@ function TrendingSongs() {
             <h1 className=" font-rubik tracking-wide text-2xl font-[500] mb-0">
         Trending
       </h1>
-      <p className="text-gray-300 font-rubik tracking-wide text-xs font-[400] mb-3">
+      <p className="text-[#b9b9b9] font-jost tracking-wide text-xs font-[400] mb-3">
         Most Played songs
       </p>
 
