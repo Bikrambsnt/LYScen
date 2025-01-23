@@ -74,7 +74,7 @@ function SearchBar() {
 
 
 
-{/*      
+      
       {loading && <div className="text-white mt-4">Loading...</div>}
 
       
@@ -100,7 +100,7 @@ function SearchBar() {
            ))}
           </ul>
         </div>
-      )} */}
+      )} 
       
 
       
