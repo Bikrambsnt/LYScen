@@ -8,6 +8,7 @@ import ToggleTheme from "./navBar/BgThemeToggle";
 import RecentlyPlayed from "./RecentlyPlayed";
 import SearchBar from "./navBar/Search";
 import SearchBtn from "./navBar/SearchBtn";
+import Home from "../Pages/Home";
 
 
 export{
@@ -22,5 +23,6 @@ export{
     RecentlyPlayed,
     SearchBar,
     SearchBtn,
+    Home,
 
 }

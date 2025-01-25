@@ -1,7 +1,6 @@
 import {useState,useEffect,React} from "react";
 import Logo from "../components/navBar/Logo";
-import { Greet, SearchBar, ToggleTheme,SearchBtn } from "../components/index";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Greet, ToggleTheme,SearchBtn } from "../components/index";
 
 
 
@@ -47,14 +46,7 @@ return (
   </div>
 
     <div className="flex justify-between items-center mr-1 mb-2">
-        <Router>
-            <Routes>
-                
-                <Route path="/" element={<SearchBtn/>} />
-                <Route path="/search" element={<SearchBar/>} />
-             
-            </Routes>
-        </Router>
+       <SearchBtn/>
     </div>
 
 
