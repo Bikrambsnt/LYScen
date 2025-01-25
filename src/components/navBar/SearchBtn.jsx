@@ -2,15 +2,13 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { SearchBar } from "../index";
 
 function SearchBtn() {
 
     const navigate = useNavigate();
 
     const redirectTopage = ()=>{
-        navigate('/search');
+        navigate('/search'); 
     }
 
     return (

@@ -87,7 +87,7 @@ function Songs() {
                 <p className=" text-base font-[400] text-left font-roboto mt-1 overflow-hidden whitespace-nowrap text-ellipsis">
                   {songs.name}
                 </p>
-                <p className=" text-xs font-[300] text-left font-jost tracking-wide  whitespace-nowrap overflow-hidden text-ellipsis">
+                <p className="text-xs font-[300] text-left font-jost tracking-wide  whitespace-nowrap overflow-hidden text-ellipsis">
                  {songs.artists.primary.map((artists)=>artists.name).join(', ')}
                 </p>
               </SongsCard>

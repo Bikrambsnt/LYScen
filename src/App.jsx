@@ -2,7 +2,6 @@ import { Header, Artist, Song, Trending } from "./components/index";
 import { React, useState, useEffect } from "react";
 import { useAudioProvider } from "./hook/useAudioProvider";
 import SongProgressBar from "./components/UI/playingProgressBar/SongProgressBar";
-import SearchBar from "./components/navBar/Search";
 
 
 

@@ -47,7 +47,7 @@ function SearchBar() {
   return (
    
     
-    <div className="w-full">
+    <div className="w-screen h-screen bg-red-400">
       <div
         className={` relative w-full h-10 flex items-center  bg-[#636366] border-[1px] border-transparent focus-within:border-[#9c227c] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300`}
       >
