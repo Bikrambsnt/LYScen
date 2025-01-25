@@ -1,13 +1,15 @@
 import { useState, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faMultiply,faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { searchSongsByQuery, globalSearch } from "../../config/fetch";
 import { debounce } from "lodash";
+import {  useNavigate } from "react-router-dom";
 
 function SearchBar() {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]); // Store search results
+  const navigate = useNavigate()
 
   // Debounced search function
   const debouncedSearch = useCallback(
@@ -23,6 +25,8 @@ function SearchBar() {
                 console.log("Search Results:", data); // Replace with your result handling logic
                 setResults(data); // Assuming results are arrays from each API call
             }
+
+           
 
 
         } catch (error) {
@@ -42,32 +46,46 @@ function SearchBar() {
     const value = e.target.value;
     setQuery(value);
     debouncedSearch(value); // Trigger the debounced search
+ 
   };
+  
 
+  const clearInput=  ()=> {
+      setQuery('');
+      setResults([])
+  }
+
+  
   return (
    
     
-    <div className="w-screen h-screen bg-red-400">
+    <div className="w-screen h-screen  p-2">
       <div
-        className={` relative w-full h-10 flex items-center  bg-[#636366] border-[1px] border-transparent focus-within:border-[#9c227c] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300`}
+        className={` relative w-full h-14 flex items-center  bg-[#636366] border-[1px] border-transparent focus-within:border-[#9c227c] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300`}
       >
+        <button className="flex items-center"
+        // Go back to root.
+        onClick={()=> navigate('/')}>
+          <FontAwesomeIcon icon={faArrowLeft} className="ml-3 text-lg text-white"/>
+
+          
+        </button>
         <input
           value={query}
           placeholder="What's playing in your mind?"
           type="text"
           onChange={handleInputChange}
-          className="absolute left-3 outline-none bg-transparent font-jost font-[300] text-sm tracking-wide text-white placeholder-white w-[80%]"
+          className="absolute left-9 outline-none bg-transparent font-poppins font-[400] text-sm tracking-wide text-white placeholder-white w-[80%]"
         />
 
+      { query && ( //Display if its input has a value...
         <button
-          onClick={() => {
-            debouncedSearch(query); // Handle search explicitly on button click
-            setQuery(""); // Clear input field
-          }}
-          className=" bg-transparent absolute right-3 flex items-center"
+          onClick={clearInput}
+          className=" bg-transparent absolute right-4 flex items-center"
         >
-          <FontAwesomeIcon icon={faSearch} className="text-lg" />
+          <FontAwesomeIcon icon={faMultiply} className="text-lg text-white"  />
         </button>
+)}
       </div>
 
      
@@ -77,10 +95,10 @@ function SearchBar() {
       
       {loading && <div className="text-white mt-4">Loading...</div>}
 
-      
+          
       {!loading && results.length > 0 && (
         <div className="mt-4 ">
-          <h3 className="text-lg mb-2">Search Results</h3>
+          <h3 className="text-lg mb-2 font-jost">Search Results for {`${query}`}</h3>
           <ul className="">
            {results.map((results)=>(
               <li key={results.id} className="h-14  p-2 mb-3 rounded w-full flex space-x-5 items-center">
