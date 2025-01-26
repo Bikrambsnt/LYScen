@@ -6,6 +6,7 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
 import {searchSongsByQuery} from "../config/fetch";
+import SkeletonCard from "./UI/skeleton/SkeletonCard";
 
 
 
@@ -42,9 +43,43 @@ function Songs() {
         Popular Hindi Songs
       </p>
       {loading ? (
-        <p className="text-red-400 font-light font-roboto col-span-4 text-center">
-          Songs Loading ...
-        </p>
+     
+        // Display Skeleton
+        <Swiper
+          slidesPerView={2}
+          spaceBetween={100}
+          modules={[FreeMode]}
+          centeredSlides={false}
+          freeMode={true}
+          breakpoints={{
+            400: {
+              slidesPerView: 3,
+              spaceBetween: 150,
+            },
+            640: {
+              slidesPerView: 4,
+              spaceBetween: 150,
+            },
+            768: {
+              slidesPerView: 5,
+              spaceBetween: 180,
+            },
+            1024: {
+              slidesPerView: 6,
+              spaceBetween: 180,
+            },
+          }}
+        >
+          {Array.from({length: 6}).map((_,index)=>(
+             //Here _(underscore) represent the undefined value passing from the Array which I dont want.
+            <SwiperSlide key={index}>
+              <SkeletonCard/>
+            </SwiperSlide>
+          ))}
+
+        </Swiper>
+
+       
       ) : (
         <Swiper
           slidesPerView={2}

@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
+import SkeletonCard from "./UI/skeleton/SkeletonCard";
 
 function TrendingSongs() {
   const [englishSong, setEnglishSong] = useState([]);
@@ -96,19 +97,48 @@ function TrendingSongs() {
 
   return (
     <div className="-mt-1">
-
-    {loading?(
-         <p className="text-red-400 font-light font-roboto col-span-4 text-center">
-                   Songs Loading ...
-                 </p>
-    ):(
-        <>
-            <h1 className=" font-rubik tracking-wide text-2xl font-[500] mb-0">
+           <h1 className=" font-rubik tracking-wide text-2xl font-[500] mb-0">
         Trending
       </h1>
       <p className="text-[#b9b9b9] font-jost tracking-wide text-xs font-[400] mb-3">
         Most Played songs
       </p>
+    {loading?(
+         <Swiper
+    slidesPerView={2}
+    spaceBetween={100}
+    modules={[FreeMode]}
+    centeredSlides={false}
+    freeMode={true}
+    breakpoints={{
+      400: {
+        slidesPerView: 3,
+        spaceBetween: 150,
+      },
+      640: {
+        slidesPerView: 4,
+        spaceBetween: 150,
+      },
+      768: {
+        slidesPerView: 5,
+        spaceBetween: 180,
+      },
+      1024: {
+        slidesPerView: 6,
+        spaceBetween: 180,
+      },
+    }}
+  >
+   {Array.from({length:6}).map((_,index)=>(
+    //Here _(underscore) represent the undefined value passing from the Array which I dont want.
+    <SwiperSlide key={index}>
+      <SkeletonCard/>
+    </SwiperSlide>
+   ))}
+  </Swiper>
+    ):(
+        <>
+       
 
       {repeatSwiper(englishSong)}
       {repeatSwiper(hindiSong)}

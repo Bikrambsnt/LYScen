@@ -8,6 +8,7 @@ import {SearchBar} from "./components/index";
 
 
 
+
 function App() {
   // Toggle Bg theme
   const [darkMode, setDarkMode] = useState(() => {
