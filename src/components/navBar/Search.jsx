@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback,useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMultiply,faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { searchSongsByQuery, globalSearch } from "../../config/fetch";
@@ -11,6 +11,7 @@ function SearchBar() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]); // Store search results
   const navigate = useNavigate()
+  const [scrolled, setScrolled] = useState(false);
 
   // Debounced search function
   const debouncedSearch = useCallback(
@@ -20,7 +21,7 @@ function SearchBar() {
 
         // const getSong = [searchSongsByQuery];
         try {
-          const response = await searchSongsByQuery (searchQuery,15,1);
+          const response = await searchSongsByQuery (searchQuery,40,1);
             if(response.success){
                 const data =response.data.results || []
                 console.log("Search Results:", data); // Replace with your result handling logic
@@ -56,18 +57,39 @@ function SearchBar() {
       setResults([])
   }
 
+  // Scroll behaviour
+    const checkScroll =() => {
+      if(window.scrollY>0){
+        setScrolled(true)
+        
+      }
+
+      else{
+        setScrolled(false)
+      
+      }
+    }
+
+    useEffect(()=>{
+      window.addEventListener('scroll',checkScroll);
+
+      return ()=>{ 
+        window.removeEventListener('scroll' ,checkScroll);
+      }
+    },[scrolled])
   
   return (
    
     
-    <div className="w-screen h-max  p-2">
+    <div className="w-screen h-max  ">
+      <div className={`sticky inset-0 w-full h-[85px] p-2 z-10 ${scrolled ? 'bg-black/60 backdrop-blur-md text-white' : 'bg-none'}`}>
       <div
-        className={` relative w-full h-14 flex items-center  bg-[#636366] border-[1px] border-transparent focus-within:border-[#9c227c] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300`}
+        className={`relative w-full h-14 flex items-center  bg-[#636366] border-[1px] border-transparent focus-within:border-[#9c227c] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300`}
       >
         <button className="flex items-center"
         // Go back to root.
         onClick={()=> navigate('/')}>
-          <FontAwesomeIcon icon={faArrowLeft} className="ml-3 text-lg text-white"/>
+          <FontAwesomeIcon icon={faArrowLeft} className="ml-[10px] text-lg text-white"/>
 
           
         </button>
@@ -76,7 +98,7 @@ function SearchBar() {
           placeholder="What's playing in your mind?"
           type="text"
           onChange={handleInputChange}
-          className="absolute left-9 outline-none bg-transparent font-poppins font-[400] text-sm tracking-wide text-white placeholder-white w-[80%]"
+          className="cursor-wait absolute left-9 outline-none bg-transparent font-poppins font-[400] text-sm tracking-wide text-white placeholder-white w-[80%]"
         />
 
       { query && ( //Display if its input has a value...
@@ -87,6 +109,7 @@ function SearchBar() {
           <FontAwesomeIcon icon={faMultiply} className="text-lg text-white"  />
         </button>
 )}
+      </div>
       </div>
 
      
@@ -102,9 +125,17 @@ function SearchBar() {
         ))}
         </ul>}
 
+        {!loading && results.length ===0 && (
+          <div className="w-full h-screen flex justify-center items-center">
+            <p className="font-jost font-normal  tracking-wide text-base text-center text-clip">Search for songs,artists and many more..</p> 
+
+
+          </div>
+        )}
+
           
       {!loading && results.length > 0 && (
-        <div className="mt-4 ">
+        <div className="mt-1 p-2">
           {/* <h3 className="text-lg mb-2 font-jost">Search Results for {`${query}`}</h3> */}
           <ul className="">
            {results.map((results)=>(

@@ -133,6 +133,8 @@ function TrendingSongs() {
     //Here _(underscore) represent the undefined value passing from the Array which I dont want.
     <SwiperSlide key={index}>
       <SkeletonCard/>
+      <SkeletonCard/>
+      <SkeletonCard/>
     </SwiperSlide>
    ))}
   </Swiper>

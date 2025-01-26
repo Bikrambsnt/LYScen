@@ -45,6 +45,11 @@ function App() {
 function Content({ darkMode, setDarkMode }) {
   const location = useLocation();
 
+  //Ressetting The scroll to 0 when Navigation from another page..
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[location])
+
   return (
     <div
       className={` w-screen h-max transition-colors duration-200 ease-in ${
@@ -56,7 +61,7 @@ function Content({ darkMode, setDarkMode }) {
       )}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/search" element={<SearchBar />} />
+        <Route path="/search" element={<SearchBar/>} />
       </Routes>
     </div>
   );

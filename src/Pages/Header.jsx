@@ -36,7 +36,7 @@ function Header({darkMode,setDarkMode}){
 
 return (
 
-    <div className={`h-32 ${isScrolled ? 'bg-black/60 backdrop-blur-md text-white' : 'bg-none'} p-2 sticky top-0 z-50 overflow-hidden`}>
+    <div className={`h-32 ${isScrolled ? 'bg-black/60 backdrop-blur-lg text-white' : 'bg-none'} p-2 sticky top-0 z-50 overflow-hidden`}>
     <div className="flex justify-between items-center mb-1 mt-1">
     <Logo/>
     <Greet/>
