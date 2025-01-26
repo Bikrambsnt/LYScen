@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import { FreeMode} from "swiper/modules";
 import ArtistsCards from "./UI/ArtistsCard";
 import { searchForArtist } from "../config/fetch";
+import SkeletonAvatar from "./UI/skeleton/SkeletonAvatar";
 
 const Artists = () => {
   const [artists, setArtists] = useState([]);
@@ -37,10 +38,47 @@ const Artists = () => {
         Most search artists
       </p>
       {loading ? (
-        // Show loading message
-        <p className="text-center font-roboto font-light text-red-400 col-span-4">
-          Loading artists...
-        </p>
+        
+        <Swiper
+        slidesPerView={3}
+        spaceBetween={80}
+        loop={true}
+        modules={[FreeMode]}
+        freeMode={true}
+        centeredSlides={false}
+        
+
+        breakpoints={{
+          400:{
+            slidesPerView:4,
+            spaceBetween:50,
+          },
+          640:{
+            slidesPerView:5,
+            spaceBetween:10,
+          },
+          768:{
+            slidesPerView:7,
+            spaceBetween:25,
+            
+          },
+          1024:{
+            slidesPerView:8,
+            spaceBetween:25,
+
+          },
+         
+        }}
+      >
+     {Array.from({length:6}).map((_,index)=>(
+      <SwiperSlide key={index}>
+        <SkeletonAvatar/>
+      </SwiperSlide>
+     ))}
+      </Swiper>
+
+
+       
       ) : (
         <Swiper
           slidesPerView={3}

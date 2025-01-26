@@ -4,6 +4,7 @@ import { faMultiply,faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { searchSongsByQuery, globalSearch } from "../../config/fetch";
 import { debounce } from "lodash";
 import {  useNavigate } from "react-router-dom";
+import SkeletonSearch from "../UI/skeleton/SkeletonSearch";
 
 function SearchBar() {
   const [query, setQuery] = useState("");
@@ -59,7 +60,7 @@ function SearchBar() {
   return (
    
     
-    <div className="w-screen h-screen  p-2">
+    <div className="w-screen h-max  p-2">
       <div
         className={` relative w-full h-14 flex items-center  bg-[#636366] border-[1px] border-transparent focus-within:border-[#9c227c] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300`}
       >
@@ -93,12 +94,18 @@ function SearchBar() {
 
 
       
-      {loading && <div className="text-white mt-4">Loading...</div>}
+      {loading && <ul>
+        {Array.from({length:10}).map((_,index)=>(
+          <li key={index}>
+            <SkeletonSearch/>
+          </li>
+        ))}
+        </ul>}
 
           
       {!loading && results.length > 0 && (
         <div className="mt-4 ">
-          <h3 className="text-lg mb-2 font-jost">Search Results for {`${query}`}</h3>
+          {/* <h3 className="text-lg mb-2 font-jost">Search Results for {`${query}`}</h3> */}
           <ul className="">
            {results.map((results)=>(
               <li key={results.id} className="h-14  p-2 mb-3 rounded w-full flex space-x-5 items-center">
