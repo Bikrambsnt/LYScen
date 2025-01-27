@@ -125,30 +125,30 @@ function SearchBar() {
         ))}
         </ul>}
 
+       
+
         {!loading && results.length ===0 && (
-          <div className="w-full h-screen flex justify-center items-center">
-            <p className="font-jost font-normal  tracking-wide text-base text-center text-clip">Search for songs,artists and many more..</p> 
-
-
+          <div className="w-full h-svh  flex items-center p-5">
+            <span className="font-poppins font-bold text-center">  What's playing in your mind?
+            <p className="font-jost font-normal  tracking-wide text-base text-center text-clip">Search for your favourite artist ,songs and many more</p> 
+            </span> 
           </div>
         )}
-
-          
       {!loading && results.length > 0 && (
-        <div className="mt-1 p-2">
+        <div className="mt-1 p-2 h-screen">
           {/* <h3 className="text-lg mb-2 font-jost">Search Results for {`${query}`}</h3> */}
-          <ul className="">
+          <ul className="relative">
            {results.map((results)=>(
-              <li key={results.id} className="h-14  p-2 mb-3 rounded w-full flex space-x-5 items-center">
-                <span className=" w-12 h-12 rounded-[4px] border-[1px] border-[white]">
+              <li key={results.id} className="h-14  p-2 mb-3 rounded w-full flex space-x-16 flex-row items-center">
+                <span className="absolute left-3 w-12 h-12 rounded-[4px] border-[1px] border-[white]">
                 <img 
                 src={results.image[2]?.url}
                 alt={results.name}
                 className="h-full w-full object-cover"/>
                 </span>
-                <span className="">
-                <h3 className="font-[500] text-sm font-poppins ">{results.name}</h3>
-                <p className="font-light text-xs font-poppins ">{results.artists.primary
+                <span className="w-full max-w-[75%]">
+                <h3 className="font-[500] text-sm font-poppins whitespace-nowrap text-ellipsis overflow-hidden ">{results.name}</h3>
+                <p className="font-light text-xs font-poppins whitespace-nowrap text-ellipsis overflow-hidden ">{results.artists.primary
                 .map((artists)=> artists.name)
                 .join(',')}</p>
                 </span>
