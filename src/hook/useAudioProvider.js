@@ -15,6 +15,11 @@ export const useAudioProvider = (songData,currentlyPlaying,setCurrentlyPlaying) 
       if (!audioRef.current) {
         audioRef.current = new Audio(songData);
       }
+
+      else {
+
+    // audioRef.current.src = songUrl;
+      }
       // console.log("Audio Ref in Hook after initializing" ,audioRef)
       
 
@@ -83,6 +88,8 @@ export const useAudioProvider = (songData,currentlyPlaying,setCurrentlyPlaying) 
     progress,
     showProgressBar,
     audioRef,
+    setCurrentlyPlaying,
+    songData
     // handleSeek
   };
 };

@@ -5,6 +5,7 @@ import { searchSongsByQuery, globalSearch } from "../../config/fetch";
 import { debounce } from "lodash";
 import {  useNavigate } from "react-router-dom";
 import SkeletonSearch from "../UI/skeleton/SkeletonSearch";
+import { useAudioProvider } from "../../hook/useAudioProvider";
 
 function SearchBar() {
   const [query, setQuery] = useState("");
@@ -12,6 +13,7 @@ function SearchBar() {
   const [results, setResults] = useState([]); // Store search results
   const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false);
+  const {playSong ,setCurrentlyPlaying } = useAudioProvider()
 
   // Debounced search function
   const debouncedSearch = useCallback(
@@ -77,12 +79,21 @@ function SearchBar() {
         window.removeEventListener('scroll' ,checkScroll);
       }
     },[scrolled])
-  
+    
+    //play song on click
+
+    const startPlay= (result)=>{
+      // setCurrentlyPlaying(result)
+      playSong(result.downloadUrl[4]?.url)
+    
+
+     
+    }
   return (
    
     
     <div className="w-screen h-max  ">
-      <div className={`sticky inset-0 w-full h-[85px] p-2 z-10 ${scrolled ? 'bg-black/60 backdrop-blur-md text-white' : 'bg-none'}`}>
+      <div className={`sticky inset-0 w-full h-[85px] p-2 z-10 ${scrolled ? 'bg-black/70 backdrop-blur-sm text-white' : 'bg-none'}`}>
       <div
         className={`relative w-full h-14 flex items-center  bg-[#636366] border-[1px] border-transparent focus-within:border-[#9c227c] rounded-[8px] shadow-searchShadow text-sm sm:text-xl transition-all duration-300`}
       >
@@ -129,17 +140,24 @@ function SearchBar() {
 
         {!loading && results.length ===0 && (
           <div className="w-full h-svh  flex items-center p-5">
-            <span className="font-poppins font-bold text-center">  What's playing in your mind?
-            <p className="font-jost font-normal  tracking-wide text-base text-center text-clip">Search for your favourite artist ,songs and many more</p> 
+            <span className="font-poppins font-bold text-base text-center">  What's playing in your mind?
+            <p className="pt-1 font-jost font-normal text-[#b9b9b9] tracking-wide text-xs text-center text-clip">Search for your favourite artist ,songs and many more</p> 
             </span> 
           </div>
         )}
       {!loading && results.length > 0 && (
-        <div className="mt-1 p-2 h-screen">
+        <div className="mt-1 p-2">
           {/* <h3 className="text-lg mb-2 font-jost">Search Results for {`${query}`}</h3> */}
           <ul className="relative">
            {results.map((results)=>(
-              <li key={results.id} className="h-14  p-2 mb-3 rounded w-full flex space-x-16 flex-row items-center">
+              <li key={results.id} className="p-2 mb-3">
+               <button
+               //pass the logic to play current music on click...
+               onClick={() => startPlay(results)
+               }
+               className="w-full h-14 flex space-x-16 text-left items-center"
+               >
+               
                 <span className="absolute left-3 w-12 h-12 rounded-[4px] border-[1px] border-[white]">
                 <img 
                 src={results.image[2]?.url}
@@ -152,6 +170,7 @@ function SearchBar() {
                 .map((artists)=> artists.name)
                 .join(',')}</p>
                 </span>
+                </button>
             </li>
            ))}
           </ul>
