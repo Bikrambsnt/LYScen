@@ -4,21 +4,16 @@ export const useAudioProvider = (songData,currentlyPlaying,setCurrentlyPlaying) 
   const [isPlaying, setIsplaying] = useState(false);
   const audioRef = useRef(null);
   const [progress, setProgress] = useState(0);
-  const [showProgressBar, setShowProgressBar] = useState(false);
+  // const [showProgressBar, setShowProgressBar] = useState(false);
   // const [duration,setDuration] = useState(0)
 
   // console.log("Audio Ref in Hook top before Initializing" ,audioRef)
   // console.log("Audio Ref in Hook top before Initializing Current" ,audioRef.current)
   
-  const playSong = async () => {
+  const playSong = async (songUrl) => {
     try {
       if (!audioRef.current) {
         audioRef.current = new Audio(songData);
-      }
-
-      else {
-
-    // audioRef.current.src = songUrl;
       }
       // console.log("Audio Ref in Hook after initializing" ,audioRef)
       
@@ -35,7 +30,7 @@ export const useAudioProvider = (songData,currentlyPlaying,setCurrentlyPlaying) 
         await audioRef.current.play();
         setIsplaying(true);
         setCurrentlyPlaying(audioRef.current);
-        setShowProgressBar(true);
+        // setShowProgressBar(true);
       }
 
       setIsplaying(!isPlaying);
@@ -86,10 +81,10 @@ export const useAudioProvider = (songData,currentlyPlaying,setCurrentlyPlaying) 
     playSong,
     isPlaying,
     progress,
-    showProgressBar,
+    // showProgressBar,
     audioRef,
     setCurrentlyPlaying,
-    songData
+    
     // handleSeek
   };
 };

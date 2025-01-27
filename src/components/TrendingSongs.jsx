@@ -8,12 +8,15 @@ import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
 import SkeletonCard from "./UI/skeleton/SkeletonCard";
 
-function TrendingSongs() {
+function TrendingSongs({currentlyPlaying,setCurrentlyPlaying}) {
   const [englishSong, setEnglishSong] = useState([]);
   const [hindiSong, setHindiSong] = useState([]);
   const [nepaliSong, setNepaliSong] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
+  
+//  const [currentlyPlaying,setCurrentlyPlaying] = useState(null);
+
+  
 
   useEffect(() => {
     const getTrending = async () => {
@@ -73,6 +76,7 @@ function TrendingSongs() {
           key={songs.id}
           currentlyPlaying={currentlyPlaying}
           setCurrentlyPlaying={setCurrentlyPlaying}
+        
         >
           <img
             src={songs.image[2]?.url}

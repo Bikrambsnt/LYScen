@@ -1,19 +1,19 @@
 import { useState, useCallback,useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMultiply,faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { searchSongsByQuery, globalSearch } from "../../config/fetch";
+import {searchSongsByQuery} from "../../config/fetch";
 import { debounce } from "lodash";
 import {  useNavigate } from "react-router-dom";
 import SkeletonSearch from "../UI/skeleton/SkeletonSearch";
 import { useAudioProvider } from "../../hook/useAudioProvider";
 
-function SearchBar() {
+function SearchBar({currentlyPlaying,setCurrentlyPlaying}) {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState([]); // Store search results
+  const [results, setResults] = useState([]);// Store search results
   const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false);
-  const {playSong ,setCurrentlyPlaying } = useAudioProvider()
+  const {playSong} = useAudioProvider(null,setCurrentlyPlaying,currentlyPlaying)
 
   // Debounced search function
   const debouncedSearch = useCallback(
@@ -83,7 +83,6 @@ function SearchBar() {
     //play song on click
 
     const startPlay= (result)=>{
-      // setCurrentlyPlaying(result)
       playSong(result.downloadUrl[4]?.url)
     
 

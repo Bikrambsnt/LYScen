@@ -1,13 +1,13 @@
 import React from "react";
 import TrendingSongs from "../components/TrendingSongs";
 
-function Trending({currrentlyPlaying,setCurrentlyPlaying}) {
+function Trending({currentlyPlaying,setCurrentlyPlaying}) {
 
     return (
         <div className="w-screen p-2">
         <TrendingSongs
-        currentlyPlaying={currrentlyPlaying}
-        setCurrentlyPlaying={setCurrentlyPlaying}
+       currentlyPlaying={currentlyPlaying}
+       setCurrentlyPlaying={setCurrentlyPlaying}
         />
       </div>
 

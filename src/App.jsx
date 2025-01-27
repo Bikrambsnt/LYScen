@@ -14,6 +14,7 @@ function App() {
   // Toggle Bg theme
   const [darkMode, setDarkMode] = useState(() => {
     // Get theme from localStorage or default to true (dark mode)
+   
 
     let savedTheme = localStorage.getItem("theme");
     return savedTheme ? savedTheme === "dark" : true;
@@ -44,6 +45,7 @@ function App() {
 //To wrap every components inisde a Router.
 function Content({ darkMode, setDarkMode }) {
   const location = useLocation();
+  const [currentlyPlaying,setCurrentlyPlaying] = useState(null)
 
   //Ressetting The scroll to 0 when Navigation from another page..
   useEffect(()=>{
@@ -60,8 +62,8 @@ function Content({ darkMode, setDarkMode }) {
         <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       )}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/search" element={<SearchBar/>} />
+        <Route path="/" element={<Home currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} />} />
+        <Route path="/search" element={<SearchBar currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying}/>} />
       </Routes>
     </div>
   );

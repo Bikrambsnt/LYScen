@@ -12,10 +12,12 @@ import SkeletonCard from "./UI/skeleton/SkeletonCard";
 
 
 
-function Songs() {
+function Songs({currentlyPlaying,setCurrentlyPlaying}) {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentlyPlaying,setCurrentlyPlaying] = useState(null);
+//  const [currentlyPlaying,setCurrentlyPlaying] = useState(null);
+
+ 
 
   useEffect(() => {
     const getHindiSongs = async () => {
@@ -113,6 +115,7 @@ function Songs() {
                  key={songs.id}
                  currentlyPlaying={currentlyPlaying}
                  setCurrentlyPlaying={setCurrentlyPlaying}
+                 
               >
                 <img
                   src={songs.image[2]?.url}
