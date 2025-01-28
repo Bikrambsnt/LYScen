@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMultiply, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { searchSongsByQuery } from "../../config/fetch";
-import { debounce, multiply } from "lodash";
+import { debounce} from "lodash";
 import { useNavigate } from "react-router-dom";
 import SkeletonSearch from "../UI/skeleton/SkeletonSearch";
 import { useAudioProvider } from "../../hook/useAudioProvider";
@@ -94,19 +94,19 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
 
     };
 
-    //Clear recently search songs
+    //Clear recently search songs 
   
     
     useEffect (()=>{
       const savedData = JSON.parse(localStorage.getItem('id')) || []
-      
       setRecentlySearched(savedData)
       
     },[])
     
-    const clearRecentlySearch = () =>{
-      localStorage.removeItem('id')
-      console.log('clicked on function')
+    const clearRecentlySearch = (result) =>{
+      const removeSong = recentlySearched.filter(songs=> songs.id !== result.id);
+      localStorage.setItem('id' ,JSON.stringify(removeSong))
+      setRecentlySearched(removeSong)
     }
   return (
     <div className="w-screen h-max  ">
@@ -161,7 +161,7 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
       )}
 
       {!loading && results.length === 0 && recentlySearched.length ===0 &&(
-        <div className="w-full h-svh  flex items-center p-5">
+        <div className="w-full h-svh justify-center  flex items-center p-5">
           <span className="font-poppins font-bold text-base text-center">
             {" "}
             What's playing in your mind?
@@ -180,7 +180,7 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
               <li key={savedData.id} className="p-2 mb-3">
                 <button
                   //pass the logic to play current music on click...
-                  onClick={() => startPlay(savedData)}
+                  // onClick={() => startPlay(savedData)}
                   className="w-full h-14 flex space-x-16 text-left items-center"
                 >
                   <span className="absolute left-3 w-12 h-12 rounded-[4px] border-[1px] border-[white]">
@@ -190,7 +190,7 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
                       className="h-full w-full object-cover"
                     />
                   </span>
-                  <span className="w-full max-w-[75%]">
+                  <span className="w-full max-w-[65%]">
                     <h3 className="font-[500] text-sm font-poppins whitespace-nowrap text-ellipsis overflow-hidden ">
                       {savedData.name}
                     </h3>
@@ -204,10 +204,12 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
                   <span
                   onClick={(e)=>{
                     e.stopPropagation()
-                    clearRecentlySearch()
+                    clearRecentlySearch(savedData)
+                    // console.log(savedData.id)
                   }}
+                 className="flex  items-center"
                   >
-                    <FontAwesomeIcon icon={faMultiply} className="text-lg pr-1 z-10"/>
+                    <FontAwesomeIcon icon={faMultiply} className="text-sm pr-1 z-10 absolute right-2"/>
 
                   </span>
                 </button>
@@ -224,7 +226,7 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
 
       {!loading && results.length > 0 && (
         <div className="mt-1 p-2">
-          <h3 className="text-lg mb-2 font-jost">Search Results for {`${query}`}</h3>
+          <h3 className="text-lg mb-2 font-jost whitespace-nowrap overflow-hidden text-ellipsis">Search Results for <span className="font-rubik text-base font-light">{`${query}`}</span></h3>
           <ul className="relative">
             {results.map((result) => (
               <li key={result.id} className="p-2 mb-3">
