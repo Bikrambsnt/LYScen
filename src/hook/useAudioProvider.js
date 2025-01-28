@@ -10,7 +10,7 @@ export const useAudioProvider = (songData,currentlyPlaying,setCurrentlyPlaying) 
   // console.log("Audio Ref in Hook top before Initializing" ,audioRef)
   // console.log("Audio Ref in Hook top before Initializing Current" ,audioRef.current)
   
-  const playSong = async (songUrl) => {
+  const playSong = async ()=> {
     try {
       if (!audioRef.current) {
         audioRef.current = new Audio(songData);
