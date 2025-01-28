@@ -81,7 +81,7 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
     playSong(result.downloadUrl[4]?.url);
     
     //retrive the store data
-    let recentlySearched = JSON.parse(localStorage.getItem('id')) || [];
+    let recentlySearched = JSON.parse(localStorage.getItem('id') || []);
     recentlySearched = recentlySearched.filter( song => song.id !== result.id) //to handle dublicate
     recentlySearched.unshift(result) //placed on top the last one clicked (LIFO)
     recentlySearched=recentlySearched.slice(0,100) //keep till 100 Recently search..
@@ -94,20 +94,28 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
 
     };
 
-    //Clear recently search songs 
-  
-    
+    //update the changes
     useEffect (()=>{
-      const savedData = JSON.parse(localStorage.getItem('id')) || []
+      const savedData = JSON.parse(localStorage.getItem('id') || [])
       setRecentlySearched(savedData)
       
     },[])
     
+    //Clear recently search songs single
     const clearRecentlySearch = (result) =>{
       const removeSong = recentlySearched.filter(songs=> songs.id !== result.id);
       localStorage.setItem('id' ,JSON.stringify(removeSong))
       setRecentlySearched(removeSong)
     }
+
+    //Clear all
+
+    const clearAll=() =>{
+      const removeAll =localStorage.removeItem('id')
+      localStorage.setItem('id' ,JSON.stringify([]))
+      setRecentlySearched(removeAll)
+    }
+    
   return (
     <div className="w-screen h-max  ">
       <div
@@ -172,16 +180,25 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
         </div>
       )}
 
+
+{/*  Display the Recently search songs*/}
+
       {!loading && results.length === 0 && recentlySearched.length > 0 &&(
           <div className="mt-1 p-2">
-              <h3 className="text-lg mb-2 font-jost">Recently search {`${query}`}</h3>
+            <div className="flex w-full items-center mb-2">
+              <h3 className="text-lg font-jost">Recently search {`${query}`}</h3>
+              <button 
+              onClick={clearAll}
+              className="font-jost text-base w-16  rounded-[4px] ml-auto mr-1 transition-transform duration-300 active:scale-90 active:bg-[#63636613]"
+              >Clear all</button>
+              </div>
           <ul className="relative h-screen">
             {recentlySearched.map((savedData) => (
               <li key={savedData.id} className="p-2 mb-3">
                 <button
                   //pass the logic to play current music on click...
-                  // onClick={() => startPlay(savedData)}
-                  className="w-full h-14 flex space-x-16 text-left items-center"
+                  onClick={() => startPlay(savedData)}
+                  className="w-full h-14 flex space-x-16 text-left items-center  active:bg-[#63636613] rounded-md"
                 >
                   <span className="absolute left-3 w-12 h-12 rounded-[4px] border-[1px] border-[white]">
                     <img
@@ -209,7 +226,7 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
                   }}
                  className="flex  items-center"
                   >
-                    <FontAwesomeIcon icon={faMultiply} className="text-sm pr-1 z-10 absolute right-2"/>
+                    <FontAwesomeIcon icon={faMultiply} className="text-sm pr-1  absolute right-2 transition-transform  delay-300 active:scale-90"/>
 
                   </span>
                 </button>
@@ -233,7 +250,7 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
                 <button
                   //pass the logic to play current music on click...
                   onClick={() => startPlay(result)}
-                  className="w-full h-14 flex space-x-16 text-left items-center"
+                  className="w-full h-14 flex space-x-16 text-left items-center active:bg-[#63636613] rounded-md"
                 >
                   <span className="absolute left-3 w-12 h-12 rounded-[4px] border-[1px] border-[white]">
                     <img

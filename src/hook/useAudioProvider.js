@@ -1,21 +1,18 @@
-import { useState, useRef,useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
-export const useAudioProvider = (songData,currentlyPlaying,setCurrentlyPlaying) => {
+export const useAudioProvider = (
+  songData,
+  currentlyPlaying,
+  setCurrentlyPlaying
+) => {
   const [isPlaying, setIsplaying] = useState(false);
   const audioRef = useRef(null);
   const [progress, setProgress] = useState(0);
-  // const [showProgressBar, setShowProgressBar] = useState(false);
-  // const [duration,setDuration] = useState(0)
-
-  // console.log("Audio Ref in Hook top before Initializing" ,audioRef)
-  // console.log("Audio Ref in Hook top before Initializing Current" ,audioRef.current)
-  
-  const playSong = async ()=> {
+  const playSong = async () => {
     try {
       if (!audioRef.current) {
         audioRef.current = new Audio(songData);
       }
-      // console.log("Audio Ref in Hook after initializing" ,audioRef)
       
 
       if (currentlyPlaying && currentlyPlaying !== audioRef.current) {
@@ -30,7 +27,7 @@ export const useAudioProvider = (songData,currentlyPlaying,setCurrentlyPlaying) 
         await audioRef.current.play();
         setIsplaying(true);
         setCurrentlyPlaying(audioRef.current);
-        // setShowProgressBar(true);
+       
       }
 
       setIsplaying(!isPlaying);
@@ -43,27 +40,12 @@ export const useAudioProvider = (songData,currentlyPlaying,setCurrentlyPlaying) 
     if (audioRef.current) {
       const currentProgress =
         (audioRef.current.currentTime / audioRef.current.duration) * 100 || 0;
-        setProgress(currentProgress);
-      }
-    };
-    
-    
-    
-  //   const handleSeek = (e) => {
-  //     if (audioRef.current) {
-  //         const newTime = (e.target.value / 100) * audioRef.current.duration;
-  //         console.log(`Seeking to time: ${newTime}`);
-  //         audioRef.current.currentTime = newTime;
-  //         console.log("NewTime:", newTime);
-  //         console.log("Current time:", audioRef.current.currentTime);
-  //     } else {
-  //         console.warn("AudioRef is not ready yet!");
-  //     }
-  // };
-  
+      setProgress(currentProgress);
+    }
+  };
 
   useEffect(() => {
-// audioRef.current.addEventListener('loademetadata')
+    // audioRef.current.addEventListener('loademetadata')
 
     if (audioRef.current) {
       audioRef.current.addEventListener("timeupdate", updateProgress);
@@ -77,14 +59,10 @@ export const useAudioProvider = (songData,currentlyPlaying,setCurrentlyPlaying) 
   }, [audioRef, updateProgress]);
 
   return {
-
     playSong,
     isPlaying,
     progress,
-    // showProgressBar,
     audioRef,
     setCurrentlyPlaying,
-    
-    // handleSeek
   };
 };

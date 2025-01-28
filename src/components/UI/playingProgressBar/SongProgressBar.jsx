@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faPlay,faPause}from "@fortawesome/free-solid-svg-icons"
 import { useAudioProvider } from "../../../hook/useAudioProvider";
 
-function SongProgressBar({progress,handleSeek,showProgressBar}){
+function SongProgressBar({}){
 
 //    if(!showProgressBar){
 //     return null;
@@ -20,12 +20,6 @@ function SongProgressBar({progress,handleSeek,showProgressBar}){
             type="range"
             max='100'
             min='0'
-            value={progress}
-            onChange={handleSeek}
-          
-
-            
-            
             />
             </div>
 
