@@ -108,12 +108,10 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
       setRecentlySearched(removeSong)
     }
 
-    //Clear all
-
+    //Clear all Recently search items
     const clearAll=() =>{
-      const removeAll =localStorage.removeItem('id')
-      localStorage.setItem('id' ,JSON.stringify([]))
-      setRecentlySearched(removeAll)
+     localStorage.setItem('id', JSON.stringify([]))
+      setRecentlySearched([])
     }
     
   return (
@@ -168,7 +166,7 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
         </ul>
       )}
 
-      {!loading && results.length === 0 && recentlySearched.length ===0 &&(
+      {!loading && results.length === 0 && recentlySearched.length === 0  &&(
         <div className="w-full h-svh justify-center  flex items-center p-5">
           <span className="font-poppins font-bold text-base text-center">
             {" "}
