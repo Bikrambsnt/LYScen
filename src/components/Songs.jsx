@@ -24,7 +24,7 @@ function Songs({currentlyPlaying,setCurrentlyPlaying}) {
       try {
         const response = await searchSongsByQuery("Latest Hindi", 40, 1);
         const data = response?.data?.results || [];
-        console.log("Hindi Songs:", data);
+        // console.log("Hindi Songs:", data);
         setSongs(Array.isArray(data) ? data.slice(0, 40) : []);
         setLoading(false);
       } catch (error) {

@@ -1,7 +1,6 @@
-import { Header, Home } from "./components/index";
+import { Header, Home, ProgressBar } from "./components/index";
 import { React, useState, useEffect } from "react";
 import { useAudioProvider } from "./hook/useAudioProvider";
-import SongProgressBar from "./components/UI/playingProgressBar/SongProgressBar";
 import {
   BrowserRouter as Router,
   Routes,
@@ -10,21 +9,21 @@ import {
 } from "react-router-dom";
 import { SearchBar } from "./components/index";
 
+
 function App() {
   // Toggle Bg theme
   const [darkMode, setDarkMode] = useState(() => {
     // Get theme from localStorage or default to true (dark mode)
+
    
 
     let savedTheme = localStorage.getItem("theme");
     return savedTheme ? savedTheme === "dark" : true;
   });
-
   // const  [currentlyPlaying,setCurrentlyPlaying] = useState(null)
   // const { playSong, isPlaying, progress, showProgressBar,audioRef,handleSeek } =
   //   useAudioProvider(currentlyPlaying, setCurrentlyPlaying);
   // Toggle Theme
-
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");
@@ -35,17 +34,22 @@ function App() {
     }
   }, [darkMode]);
 
+  // show progress bar
+  const [currentlyPlaying,setCurrentlyPlaying] = useState(null)
+  // const {showProgressBar} = useAudioProvider(null ,setCurrentlyPlaying,currentlyPlaying)
+
   return (
     <Router>
-      <Content darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Content darkMode={darkMode} setDarkMode={setDarkMode}  currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} />
     </Router>
   );
 }
 
 //To wrap every components inisde a Router.
-function Content({ darkMode, setDarkMode }) {
+function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,showProgressBar}) {
   const location = useLocation();
-  const [currentlyPlaying,setCurrentlyPlaying] = useState(null)
+  
+  
 
   //Ressetting The scroll to 0 when Navigation from another page..
   useEffect(()=>{
@@ -65,7 +69,13 @@ function Content({ darkMode, setDarkMode }) {
         <Route path="/" element={<Home currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} />} />
         <Route path="/search" element={<SearchBar currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying}/>} />
       </Routes>
+      
+      {/* {showProgressBar &&(
+        <ProgressBar/>
+      )} */}
+
     </div>
+  
   );
 }
 

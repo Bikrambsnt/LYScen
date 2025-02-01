@@ -167,7 +167,8 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
       )}
 
       {!loading && results.length === 0 && recentlySearched.length === 0  &&(
-        <div className="w-full h-svh justify-center  flex items-center p-5">
+        
+        <div className="w-full h-screen justify-center  flex items-center p-5">
           <span className="font-poppins font-bold text-base text-center">
             {" "}
             What's playing in your mind?
@@ -179,7 +180,7 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
       )}
 
 
-{/*  Display the Recently search songs*/}
+ {/* Display the Recently search songs */}
 
       {!loading && results.length === 0 && recentlySearched.length > 0 &&(
           <div className="mt-1 p-2">
@@ -187,16 +188,18 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
               <h3 className="text-lg font-jost">Recently search {`${query}`}</h3>
               <button 
               onClick={clearAll}
-              className="font-jost text-base w-16  rounded-[4px] ml-auto mr-1 transition-transform duration-300 active:scale-90 active:bg-[#63636613]"
+              className="font-jost text-base w-16  rounded-[4px] ml-auto mr-1 transition-transform duration-150 active:scale-90 active:bg-[#63636642]"
               >Clear all</button>
               </div>
-          <ul className="relative h-screen">
+          <ul className="relative h-screen  overflow-scroll">
             {recentlySearched.map((savedData) => (
               <li key={savedData.id} className="p-2 mb-3">
                 <button
                   //pass the logic to play current music on click...
-                  onClick={() => startPlay(savedData)}
-                  className="w-full h-14 flex space-x-16 text-left items-center  active:bg-[#63636613] rounded-md"
+
+                  // onClick={() => startPlay(savedData)}
+                  
+                  className="w-full h-14 flex space-x-16 text-left items-center  active:bg-[#63636642] rounded-md"
                 >
                   <span className="absolute left-3 w-12 h-12 rounded-[4px] border-[1px] border-[white]">
                     <img
@@ -239,10 +242,12 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
 
       )}
 
+{/* Display Search result */}
+
       {!loading && results.length > 0 && (
-        <div className="mt-1 p-2">
+        <div className="mt-1 p-2 h-screen overflow-scroll">
           <h3 className="text-lg mb-2 font-jost whitespace-nowrap overflow-hidden text-ellipsis">Search Results for <span className="font-rubik text-base font-light">{`${query}`}</span></h3>
-          <ul className="relative">
+          <ul className="relative ">
             {results.map((result) => (
               <li key={result.id} className="p-2 mb-3">
                 <button
