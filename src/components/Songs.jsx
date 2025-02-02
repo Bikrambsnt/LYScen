@@ -12,7 +12,7 @@ import SkeletonCard from "./UI/skeleton/SkeletonCard";
 
 
 
-function Songs({currentlyPlaying,setCurrentlyPlaying}) {
+function Songs({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar}) {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
 //  const [currentlyPlaying,setCurrentlyPlaying] = useState(null);
@@ -115,6 +115,7 @@ function Songs({currentlyPlaying,setCurrentlyPlaying}) {
                  key={songs.id}
                  currentlyPlaying={currentlyPlaying}
                  setCurrentlyPlaying={setCurrentlyPlaying}
+                 setShowProgressBar={setShowProgressBar}
                  
               >
                 <img

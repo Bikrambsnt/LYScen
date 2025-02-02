@@ -3,12 +3,12 @@ import { useState, useRef, useEffect } from "react";
 export const useAudioProvider = (
   songData,
   currentlyPlaying,
-  setCurrentlyPlaying
+  setCurrentlyPlaying,
+  setShowProgressBar
 ) => {
   const [isPlaying, setIsplaying] = useState(false);
   const audioRef = useRef(null);
   const [progress, setProgress] = useState(0);
-  const [showProgressBar , setShowProgressBar] = useState(false)
   const playSong = async () => {
     try {
       if (!audioRef.current) {
@@ -24,7 +24,7 @@ export const useAudioProvider = (
       if (isPlaying) {
         await audioRef.current.pause();
         setIsplaying(false);
-        showProgressBar(false)
+        // setShowProgressBar(false)
        
       } else {
         await audioRef.current.play();
@@ -68,6 +68,6 @@ export const useAudioProvider = (
     progress,
     audioRef,
     setCurrentlyPlaying,
-    showProgressBar
+    
   };
 };

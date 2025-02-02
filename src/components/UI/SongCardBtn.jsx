@@ -6,10 +6,10 @@ import SongProgressBar from "./playingProgressBar/SongProgressBar";
 
 
 export default function CardBtn({
-  songData,currentlyPlaying,setCurrentlyPlaying
+  songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar
 }) {
 
-  const {isPlaying ,playSong,showProgressBar} = useAudioProvider(songData,currentlyPlaying,setCurrentlyPlaying)
+  const {isPlaying ,playSong,} = useAudioProvider(songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar)
 
 
 
@@ -26,9 +26,9 @@ export default function CardBtn({
           className="text-white/50 text-[16px] hover:text-white"
         />
       </button>
-      {showProgressBar && (
+      {/* {showProgressBar && (
         <SongProgressBar/>
-      )}
+      )} */}
     </div>
     
   

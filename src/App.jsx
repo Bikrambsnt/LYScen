@@ -1,6 +1,6 @@
-import { Header, Home, ProgressBar } from "./components/index";
+import { Header, Home} from "./components/index";
 import { React, useState, useEffect } from "react";
-import { useAudioProvider } from "./hook/useAudioProvider";
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,6 +8,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { SearchBar } from "./components/index";
+import SongProgressBar from "./components/UI/playingProgressBar/SongProgressBar";
 
 
 function App() {
@@ -20,9 +21,7 @@ function App() {
     let savedTheme = localStorage.getItem("theme");
     return savedTheme ? savedTheme === "dark" : true;
   });
-  // const  [currentlyPlaying,setCurrentlyPlaying] = useState(null)
-  // const { playSong, isPlaying, progress, showProgressBar,audioRef,handleSeek } =
-  //   useAudioProvider(currentlyPlaying, setCurrentlyPlaying);
+ 
   // Toggle Theme
   useEffect(() => {
     if (darkMode) {
@@ -34,19 +33,18 @@ function App() {
     }
   }, [darkMode]);
 
-  // show progress bar
   const [currentlyPlaying,setCurrentlyPlaying] = useState(null)
-  // const {showProgressBar} = useAudioProvider(null ,setCurrentlyPlaying,currentlyPlaying)
+  const [showProgressBar , setShowProgressBar] = useState(false)
 
   return (
     <Router>
-      <Content darkMode={darkMode} setDarkMode={setDarkMode}  currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} />
+      <Content darkMode={darkMode} setDarkMode={setDarkMode}  currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} showProgressBar={showProgressBar} setShowProgressBar={setShowProgressBar} />
     </Router>
   );
 }
 
 //To wrap every components inisde a Router.
-function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,showProgressBar}) {
+function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,showProgressBar,setShowProgressBar}) {
   const location = useLocation();
   
   
@@ -66,13 +64,12 @@ function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,s
         <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       )}
       <Routes>
-        <Route path="/" element={<Home currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} />} />
+        <Route path="/" element={<Home currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} setShowProgressBar={setShowProgressBar} />} />
         <Route path="/search" element={<SearchBar currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying}/>} />
       </Routes>
-      
-      {/* {showProgressBar &&(
-        <ProgressBar/>
-      )} */}
+
+      {/* Display progress bar when Music play*/}
+    {showProgressBar && <SongProgressBar setShowProgressBar={setShowProgressBar}/>}
 
     </div>
   
