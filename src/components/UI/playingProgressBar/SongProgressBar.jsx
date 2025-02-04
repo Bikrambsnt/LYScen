@@ -63,16 +63,16 @@ function SongProgressBar(songMetaData ,setShowProgressBar) {
         </div>
 
 
-          <div className="flex flex-col h-full w-full ">     
+          <div className=" absolute top-3 right-1 space-x-5">     
         <button 
         onClick={closeProgressBar}
-        className="absolute right-3 top-2">
+        className="">
             <FontAwesomeIcon icon={faMultiply} className="text-white text-xl"/>
         </button>
 
         <button
         onClick={''}
-        className="absolute right-3 bottom-3"
+        className=""
         >
             <FontAwesomeIcon icon={faDownload} className="text-white text-xl"/>
         </button>
