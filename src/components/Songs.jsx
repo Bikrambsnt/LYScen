@@ -12,7 +12,7 @@ import SkeletonCard from "./UI/skeleton/SkeletonCard";
 
 
 
-function Songs({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar}) {
+function Songs({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData}) {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
 //  const [currentlyPlaying,setCurrentlyPlaying] = useState(null);
@@ -111,11 +111,12 @@ function Songs({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar}) {
           {songs.map((songs, index) => (
             <SwiperSlide key={index}>
               <SongsCard
-                 songUrl={songs.downloadUrl[4]?.url}
+                 songUrl={songs}
                  key={songs.id}
                  currentlyPlaying={currentlyPlaying}
                  setCurrentlyPlaying={setCurrentlyPlaying}
                  setShowProgressBar={setShowProgressBar}
+                 setSongMetaData={setSongMetaData}
                  
               >
                 <img

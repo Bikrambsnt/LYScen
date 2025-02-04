@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
 import SkeletonCard from "./UI/skeleton/SkeletonCard";
 
-function TrendingSongs({currentlyPlaying,setCurrentlyPlaying, setShowProgressBar}) {
+function TrendingSongs({currentlyPlaying,setCurrentlyPlaying, setShowProgressBar,setSongMetaData}) {
   const [englishSong, setEnglishSong] = useState([]);
   const [hindiSong, setHindiSong] = useState([]);
   const [nepaliSong, setNepaliSong] = useState([]);
@@ -72,11 +72,12 @@ function TrendingSongs({currentlyPlaying,setCurrentlyPlaying, setShowProgressBar
       <SwiperSlide key={index}>
         <SongsCard
           //passing prop to get the song url in CardButton
-          songUrl={songs.downloadUrl[4]?.url}
+          songUrl={songs}
           key={songs.id}
           currentlyPlaying={currentlyPlaying}
           setCurrentlyPlaying={setCurrentlyPlaying}
           setShowProgressBar={setShowProgressBar}
+          setSongMetaData={setSongMetaData}
         
         >
           <img

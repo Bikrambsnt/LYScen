@@ -1,7 +1,7 @@
 import React from "react";
 import TrendingSongs from "../components/TrendingSongs";
 
-function Trending({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar}) {
+function Trending({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData}) {
 
     return (
         <div className="w-screen p-2">
@@ -9,6 +9,7 @@ function Trending({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar}) {
        currentlyPlaying={currentlyPlaying}
        setCurrentlyPlaying={setCurrentlyPlaying}
        setShowProgressBar={setShowProgressBar}
+       setSongMetaData={setSongMetaData}
         />
       </div>
 

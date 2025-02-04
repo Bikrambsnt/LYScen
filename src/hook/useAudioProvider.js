@@ -9,10 +9,12 @@ export const useAudioProvider = (
   const [isPlaying, setIsplaying] = useState(false);
   const audioRef = useRef(null);
   const [progress, setProgress] = useState(0);
+  const songUrl = songData.downloadUrl[4]?.url; //Taking song url from Whole Song Data
   const playSong = async () => {
     try {
       if (!audioRef.current) {
-        audioRef.current = new Audio(songData);
+        audioRef.current = new Audio(songUrl);
+        // console.log(songData)
       }
       
 
@@ -68,6 +70,6 @@ export const useAudioProvider = (
     progress,
     audioRef,
     setCurrentlyPlaying,
-    
+    songData
   };
 };

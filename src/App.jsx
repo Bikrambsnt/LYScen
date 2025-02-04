@@ -35,16 +35,17 @@ function App() {
 
   const [currentlyPlaying,setCurrentlyPlaying] = useState(null)
   const [showProgressBar , setShowProgressBar] = useState(false)
+  const [songMetaData ,setSongMetaData] = useState([])
 
   return (
     <Router>
-      <Content darkMode={darkMode} setDarkMode={setDarkMode}  currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} showProgressBar={showProgressBar} setShowProgressBar={setShowProgressBar} />
+      <Content darkMode={darkMode} setDarkMode={setDarkMode}  currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} showProgressBar={showProgressBar} setShowProgressBar={setShowProgressBar} songMetaData={songMetaData} setSongMetaData={setSongMetaData} />
     </Router>
   );
 }
 
 //To wrap every components inisde a Router.
-function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,showProgressBar,setShowProgressBar}) {
+function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,showProgressBar,setShowProgressBar,songMetaData,setSongMetaData}) {
   const location = useLocation();
   
   
@@ -54,6 +55,7 @@ function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,s
     window.scrollTo(0,0)
   },[location])
 
+  // console.log('song Meta Data' , songMetaData)
   return (
     <div
       className={` w-screen h-max transition-colors duration-200 ease-in ${
@@ -64,12 +66,12 @@ function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,s
         <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       )}
       <Routes>
-        <Route path="/" element={<Home currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} setShowProgressBar={setShowProgressBar} />} />
+        <Route path="/" element={<Home currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} setShowProgressBar={setShowProgressBar} setSongMetaData={setSongMetaData} />} />
         <Route path="/search" element={<SearchBar currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying}/>} />
       </Routes>
 
       {/* Display progress bar when Music play*/}
-    {showProgressBar && <SongProgressBar setShowProgressBar={setShowProgressBar}/>}
+    {showProgressBar && <SongProgressBar songMetaData={songMetaData}/>}
 
     </div>
   
