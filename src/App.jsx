@@ -71,7 +71,7 @@ function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,s
       </Routes>
 
       {/* Display progress bar when Music play*/}
-    {showProgressBar && <SongProgressBar songMetaData={songMetaData}/>}
+    {showProgressBar && <SongProgressBar songMetaData={songMetaData} setShowProgressBar={setShowProgressBar}/>}
 
     </div>
   

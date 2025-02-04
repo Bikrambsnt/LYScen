@@ -25,4 +25,24 @@
 @tailwind utilities;
 
 
-  
+  /* Text scoll animation Start */
+
+.animate-scroll{
+
+    animation: animate-scroll 10s  linear infinite;
+    display: flex;
+    white-space:nowrap;
+  }
+
+  @keyframes animate-scroll{
+
+    0%{
+        transform: translateX(100%);
+    }
+
+    100%{
+        transform: translateX(-100%);
+    }
+
+  }
+  /* Text scoll animation Ends */
