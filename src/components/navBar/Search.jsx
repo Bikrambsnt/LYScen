@@ -76,17 +76,25 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
     };
   }, [scrolled]);
 
+  // set the empty array if data is not present in Local Storage
+
+  useEffect(()=>{
+    if(!localStorage.getItem('id')){
+      localStorage.setItem('id' , JSON.stringify([]));
+    }
+  },[])
   //play song on click and store recently search hisory
   const startPlay = (result) => {
     playSong(result.downloadUrl[4]?.url);
     
+
     //retrive the store data
     let recentlySearched = JSON.parse(localStorage.getItem('id') || []);
     recentlySearched = recentlySearched.filter( song => song.id !== result.id) //to handle dublicate
     recentlySearched.unshift(result) //placed on top the last one clicked (LIFO)
     recentlySearched=recentlySearched.slice(0,100) //keep till 100 Recently search..
     // Store the recently searched song... on key :recentlySearch
-     localStorage.setItem('id' , JSON.stringify(recentlySearched))
+     localStorage.setItem('id' , JSON.stringify(recentlySearched) || []);
       // console.log("The second saved Data" , recentlySearched);
       
       //Updating the state

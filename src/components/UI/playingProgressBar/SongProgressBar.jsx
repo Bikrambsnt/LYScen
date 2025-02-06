@@ -1,12 +1,14 @@
 import { React, useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMultiply, faDownload } from "@fortawesome/free-solid-svg-icons";
+import { useAudioProvider } from "../../../hook/useAudioProvider";
 
 function SongProgressBar(songMetaData, setShowProgressBar) {
   //   To animate  the overflow text
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const [scrollText, setScrollText] = useState(false);
+
 
   useEffect(() => {
     const startScroll = () => {
@@ -24,12 +26,8 @@ function SongProgressBar(songMetaData, setShowProgressBar) {
   }, []);
   // Animate ends//
 
-  // Remove progress Bar
-
-  const closeProgressBar = () => {
-    setShowProgressBar(false);
-  };
-
+    
+ 
   return (
     <div className="fixed z-10 bottom-0 left-0 w-full bg-black/60 backdrop-blur-xl">
       <div className="relative h-20 w-full p-2">
@@ -77,7 +75,7 @@ function SongProgressBar(songMetaData, setShowProgressBar) {
           <button onClick={""} className="absolute top-3 right-10">
             <FontAwesomeIcon icon={faDownload} className="text-white text-xl" />
           </button>
-          <button onClick={closeProgressBar} className="absolute top-3 right-3">
+          <button onClick={''} className="absolute top-3 right-3">
             <FontAwesomeIcon icon={faMultiply} className="text-white text-xl" />
           </button>
         </div>

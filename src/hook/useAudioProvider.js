@@ -50,19 +50,7 @@ export const useAudioProvider = (
     }
   };
 
-  useEffect(() => {
-    // audioRef.current.addEventListener('loademetadata')
-
-    if (audioRef.current) {
-      audioRef.current.addEventListener("timeupdate", updateProgress);
-    }
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.removeEventListener("timeupdate", updateProgress);
-      }
-    };
-  }, [audioRef, updateProgress]);
+ 
 
   return {
     playSong,
@@ -70,6 +58,7 @@ export const useAudioProvider = (
     progress,
     audioRef,
     setCurrentlyPlaying,
-    songData
+    songData,
+    updateProgress,
   };
 };
