@@ -122,6 +122,7 @@ const Artists = () => {
                     artist.image[2]?.url || "https://via.placeholder.com/150"
                   } // Use fallback image
                   alt={artist.name}
+                  loading="lazy"
                   className="h-[100%] w-[100%] text-center   object-cover rounded-full shadow-md hover:scale-105 transition-transform"
                 />
                 <p className="overflow-hidden whitespace-nowrap text-ellipsis font-[300] tracking-wide text-center font-roboto mt-1">{artist.name}</p>
