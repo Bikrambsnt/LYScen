@@ -1,14 +1,15 @@
 import { React, useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMultiply ,faPlay, faCloudDownload} from "@fortawesome/free-solid-svg-icons";
+import { faMultiply ,faPlay,faPause, faCloudDownload} from "@fortawesome/free-solid-svg-icons";
 import { useAudioProvider } from "../../../hook/useAudioProvider";
 import CardBtn from "../songCardBtn";
 
-function SongProgressBar({songMetaData}) {
+function SongProgressBar({songMetaData,closeBar}) {
   //   To animate  the overflow text
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const [scrollText, setScrollText] = useState(false);
+  const {isPlaying,playSong} = useAudioProvider();
 
   // console.log('Song data' ,songMetaData)
 
@@ -73,13 +74,15 @@ function SongProgressBar({songMetaData}) {
           " />
           
         </div>
-          <button onClick={()=>setShowProgressBar(false)} className="absolute top-0 right-4">
+          <button onClick={closeBar} className="absolute top-0 right-4">
             <FontAwesomeIcon icon={faMultiply} className="text-white  text-sm font-light" />
           </button>
 
               <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 right-0 space-x-6">
-              <button>
-                <FontAwesomeIcon icon={faPlay} className="text-white text-xl"/>
+              <button
+              onClick={playSong}
+              >
+                <FontAwesomeIcon icon={isPlaying ? faPause : faPlay } className="text-white text-xl"/>
               </button>
               <button>
                 <FontAwesomeIcon icon={faCloudDownload} className="text-white text-xl"/>

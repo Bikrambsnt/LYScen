@@ -10,11 +10,25 @@ export const useAudioProvider = (
   const audioRef = useRef(null);
   const [progress, setProgress] = useState(0);
   // const songUrl = songData.downloadUrl[4]?.url; //Taking song url from Whole Song Data
+ 
+
   const playSong = async () => {
+if(!songData || !songData.downloadUrl[4]?.url){
+  console.log('Error on Song Data or at SongData.downloadurl')
+  return
+}
+
+    const songUrl = songData.downloadUrl[4]?.url;
+    if(!songUrl){
+      console.log('SongUrl is undefined');
+      return
+    }
+    console.log('Song Data',songData)
+    console.log('Song Url',songUrl)
     try {
       if (!audioRef.current) {
-        audioRef.current = new Audio(songData.downloadUrl[4]?.url);
-        // console.log(songData)
+        audioRef.current = new Audio(songUrl);
+        console.log(songData)
       }
       
 
@@ -26,7 +40,8 @@ export const useAudioProvider = (
       if (isPlaying) {
         await audioRef.current.pause();
         setIsplaying(false);
-        // setShowProgressBar(false)
+        
+      
        
       } else {
         await audioRef.current.play();
@@ -58,8 +73,7 @@ export const useAudioProvider = (
     progress,
     audioRef,
     setCurrentlyPlaying,
-    songData,
     updateProgress,
-    setShowProgressBar
+    setShowProgressBar,
   };
 };

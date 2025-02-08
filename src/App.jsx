@@ -37,15 +37,22 @@ function App() {
   const [showProgressBar , setShowProgressBar] = useState(false)
   const [songMetaData ,setSongMetaData] = useState([])
 
+  // Define for closing ProgressBar and stop currentlyPlaying music.
+  const closeBar=()=>{
+    setShowProgressBar(false)
+    currentlyPlaying.pause();
+    currentlyPlaying.currentTime = 0;
+  }
+
   return (
     <Router>
-      <Content darkMode={darkMode} setDarkMode={setDarkMode}  currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} showProgressBar={showProgressBar} setShowProgressBar={setShowProgressBar} songMetaData={songMetaData} setSongMetaData={setSongMetaData} />
+      <Content darkMode={darkMode} setDarkMode={setDarkMode}  currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} showProgressBar={showProgressBar} setShowProgressBar={setShowProgressBar} songMetaData={songMetaData} setSongMetaData={setSongMetaData} closeBar={closeBar} />
     </Router>
   );
 }
 
 //To wrap every components inisde a Router.
-function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,showProgressBar,setShowProgressBar,songMetaData,setSongMetaData}) {
+function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,showProgressBar,setShowProgressBar,songMetaData,setSongMetaData,closeBar}) {
   const location = useLocation();
   
   
@@ -71,7 +78,7 @@ function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,s
       </Routes>
 
       {/* Display progress bar when Music play*/}
-    {showProgressBar && <SongProgressBar songMetaData={songMetaData} setShowProgressBar={setShowProgressBar}/>}
+    {showProgressBar && <SongProgressBar songMetaData={songMetaData} closeBar={closeBar}/>}
 
     </div>
   
