@@ -46,3 +46,17 @@
 
   }
   /* Text scoll animation Ends */
+
+  /* Header Transistion start*/
+
+  .transistion-opacity{
+    transition: opacity 0.5s ease-in-out;
+  }
+  .opacity-0{
+    opacity: 0;
+  }
+
+  .opacity-100{
+    opacity: 100;
+  }
+  /* Header Transistion Ends*/

@@ -6,6 +6,7 @@ import { debounce} from "lodash";
 import { useNavigate } from "react-router-dom";
 import SkeletonSearch from "../UI/skeleton/SkeletonSearch";
 import { useAudioProvider } from "../../hook/useAudioProvider";
+import { TypeAnimation } from "react-type-animation";
 
 function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
   const [query, setQuery] = useState("");
@@ -123,7 +124,7 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
     }
     
   return (
-    <div className="w-screen h-max  ">
+    <div className="">
       <div
         className={`sticky inset-0 w-full h-[85px] p-2 z-10 ${
           scrolled ? "bg-black/70 backdrop-blur-sm text-white" : "bg-none"
@@ -176,12 +177,27 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
 
       {!loading && results.length === 0 && recentlySearched.length === 0  &&(
         
-        <div className="w-full h-screen justify-center  flex items-center p-5">
+        <div className="w-full h-[100dvh] justify-center  flex items-center p-5">
           <span className="font-poppins font-bold text-base text-center">
             {" "}
             What's playing in your mind?
             <p className="pt-1 font-jost font-normal text-[#b9b9b9] tracking-wide text-xs text-center text-clip">
-              Search for your favourite artist ,songs and many more
+              {/* Search for your favourite artist ,songs and many more */}
+              <TypeAnimation
+              sequence={[
+                'Search for your favourite Artists',
+                1000,
+                'Search for your favourite Songs',
+                1000,
+                'Search for your favourite and',
+                1000,
+                'Search for your favourite many more.',
+                1000,
+              ]}
+              speed={{type: 'keyStrokeDelayInMs', value: 120}}
+             
+              repeat={Infinity}
+              />
             </p>
           </span>
         </div>
