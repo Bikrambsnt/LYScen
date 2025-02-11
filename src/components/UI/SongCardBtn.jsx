@@ -31,11 +31,11 @@ export default function CardBtn({
     <div>
       <button
         onClick={getMetaData}
-        className="h-12 w-12 rounded-full border-[1px] border-[#9c227c] bg-white/30 backdrop-blur-[3px] flex justify-center items-center cursor-pointer "
+        className="h-12 w-12 rounded-full border-[1px] border-[#9c227c] bg-white/40 backdrop-blur-[3px] flex justify-center items-center cursor-pointer "
       >
         <FontAwesomeIcon
           icon={faPlay}
-          className="text-white/50 text-[16px] hover:text-white"
+          className="text-[#9c227c] text-[16px] hover:text-black  transition-all duration-300 active:scale-75 "
         />
       </button>
   

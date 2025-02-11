@@ -82,7 +82,7 @@ function SongProgressBar({songMetaData,closeBar}) {
               <button
               onClick={playSong}
               >
-                <FontAwesomeIcon icon={isPlaying ? faPause : faPlay } className="text-white text-xl"/>
+                <FontAwesomeIcon icon={isPlaying ? faPlay : faPause } className="text-white text-xl"/>
               </button>
               <button>
                 <FontAwesomeIcon icon={faCloudDownload} className="text-white text-xl"/>
