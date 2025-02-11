@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { createContext, useContext, useState, useRef, useEffect } from "react";
 
 export const useAudioProvider = (
   songData,
@@ -8,11 +8,11 @@ export const useAudioProvider = (
 ) => {
   const [isPlaying, setIsplaying] = useState(false);
   const audioRef = useRef(null);
-  const [progress, setProgress] = useState(0);
+
   // const songUrl = songData.downloadUrl[4]?.url; //Taking song url from Whole Song Data
 
-
   // Function to play music from Card, Search Card start
+
   const playSong = async () => {
     if (!songData || !songData.downloadUrl[4]?.url) {
       console.log("Error on Song Data or at SongData.downloadurl");
@@ -41,40 +41,21 @@ export const useAudioProvider = (
       setIsplaying(true);
       setCurrentlyPlaying(audioRef.current);
       setShowProgressBar(true);
-      currentlyPlaying.currentTime = 0;
     } catch (error) {
       console.log("ERROR:Error While Playing Music", error);
     }
   };
 
-  
   // Function to play music from Card, Search Card Ends
-
 
   // Function to play music (Main function) Start
 
-
-
   // Function to play music (Main function) Ends
 
-
-
-
-
-
-  const updateProgress = () => {
-    if (audioRef.current) {
-      const currentProgress =
-        (audioRef.current.currentTime / audioRef.current.duration) * 100 || 0;
-      setProgress(currentProgress);
-    }
-  };
-
   return {
+    songData,
     playSong,
     isPlaying,
-    progress,
     setCurrentlyPlaying,
-    updateProgress,
   };
 };

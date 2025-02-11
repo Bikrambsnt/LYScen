@@ -54,6 +54,7 @@ function App() {
 //To wrap every components inisde a Router.
 function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,showProgressBar,setShowProgressBar,songMetaData,setSongMetaData,closeBar}) {
   const location = useLocation();
+
   
   
 
