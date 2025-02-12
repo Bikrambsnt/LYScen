@@ -117,6 +117,7 @@ function Songs({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongM
                  setCurrentlyPlaying={setCurrentlyPlaying}
                  setShowProgressBar={setShowProgressBar}
                  setSongMetaData={setSongMetaData}
+
                  
               >
                 <img 

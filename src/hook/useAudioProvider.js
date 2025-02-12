@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export const useAudioProvider = (
   songData,
@@ -6,56 +6,80 @@ export const useAudioProvider = (
   setCurrentlyPlaying,
   setShowProgressBar
 ) => {
-  const [isPlaying, setIsplaying] = useState(false);
-  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const audioRef = useRef(new Audio()); //Initialize audio Ref but no file assign
 
-  // const songUrl = songData.downloadUrl[4]?.url; //Taking song url from Whole Song Data
-
-  // Function to play music from Card, Search Card start
 
   const playSong = async () => {
-    if (!songData || !songData.downloadUrl[4]?.url) {
-      console.log("Error on Song Data or at SongData.downloadurl");
+    if (!songData || !songData.downloadUrl?.[4]?.url) {
+      console.log("Error: Song Data is missing or invalid");
       return;
     }
 
     const songUrl = songData.downloadUrl[4]?.url;
     if (!songUrl) {
-      console.log("SongUrl is undefined");
+      console.log("Error: Song URL is undefined");
       return;
     }
-    console.log("Song Data", songData);
-    console.log("Song Url", songUrl);
-    try {
-      if (!audioRef.current) {
-        audioRef.current = new Audio(songUrl);
-        console.log(songData);
-      }
 
+    // console.log("Song Data:", songData);
+    // console.log("Song URL:", songUrl);
+
+    try {
       if (currentlyPlaying && currentlyPlaying !== audioRef.current) {
         currentlyPlaying.pause();
         currentlyPlaying.currentTime = 0;
       }
+      if(!audioRef.current.src){
 
+        audioRef.current.src = songUrl; //file assign to which playSong function called...
+      }
       await audioRef.current.play();
-      setIsplaying(true);
+      setIsPlaying(true);
       setCurrentlyPlaying(audioRef.current);
       setShowProgressBar(true);
     } catch (error) {
-      console.log("ERROR:Error While Playing Music", error);
+      console.error("ERROR: While playing music", error);
     }
   };
 
-  // Function to play music from Card, Search Card Ends
+  const updateProgress = () => {
+    if (!audioRef.current || isNaN(audioRef.current.duration)) {
+      console.log("AudioRef is not initialized or has no valid duration");
+      return;
+    }
 
-  // Function to play music (Main function) Start
+    const currentTime = audioRef.current.currentTime;
+    const duration = audioRef.current.duration;
+    const currentProgress = (currentTime / duration) * 100 || 0;
+    // console.log("Current Time:", currentTime);
+    // console.log("Duration:", duration);
+    console.log("Progress:", currentProgress);
+    setProgress(currentProgress);
+  };
 
-  // Function to play music (Main function) Ends
+  useEffect(() => {
+    if (!audioRef.current) {
+      console.log("AudioRef is not initialized in useEffect");
+      return;
+    }
+
+    audioRef.current.addEventListener("timeupdate", updateProgress);
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.removeEventListener("timeupdate", updateProgress);
+      }
+    };
+  }, []);
+
+ 
 
   return {
-    songData,
     playSong,
     isPlaying,
+    progress,
     setCurrentlyPlaying,
   };
 };

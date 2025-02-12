@@ -15,6 +15,7 @@ function SongsCard({children,name,artists,songUrl,currentlyPlaying,setCurrentlyP
         setCurrentlyPlaying={setCurrentlyPlaying}
         setShowProgressBar={setShowProgressBar}
         setSongMetaData={setSongMetaData}
+  
         />
         
 

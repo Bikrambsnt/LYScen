@@ -9,7 +9,8 @@ export default function CardBtn({
   songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData
 }) {
 
-  const {playSong} = useAudioProvider(songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar)
+
+  const {playSong,progress} = useAudioProvider(songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar)
 
   // This approach is not so optimise so Using callBack hook
   // const getMetaData =()=>{
@@ -21,7 +22,7 @@ export default function CardBtn({
   const getMetaData = useCallback(()=>{
     playSong();
     setSongMetaData(songData);
-    // console.log('MetaData is' ,songData)
+
 
 
   },[playSong,songData,setSongMetaData])
@@ -38,6 +39,8 @@ export default function CardBtn({
           className="text-[#9c227c] text-[16px] hover:text-black  transition-all duration-300 active:scale-75 "
         />
       </button>
+
+      
   
     </div>
     

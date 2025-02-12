@@ -2,7 +2,7 @@ import {React, useState }  from "react";
 import {Song,Artist,Trending} from '../components/index'
 
 
-function Home({currentlyPlaying,setCurrentlyPlaying ,setShowProgressBar,setSongMetaData}) {
+function Home({currentlyPlaying,setCurrentlyPlaying ,setShowProgressBar,setSongMetaData,setUseProgress}) {
    
 
 
@@ -14,6 +14,8 @@ function Home({currentlyPlaying,setCurrentlyPlaying ,setShowProgressBar,setSongM
            setCurrentlyPlaying={setCurrentlyPlaying}
            setShowProgressBar={setShowProgressBar}
            setSongMetaData={setSongMetaData}
+           setUseProgress={setUseProgress}
+        
 
            />
            <Trending currentlyPlaying={currentlyPlaying}

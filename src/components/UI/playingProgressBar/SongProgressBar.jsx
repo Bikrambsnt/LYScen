@@ -9,7 +9,7 @@ function SongProgressBar({songMetaData,closeBar}) {
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const [scrollText, setScrollText] = useState(false);
-  const {isPlaying,playSong,progress,songData} = useAudioProvider();
+  const {isPlaying} = useAudioProvider();
 
   useEffect(() => {
     const startScroll = () => {
@@ -61,7 +61,7 @@ function SongProgressBar({songMetaData,closeBar}) {
           <input type="range" 
           max="100"
            min="0" 
-           value={progress}
+           value={''}
            readOnly
           className="w-screen absolute bottom-1 
           appearance-none cursor-pointer rounded-[8px] h-[2px] bg-[#636366]
@@ -77,8 +77,7 @@ function SongProgressBar({songMetaData,closeBar}) {
 
               <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 right-0 space-x-6">
               <button
-              onClick={
-             playSong}
+              onClick={''}
               >
                 <FontAwesomeIcon icon={isPlaying ? faPlay : faPause } className="text-white text-xl"/>
               </button>

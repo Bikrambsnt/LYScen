@@ -9,6 +9,7 @@ function Song({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMe
         setCurrentlyPlaying={setCurrentlyPlaying}
         setShowProgressBar={setShowProgressBar}
         setSongMetaData={setSongMetaData}
+   
         />
       </div>
     )

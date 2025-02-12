@@ -37,16 +37,20 @@ function App() {
   const [showProgressBar , setShowProgressBar] = useState(false)
   const [songMetaData ,setSongMetaData] = useState([])
 
+
+
   // Define for closing ProgressBar and stop currentlyPlaying music.
   const closeBar=()=>{
     setShowProgressBar(false)
     currentlyPlaying.pause();
     currentlyPlaying.currentTime = 0;
+    
   }
 
+ 
   return (
     <Router>
-      <Content darkMode={darkMode} setDarkMode={setDarkMode}  currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} showProgressBar={showProgressBar} setShowProgressBar={setShowProgressBar} songMetaData={songMetaData} setSongMetaData={setSongMetaData} closeBar={closeBar} />
+      <Content darkMode={darkMode} setDarkMode={setDarkMode}  currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} showProgressBar={showProgressBar} setShowProgressBar={setShowProgressBar} songMetaData={songMetaData} setSongMetaData={setSongMetaData} closeBar={closeBar}  />
     </Router>
   );
 }
@@ -66,7 +70,7 @@ function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,s
   // console.log('song Meta Data' , songMetaData)
   return (
     <div
-      className={` w-screen h-max transition-colors duration-200 ease-in ${
+      className={`w-screen h-max transition-colors duration-200 ease-in ${
         darkMode ? "bg-[#080808] text-white" : "bg-white text-black"
       }`}
     >
