@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMultiply ,faPlay,faPause, faCloudDownload} from "@fortawesome/free-solid-svg-icons";
 import { useAudioProvider } from "../../../hook/useAudioProvider";
 import CardBtn from "../songCardBtn";
+import { useNavigate } from "react-router-dom";
 
 function SongProgressBar({songMetaData,closeBar}) {
   //   To animate  the overflow text
@@ -10,6 +11,7 @@ function SongProgressBar({songMetaData,closeBar}) {
   const textRef = useRef(null);
   const [scrollText, setScrollText] = useState(false);
   const {isPlaying} = useAudioProvider();
+  const navigate = useNavigate()
 
   useEffect(() => {
     const startScroll = () => {
@@ -27,10 +29,12 @@ function SongProgressBar({songMetaData,closeBar}) {
   }, []);
   // Animate ends//
 
-    
+    const redirectToNowPlaying=()=>{
+      navigate('/nowPlaying');
+    }
  
   return (
-    <div className="fixed z-10 bottom-0 left-0 w-full bg-black/60 backdrop-blur-xl">
+    <div role="button" onClick={redirectToNowPlaying} className="fixed z-10 bottom-0 left-0 w-full bg-black/60 backdrop-blur-xl">
       <div className="relative h-20 w-full p-2">
         <div className=" absolute w-14 h-14 top-1/2 left-10 -translate-x-1/2 -translate-y-1/2 border-[1px]  rounded-[4px]">
           <img
