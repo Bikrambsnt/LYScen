@@ -75,7 +75,10 @@ function SongProgressBar({songMetaData,closeBar}) {
           " />
           
         </div>
-          <button onClick={closeBar} className="absolute top-0 right-4">
+          <button  onClick={(e)=>{
+            e.stopPropagation()
+            closeBar()
+          }} className="absolute top-0 right-4">
             <FontAwesomeIcon icon={faMultiply} className="text-white  text-sm font-light" />
           </button>
 

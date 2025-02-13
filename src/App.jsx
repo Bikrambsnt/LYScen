@@ -47,6 +47,7 @@ function App() {
     currentlyPlaying.pause();
     currentlyPlaying.currentTime = 0;
     
+    
   }
 
  
