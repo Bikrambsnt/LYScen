@@ -177,7 +177,7 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
 
       {!loading && results.length === 0 && recentlySearched.length === 0  &&(
         
-        <div className="w-full h-[100dvh] justify-center  flex items-center p-5">
+        <div className="w-full h-dvh justify-center  flex items-center p-5">
           <span className="font-poppins font-bold text-base text-center">
             {" "}
             What's playing in your mind?
@@ -215,7 +215,7 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
               className="font-jost text-base w-16  rounded-[4px] ml-auto mr-1 transition-transform duration-150 active:scale-90 active:bg-[#63636642]"
               >Clear all</button>
               </div>
-          <ul className="relative h-screen  overflow-scroll">
+          <ul className="relative h-screen overflow-scroll">
             {recentlySearched.map((savedData) => (
               <li key={savedData.id} className="p-2 mb-3">
                 <button
