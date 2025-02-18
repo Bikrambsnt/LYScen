@@ -2,10 +2,10 @@ import { React, useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMultiply ,faPlay,faPause, faCloudDownload} from "@fortawesome/free-solid-svg-icons";
 import { useAudioProvider } from "../../../hook/useAudioProvider";
-import CardBtn from "../songCardBtn";
+import CardBtn from "../SongCardBtn";
 import { useNavigate } from "react-router-dom";
 
-function SongProgressBar({songMetaData,closeBar}) {
+function SongProgressBar({songMetaData,closeBar,progress}) {
   //   To animate  the overflow text
   const containerRef = useRef(null);
   const textRef = useRef(null);
@@ -65,7 +65,7 @@ function SongProgressBar({songMetaData,closeBar}) {
           <input type="range" 
           max="100"
            min="0" 
-           value={''}
+           value={progress}
            readOnly
           className="w-screen absolute bottom-1 
           appearance-none cursor-pointer rounded-[8px] h-[2px] bg-[#636366]
@@ -84,7 +84,9 @@ function SongProgressBar({songMetaData,closeBar}) {
 
               <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 right-0 space-x-6">
               <button
-              onClick={''}
+              onClick={(e)=>{
+                e.stopPropagation();
+              }}
               >
                 <FontAwesomeIcon icon={isPlaying ? faPlay : faPause } className="text-white text-xl"/>
               </button>

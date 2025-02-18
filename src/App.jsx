@@ -13,6 +13,7 @@ import SongProgressBar from "./components/UI/playingProgressBar/SongProgressBar"
 import NowPlaying from "./components/UI/NowPlaying";
 
 
+
 function App() {
   // Toggle Bg theme
   const [darkMode, setDarkMode] = useState(() => {
@@ -62,7 +63,12 @@ function App() {
 function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,showProgressBar,setShowProgressBar,songMetaData,setSongMetaData,closeBar}) {
   const location = useLocation();
   const hideHeader = ['/search', '/nowPlaying'];
+  const [progress,setProgress] = useState(0);
 
+// useEffect(()=>{
+//   console.log('You show see progress here' , progress);
+  
+// },[progress])
   
   
 
@@ -81,13 +87,13 @@ function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,s
       {!hideHeader.includes(location.pathname) && <Header darkMode={darkMode} setDarkMode={setDarkMode}/>}
      
       <Routes>
-        <Route path="/" element={<Home currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} setShowProgressBar={setShowProgressBar} setSongMetaData={setSongMetaData} />} />
+        <Route path="/" element={<Home currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} setShowProgressBar={setShowProgressBar} setSongMetaData={setSongMetaData} setProgress={setProgress}/>} />
         <Route path="/search" element={<SearchBar currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying}/>} />
         <Route path='/nowPlaying' element={<NowPlaying songMetaData={songMetaData}/>} />
       </Routes>
 
       {/* Display progress bar when Music play*/}
-    {showProgressBar && <SongProgressBar songMetaData={songMetaData} closeBar={closeBar}/>}
+    {showProgressBar && <SongProgressBar songMetaData={songMetaData} closeBar={closeBar} progress={progress}/>}
 
     </div>
   

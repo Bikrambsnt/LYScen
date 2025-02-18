@@ -6,12 +6,12 @@ import { useAudioProvider } from "../../hook/useAudioProvider";
 
 
 export default function CardBtn({
-  songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData
+  songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData,setProgress
 }) {
 
 
-  const {playSong,progress} = useAudioProvider(songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar)
-
+  const {playSong} = useAudioProvider(songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setProgress)
+  // console.log('Progress is:' ,setProgress)
   // This approach is not so optimise so Using callBack hook
   // const getMetaData =()=>{
   //   playSong();
@@ -22,6 +22,7 @@ export default function CardBtn({
   const getMetaData = useCallback(()=>{
     playSong();
     setSongMetaData(songData);
+    
 
 
 

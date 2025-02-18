@@ -4,10 +4,11 @@ export const useAudioProvider = (
   songData,
   currentlyPlaying,
   setCurrentlyPlaying,
-  setShowProgressBar
+  setShowProgressBar,
+  setProgress
 ) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
+  // const [progress, setProgress] = useState(0);
   const audioRef = useRef(new Audio()); //Initialize audio Ref but no file assign
 
 
@@ -55,7 +56,7 @@ export const useAudioProvider = (
     const currentProgress = (currentTime / duration) * 100 || 0;
     // console.log("Current Time:", currentTime);
     // console.log("Duration:", duration);
-    console.log("Progress:", currentProgress);
+    // console.log("Progress:", currentProgress);
     setProgress(currentProgress);
   };
 
@@ -79,7 +80,7 @@ export const useAudioProvider = (
   return {
     playSong,
     isPlaying,
-    progress,
     setCurrentlyPlaying,
+
   };
 };
