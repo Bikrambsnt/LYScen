@@ -10,7 +10,7 @@ export default function CardBtn({
 }) {
 
 
-  const {playSong} = useAudioProvider(songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setProgress)
+  const {playSong,duration} = useAudioProvider(songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setProgress)
   // console.log('Progress is:' ,setProgress)
   // This approach is not so optimise so Using callBack hook
   // const getMetaData =()=>{

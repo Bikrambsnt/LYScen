@@ -81,6 +81,7 @@ export const useAudioProvider = (
     playSong,
     isPlaying,
     setCurrentlyPlaying,
+    
 
   };
 };

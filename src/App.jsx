@@ -63,7 +63,7 @@ function App() {
 function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,showProgressBar,setShowProgressBar,songMetaData,setSongMetaData,closeBar}) {
   const location = useLocation();
   const hideHeader = ['/search', '/nowPlaying'];
-  const [progress,setProgress] = useState(0);
+  const [progress,setProgress] = useState(100);
 
 // useEffect(()=>{
 //   console.log('You show see progress here' , progress);

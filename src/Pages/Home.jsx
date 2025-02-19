@@ -23,6 +23,7 @@ function Home({currentlyPlaying,setCurrentlyPlaying ,setShowProgressBar,setSongM
            setCurrentlyPlaying={setCurrentlyPlaying}
            setShowProgressBar={setShowProgressBar}
            setSongMetaData={setSongMetaData}
+           setProgress={setProgress}
            />
            <Artist/>
 
