@@ -1,7 +1,7 @@
 import React from "react";
 import CardBtn from "./SongCardBtn";
 
-function SongsCard({children,name,artists,songUrl,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData,setProgress}) {
+function SongsCard({children,name,artists,songUrl,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData,setProgress,setCurrentTime,setDuration}) {
     return (
         <div className="relative group">
         <div className={`w-[11.5rem] h-52 border-[1px] border-[#ffffff] rounded-[4px] mb-16`}>
@@ -16,6 +16,8 @@ function SongsCard({children,name,artists,songUrl,currentlyPlaying,setCurrentlyP
         setShowProgressBar={setShowProgressBar}
         setSongMetaData={setSongMetaData}
         setProgress={setProgress}
+        setDuration={setDuration} 
+        setCurrentTime={setCurrentTime}
   
         />
         

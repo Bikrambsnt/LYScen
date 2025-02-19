@@ -1,7 +1,7 @@
 import React from "react";
 import Songs from "../components/Songs";
 
-function Song({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData,setProgress}) {
+function Song({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData,setProgress,setDuration,setCurrentTime}) {
     return(
         <div className="w-screen p-2">
         <Songs
@@ -10,6 +10,8 @@ function Song({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMe
         setShowProgressBar={setShowProgressBar}
         setSongMetaData={setSongMetaData}
         setProgress={setProgress}
+        setDuration={setDuration}
+         setCurrentTime={setCurrentTime}
    
         />
       </div>

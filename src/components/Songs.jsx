@@ -12,7 +12,7 @@ import SkeletonCard from "./UI/skeleton/SkeletonCard";
 
 
 
-function Songs({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData,setProgress}) {
+function Songs({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData,setProgress,setCurrentTime,setDuration}) {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
 //  const [currentlyPlaying,setCurrentlyPlaying] = useState(null);
@@ -118,6 +118,8 @@ function Songs({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongM
                  setShowProgressBar={setShowProgressBar}
                  setSongMetaData={setSongMetaData}
                  setProgress={setProgress}
+                 setDuration={setDuration} 
+                 setCurrentTime={setCurrentTime}
 
                  
               >

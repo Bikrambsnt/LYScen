@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
 import SkeletonCard from "./UI/skeleton/SkeletonCard";
 
-function TrendingSongs({currentlyPlaying,setCurrentlyPlaying, setShowProgressBar,setSongMetaData,setProgress}) {
+function TrendingSongs({currentlyPlaying,setCurrentlyPlaying, setShowProgressBar,setSongMetaData,setProgress,setDuration,setCurrentTime}) {
   const [englishSong, setEnglishSong] = useState([]);
   const [hindiSong, setHindiSong] = useState([]);
   const [nepaliSong, setNepaliSong] = useState([]);
@@ -79,6 +79,8 @@ function TrendingSongs({currentlyPlaying,setCurrentlyPlaying, setShowProgressBar
           setShowProgressBar={setShowProgressBar}
           setSongMetaData={setSongMetaData}
           setProgress={setProgress}
+          setDuration={setDuration} 
+          setCurrentTime={setCurrentTime}
         
         >
           <img

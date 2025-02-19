@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   faSearch,
   faArrowLeft,
@@ -11,11 +11,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
-import CardBtn from "./songCardBtn";
+import CardBtn from "./SongCardBtn";
+import { useAudioProvider } from "../../hook/useAudioProvider";
 
 function NowPlaying({ songMetaData }) {
   const navigate = useNavigate();
+  const {progress} = useAudioProvider();
 
+
+  useEffect(()=>{
+    console.log('Progress ',progress)
+
+  },[])
   return (
     <div
       className=" relative w-full h-dvh text-white overflow-hidden"
@@ -61,6 +68,8 @@ function NowPlaying({ songMetaData }) {
         type="range"
         min={0}
         max={100}
+        value={progress}
+        readOnly
         className="w-full mt-5 
         appearance-none cursor-pointer rounded-[8px] h-[4px] bg-[#636366]
           [&::-webkit-slider-thumb]:appearance-none

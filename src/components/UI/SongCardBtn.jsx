@@ -1,4 +1,4 @@
-import { React, useCallback } from "react";
+import { React, useCallback, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import { useAudioProvider } from "../../hook/useAudioProvider";
@@ -6,19 +6,13 @@ import { useAudioProvider } from "../../hook/useAudioProvider";
 
 
 export default function CardBtn({
-  songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData,setProgress
+  songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData,setProgress,setDuration,setCurrentTime
 }) {
 
 
-  const {playSong,duration} = useAudioProvider(songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setProgress)
-  // console.log('Progress is:' ,setProgress)
-  // This approach is not so optimise so Using callBack hook
-  // const getMetaData =()=>{
-  //   playSong();
-  //   setSongMetaData(songData)
-  //   console.log(setSongMetaData)
-  // }
+  const {playSong} = useAudioProvider(songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setProgress,setDuration,setCurrentTime)
 
+ 
   const getMetaData = useCallback(()=>{
     playSong();
     setSongMetaData(songData);

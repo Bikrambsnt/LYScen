@@ -5,12 +5,14 @@ export const useAudioProvider = (
   currentlyPlaying,
   setCurrentlyPlaying,
   setShowProgressBar,
-  setProgress
+  setProgress,
+  setDuration,
+  setCurrentTime
 ) => {
   const [isPlaying, setIsPlaying] = useState(false);
   // const [progress, setProgress] = useState(0);
   const audioRef = useRef(new Audio()); //Initialize audio Ref but no file assign
-
+ 
 
   const playSong = async () => {
     if (!songData || !songData.downloadUrl?.[4]?.url) {
@@ -54,10 +56,11 @@ export const useAudioProvider = (
     const currentTime = audioRef.current.currentTime;
     const duration = audioRef.current.duration;
     const currentProgress = (currentTime / duration) * 100 || 0;
-    // console.log("Current Time:", currentTime);
-    // console.log("Duration:", duration);
     // console.log("Progress:", currentProgress);
+    setDuration(duration);
+    setCurrentTime(currentTime)
     setProgress(currentProgress);
+    
   };
 
   useEffect(() => {
@@ -81,7 +84,5 @@ export const useAudioProvider = (
     playSong,
     isPlaying,
     setCurrentlyPlaying,
-    
-
   };
 };
