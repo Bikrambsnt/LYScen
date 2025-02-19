@@ -5,7 +5,7 @@ import { searchSongsByQuery } from "../../config/fetch";
 import { debounce} from "lodash";
 import { useNavigate } from "react-router-dom";
 import SkeletonSearch from "../UI/skeleton/SkeletonSearch";
-import { useAudioProvider } from "../../hook/useAudioProvider";
+import { useAudioProvider } from "../../context/AudioContext";
 import { TypeAnimation } from "react-type-animation";
 
 function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {

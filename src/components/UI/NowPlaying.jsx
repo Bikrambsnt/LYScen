@@ -12,7 +12,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import CardBtn from "./SongCardBtn";
-import { useAudioProvider } from "../../hook/useAudioProvider";
+import { useAudioProvider } from "../../context/AudioContext";
 
 function NowPlaying({ songMetaData }) {
   const navigate = useNavigate();

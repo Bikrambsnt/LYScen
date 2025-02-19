@@ -11,6 +11,8 @@ import {
 import { SearchBar } from "./components/index";
 import SongProgressBar from "./components/UI/playingProgressBar/SongProgressBar";
 import NowPlaying from "./components/UI/NowPlaying";
+import { useAudioProvider } from "./context/AudioContext";
+import { AudioProvider } from "./hook/useAudioProvider";
 
 
 
@@ -44,18 +46,20 @@ function App() {
 
   // Define for closing ProgressBar and stop currentlyPlaying music.
   const closeBar=()=>{
-    setShowProgressBar(false)
-    currentlyPlaying.pause();
-    currentlyPlaying.currentTime = 0;
+    // setShowProgressBar(false)
+    // currentlyPlaying.pause();
+    // currentlyPlaying.currentTime = 0;
     
     
   }
 
  
   return (
+    <AudioProvider>
     <Router>
       <Content darkMode={darkMode} setDarkMode={setDarkMode}  currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} showProgressBar={showProgressBar} setShowProgressBar={setShowProgressBar} songMetaData={songMetaData} setSongMetaData={setSongMetaData} closeBar={closeBar}  />
     </Router>
+    </AudioProvider>
   );
 }
 
@@ -63,9 +67,21 @@ function App() {
 function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,showProgressBar,setShowProgressBar,songMetaData,setSongMetaData,closeBar}) {
   const location = useLocation();
   const hideHeader = ['/search', '/nowPlaying'];
-  const [progress,setProgress] = useState(0);
-  const [duration,setDuration] = useState(0o0)
-  const [currentTime,setCurrentTime] = useState(0o0)
+  // const [progress,setProgress] = useState(0);
+  // const [duration,setDuration] = useState(0)
+  // const [currentTime,setCurrentTime] = useState(0)
+  
+  const {
+songValue,
+progressVal
+   
+  } = useAudioProvider(songMetaData);
+
+ useEffect(()=>{
+ 
+   console.log('SongData in App.jsx is' , songValue)
+   console.log('ProgressVal is:' , progressVal)
+ },[songValue,darkMode,progressVal])
 
 
 // useEffect(()=>{
@@ -80,6 +96,8 @@ function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,s
     window.scrollTo(0,0)
   },[location])
 
+
+
   // console.log('song Meta Data' , songMetaData)
   return (
     <div
@@ -90,13 +108,13 @@ function Content({ darkMode, setDarkMode ,setCurrentlyPlaying,currentlyPlaying,s
       {!hideHeader.includes(location.pathname) && <Header darkMode={darkMode} setDarkMode={setDarkMode}/>}
      
       <Routes>
-        <Route path="/" element={<Home currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} setShowProgressBar={setShowProgressBar} setSongMetaData={setSongMetaData} setProgress={setProgress} setDuration={setDuration} setCurrentTime={setCurrentTime}/>} />
+        <Route path="/" element={<Home currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying} setShowProgressBar={setShowProgressBar} setSongMetaData={setSongMetaData}/>} />
         <Route path="/search" element={<SearchBar currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying}/>} />
-        <Route path='/nowPlaying' element={<NowPlaying songMetaData={songMetaData} progress={progress}/>} />
+        <Route path='/nowPlaying' element={<NowPlaying songMetaData={songMetaData}/>} />
       </Routes>
 
       {/* Display progress bar when Music play*/}
-    {showProgressBar && <SongProgressBar songMetaData={songMetaData} closeBar={closeBar} progress={progress} duration={duration} currentTime={currentTime}/>}
+    {showProgressBar && <SongProgressBar songMetaData={songMetaData} closeBar={closeBar}/>}
 
     </div>
   

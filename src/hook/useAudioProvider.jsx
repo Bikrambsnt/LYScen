@@ -1,20 +1,23 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect} from "react";
+import { AudioContext } from "../context/AudioContext";
 
-export const useAudioProvider = (
-  songData,
-  currentlyPlaying,
-  setCurrentlyPlaying,
-  setShowProgressBar,
-  setProgress,
-  setDuration,
-  setCurrentTime
+
+
+
+export const AudioProvider = (
+{children}
 ) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  // const [progress, setProgress] = useState(0);
+  const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
+  // const [songData, setSongData] = useState(null);
+  const [showProgressBar, setShowProgressBar] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  
   const audioRef = useRef(new Audio()); //Initialize audio Ref but no file assign
- 
-
-  const playSong = async () => {
+  
+  const playSong = async (songData) => {
     if (!songData || !songData.downloadUrl?.[4]?.url) {
       console.log("Error: Song Data is missing or invalid");
       return;
@@ -60,6 +63,7 @@ export const useAudioProvider = (
     setDuration(duration);
     setCurrentTime(currentTime)
     setProgress(currentProgress);
+
     
   };
 
@@ -78,11 +82,24 @@ export const useAudioProvider = (
     };
   }, []);
 
- 
+  return(
+    <AudioContext.Provider
+    value={{
+      playSong,
+      isPlaying,
+      setCurrentlyPlaying,
+      showProgressBar,
+      setShowProgressBar,
+      progress,
+      setProgress,
+      duration,
+      setDuration,
+      currentTime,
+      setCurrentTime
+    }}
+    >
+      {children}
+    </AudioContext.Provider>
+  )
 
-  return {
-    playSong,
-    isPlaying,
-    setCurrentlyPlaying,
-  };
 };

@@ -1,7 +1,7 @@
 import { React, useCallback, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
-import { useAudioProvider } from "../../hook/useAudioProvider";
+import { useAudioProvider } from "../../context/AudioContext";
 
 
 
@@ -10,11 +10,10 @@ export default function CardBtn({
 }) {
 
 
-  const {playSong} = useAudioProvider(songData,currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setProgress,setDuration,setCurrentTime)
+  const {playSong} = useAudioProvider();
 
- 
   const getMetaData = useCallback(()=>{
-    playSong();
+    playSong(songData);
     setSongMetaData(songData);
     
 

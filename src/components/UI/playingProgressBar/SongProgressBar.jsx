@@ -6,7 +6,7 @@ import {
   faPause,
   faCloudDownload,
 } from "@fortawesome/free-solid-svg-icons";
-import { useAudioProvider } from "../../../hook/useAudioProvider";
+import { useAudioProvider } from "../../../context/AudioContext";
 import CardBtn from "../SongCardBtn";
 import { useNavigate } from "react-router-dom";
 
