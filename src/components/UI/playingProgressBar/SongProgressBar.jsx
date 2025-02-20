@@ -12,16 +12,12 @@ import { useNavigate } from "react-router-dom";
 
 function SongProgressBar({
   songMetaData,
-  closeBar,
-  progress,
-  currentTime,
-  duration,
 }) {
   //   To animate  the overflow text
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const [scrollText, setScrollText] = useState(false);
-  const { isPlaying } = useAudioProvider();
+  const {progress,isPlaying,currentTime,duration,closeBar} = useAudioProvider();
   const navigate = useNavigate();
 
   useEffect(() => {

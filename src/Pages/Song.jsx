@@ -1,21 +1,19 @@
 import React from "react";
 import Songs from "../components/Songs";
 
-function Song({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData,setProgress,setDuration,setCurrentTime}) {
-    return(
-        <div className="w-screen p-2">
-        <Songs
-        currentlyPlaying={currentlyPlaying}
-        setCurrentlyPlaying={setCurrentlyPlaying}
-        setShowProgressBar={setShowProgressBar}
+function Song({
+  setSongMetaData,
+
+}) {
+  return (
+    <div className="w-screen p-2">
+      <Songs
+
         setSongMetaData={setSongMetaData}
-        setProgress={setProgress}
-        setDuration={setDuration}
-         setCurrentTime={setCurrentTime}
-   
-        />
-      </div>
-    )
+    
+      />
+    </div>
+  );
 }
 
 export default Song;

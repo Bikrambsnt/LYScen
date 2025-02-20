@@ -8,17 +8,13 @@ import SkeletonSearch from "../UI/skeleton/SkeletonSearch";
 import { useAudioProvider } from "../../context/AudioContext";
 import { TypeAnimation } from "react-type-animation";
 
-function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
+function SearchBar({ }) {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]); // Store search results
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
-  const { playSong } = useAudioProvider(
-    null,
-    setCurrentlyPlaying,
-    currentlyPlaying
-  );
+  const { playSong } = useAudioProvider();
 // to store recently searched history
   const [recentlySearched , setRecentlySearched] = useState([])
 
@@ -86,7 +82,7 @@ function SearchBar({ currentlyPlaying, setCurrentlyPlaying }) {
   },[])
   //play song on click and store recently search hisory
   const startPlay = (result) => {
-    playSong(result.downloadUrl[4]?.url);
+    playSong(result);
     
 
     //retrive the store data

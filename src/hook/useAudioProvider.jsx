@@ -45,9 +45,11 @@ export const AudioProvider = (
       setIsPlaying(true);
       setCurrentlyPlaying(audioRef.current);
       setShowProgressBar(true);
-    } catch (error) {
+    }
+    catch (error) {
       console.error("ERROR: While playing music", error);
     }
+    setIsPlaying(false)
   };
 
   const updateProgress = () => {
@@ -82,6 +84,18 @@ export const AudioProvider = (
     };
   }, []);
 
+  // Define for closing ProgressBar and stop currentlyPlaying music.
+  const closeBar = () => {
+    setShowProgressBar(false)
+    currentlyPlaying.pause();
+    currentlyPlaying.currentTime = 0;
+  };
+
+//   useEffect(()=>{
+// console.log('Progress value:' ,progress);
+// console.log('ShowProgressBar' ,showProgressBar)
+//   },[progress])
+
   return(
     <AudioContext.Provider
     value={{
@@ -95,7 +109,8 @@ export const AudioProvider = (
       duration,
       setDuration,
       currentTime,
-      setCurrentTime
+      setCurrentTime,
+      closeBar
     }}
     >
       {children}

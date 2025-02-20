@@ -5,19 +5,17 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
-import {searchSongsByQuery} from "../config/fetch";
+import { searchSongsByQuery } from "../config/fetch";
 import SkeletonCard from "./UI/skeleton/SkeletonCard";
 
+function Songs({
 
+  setSongMetaData,
 
-
-
-function Songs({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongMetaData,setProgress,setCurrentTime,setDuration}) {
+}) {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
-//  const [currentlyPlaying,setCurrentlyPlaying] = useState(null);
-
- 
+  //  const [currentlyPlaying,setCurrentlyPlaying] = useState(null);
 
   useEffect(() => {
     const getHindiSongs = async () => {
@@ -38,14 +36,11 @@ function Songs({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongM
 
   return (
     <div className="mt-">
-      <h1 className=" font-rubik tracking-wide text-2xl font-[500] ">
-        Songs
-      </h1>
+      <h1 className=" font-rubik tracking-wide text-2xl font-[500] ">Songs</h1>
       <p className="text-[#b9b9b9]  font-jost tracking-wide text-xs font-[400] mb-3">
         Popular Hindi Songs
       </p>
       {loading ? (
-     
         // Display Skeleton
         <Swiper
           slidesPerView={2}
@@ -72,16 +67,13 @@ function Songs({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongM
             },
           }}
         >
-          {Array.from({length: 6}).map((_,index)=>(
-             //Here _(underscore) represent the undefined value passing from the Array which I dont want.
+          {Array.from({ length: 6 }).map((_, index) => (
+            //Here _(underscore) represent the undefined value passing from the Array which I dont want.
             <SwiperSlide key={index}>
-              <SkeletonCard/>
+              <SkeletonCard />
             </SwiperSlide>
           ))}
-
         </Swiper>
-
-       
       ) : (
         <Swiper
           slidesPerView={2}
@@ -111,19 +103,11 @@ function Songs({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongM
           {songs.map((songs, index) => (
             <SwiperSlide key={index}>
               <SongsCard
-                 songUrl={songs}
-                 key={songs.id}
-                 currentlyPlaying={currentlyPlaying}
-                 setCurrentlyPlaying={setCurrentlyPlaying}
-                 setShowProgressBar={setShowProgressBar}
-                 setSongMetaData={setSongMetaData}
-                 setProgress={setProgress}
-                 setDuration={setDuration} 
-                 setCurrentTime={setCurrentTime}
-
-                 
+                songUrl={songs}
+                setSongMetaData={setSongMetaData}
+            
               >
-                <img 
+                <img
                   src={songs.image[2]?.url}
                   alt={songs.name}
                   loading="lazy"
@@ -133,7 +117,9 @@ function Songs({currentlyPlaying,setCurrentlyPlaying,setShowProgressBar,setSongM
                   {songs.name}
                 </p>
                 <p className="text-xs font-[300] text-left font-jost tracking-wide  whitespace-nowrap overflow-hidden text-ellipsis">
-                 {songs.artists.primary.map((artists)=>artists.name).join(', ')}
+                  {songs.artists.primary
+                    .map((artists) => artists.name)
+                    .join(", ")}
                 </p>
               </SongsCard>
             </SwiperSlide>
