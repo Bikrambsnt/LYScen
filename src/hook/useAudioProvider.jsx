@@ -29,27 +29,29 @@ export const AudioProvider = (
       return;
     }
 
-    // console.log("Song Data:", songData);
+
+    console.log("Song Data:", songData);
     // console.log("Song URL:", songUrl);
 
     try {
       if (currentlyPlaying && currentlyPlaying !== audioRef.current) {
         currentlyPlaying.pause();
         currentlyPlaying.currentTime = 0;
+      
       }
       if(!audioRef.current.src){
-
         audioRef.current.src = songUrl; //file assign to which playSong function called...
       }
       await audioRef.current.play();
       setIsPlaying(true);
       setCurrentlyPlaying(audioRef.current);
       setShowProgressBar(true);
+      
     }
     catch (error) {
       console.error("ERROR: While playing music", error);
     }
-    setIsPlaying(false)
+    // setIsPlaying(false)
   };
 
   const updateProgress = () => {
@@ -60,7 +62,7 @@ export const AudioProvider = (
 
     const currentTime = audioRef.current.currentTime;
     const duration = audioRef.current.duration;
-    const currentProgress = (currentTime / duration) * 100 || 0;
+    const currentProgress = (currentTime / duration) * 100 || 1;
     // console.log("Progress:", currentProgress);
     setDuration(duration);
     setCurrentTime(currentTime)
@@ -89,6 +91,7 @@ export const AudioProvider = (
     setShowProgressBar(false)
     currentlyPlaying.pause();
     currentlyPlaying.currentTime = 0;
+
   };
 
 //   useEffect(()=>{

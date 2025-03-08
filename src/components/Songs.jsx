@@ -103,6 +103,7 @@ function Songs({
           {songs.map((songs, index) => (
             <SwiperSlide key={index}>
               <SongsCard
+              
                 songUrl={songs}
                 setSongMetaData={setSongMetaData}
             

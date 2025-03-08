@@ -14,9 +14,9 @@ import { useNavigate } from "react-router-dom";
 import CardBtn from "./SongCardBtn";
 import { useAudioProvider } from "../../context/AudioContext";
 
-function NowPlaying({ songMetaData }) {
+function NowPlaying({}) {
   const navigate = useNavigate();
-  const {progress} = useAudioProvider();
+  const {progress,isPlaying} = useAudioProvider();
 
 
   useEffect(()=>{
@@ -85,7 +85,7 @@ function NowPlaying({ songMetaData }) {
             <FontAwesomeIcon icon={faBackward} className="text-2xl" />
           </button>
           <button className=" flex items-center justify-center w-14 h-14 rounded-full border-[1px] border-[#9c227c] bg-white/20 backdrop-blur-[3px]">
-            <FontAwesomeIcon icon={faPlay} className="text-xl ml-1" />
+            <FontAwesomeIcon icon={faPlay} className="text-xl" />
           </button>
           <button>
             <FontAwesomeIcon icon={faForward} className="text-2xl" />

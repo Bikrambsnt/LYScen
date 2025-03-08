@@ -82,7 +82,7 @@ function SearchBar({ }) {
   },[])
   //play song on click and store recently search hisory
   const startPlay = (result) => {
-    playSong(result);
+    playSong(result.downloadUrl[4]?.url);
     
 
     //retrive the store data

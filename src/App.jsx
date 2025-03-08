@@ -36,8 +36,6 @@ function App() {
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
   const [songMetaData, setSongMetaData] = useState([]);
 
-
-
   return (
     <AudioProvider>
       <Router>
@@ -62,7 +60,6 @@ function Content({
   currentlyPlaying,
   songMetaData,
   setSongMetaData,
-
 }) {
   const location = useLocation();
   const hideHeader = ["/search", "/nowPlaying"];
@@ -75,17 +72,11 @@ function Content({
     console.log("ProgressVal is:", progressVal);
   }, [songValue, darkMode, progressVal]);
 
-  // useEffect(()=>{
-  //   console.log('You show see progress here' , progress);
-
-  // },[progress])
-
   //Ressetting The scroll to 0 when Navigation from another page..
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
 
-  // console.log('song Meta Data' , songMetaData)
   return (
     <div
       className={`w-screen h-max transition-colors duration-200 ease-in ${
@@ -123,9 +114,7 @@ function Content({
       </Routes>
 
       {/* Display progress bar when Music play*/}
-      {showProgressBar && (
-        <SongProgressBar songMetaData={songMetaData} />
-      )}
+      {showProgressBar && <SongProgressBar songMetaData={songMetaData} />}
     </div>
   );
 }

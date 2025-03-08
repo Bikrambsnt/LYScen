@@ -8,12 +8,16 @@ export default function CardBtn({
   setSongMetaData,
 
 }) {
-  const { playSong } = useAudioProvider();
+
+  const { playSong,isPlaying } = useAudioProvider();
+
+
 
   const getMetaData = useCallback(() => {
     playSong(songData);
     setSongMetaData(songData);
   }, [playSong, songData, setSongMetaData]);
+  
 
   return (
     <div>
