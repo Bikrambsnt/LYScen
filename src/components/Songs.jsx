@@ -8,11 +8,7 @@ import { FreeMode } from "swiper/modules";
 import { searchSongsByQuery } from "../config/fetch";
 import SkeletonCard from "./UI/skeleton/SkeletonCard";
 
-function Songs({
-
-  setSongMetaData,
-
-}) {
+function Songs({ setSongMetaData }) {
   const [songs, setSongs] = useState([]);
   const [loading, setLoading] = useState(true);
   //  const [currentlyPlaying,setCurrentlyPlaying] = useState(null);
@@ -102,12 +98,7 @@ function Songs({
         >
           {songs.map((songs, index) => (
             <SwiperSlide key={index}>
-              <SongsCard
-              
-                songUrl={songs}
-                setSongMetaData={setSongMetaData}
-            
-              >
+              <SongsCard songUrl={songs} setSongMetaData={setSongMetaData}>
                 <img
                   src={songs.image[2]?.url}
                   alt={songs.name}

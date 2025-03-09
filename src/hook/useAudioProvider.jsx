@@ -5,7 +5,9 @@ import { AudioContext } from "../context/AudioContext";
 
 
 export const AudioProvider = (
-{children}
+{children,
+  
+}
 ) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
@@ -39,9 +41,8 @@ export const AudioProvider = (
         currentlyPlaying.currentTime = 0;
       
       }
-      if(!audioRef.current.src){
-        audioRef.current.src = songUrl; //file assign to which playSong function called...
-      }
+
+      audioRef.current.src = songUrl; //creates new song instance...
       await audioRef.current.play();
       setIsPlaying(true);
       setCurrentlyPlaying(audioRef.current);
