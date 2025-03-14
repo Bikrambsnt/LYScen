@@ -4,14 +4,8 @@ import { Song, Artist, Trending } from "../components/index";
 function Home() {
   return (
     <div>
-      <Song
-
-        
-      />
-      <Trending
-    
-        
-      />
+      <Song />
+      <Trending />
       <Artist />
     </div>
   );

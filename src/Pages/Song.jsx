@@ -1,17 +1,10 @@
 import React from "react";
 import Songs from "../components/Songs";
 
-function Song({
-
-
-}) {
+function Song({}) {
   return (
     <div className="w-screen p-2">
-      <Songs
-
-       
-    
-      />
+      <Songs />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import {
   faPlay,
   faPause,
   faCloudDownload,
+  faDownload,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAudioProvider } from "../../../context/AudioContext";
 import { useNavigate } from "react-router-dom";
@@ -28,26 +29,27 @@ useEffect(()=>{
 },[])
 
 const currentSong = songData || storedSongData //If song data is not available then fall back to localStorage
-console.log('CurrentSong is:' , currentSong)
+// console.log('CurrentSong is:' , currentSong)
 
   if(!currentSong){
     console.log('No SongData Found')
+    return <div>Something went wrong</div>
   }
 
-  useEffect(() => {
-    const startScroll = () => {
-      if (containerRef.current && textRef.current) {
-        setScrollText(
-          textRef.current.scrollWidth > containerRef.current.clientWidth
-        );
-      }
-    };
+  // useEffect(() => {
+  //   const startScroll = () => {
+  //     if (containerRef.current && textRef.current) {
+  //       setScrollText(
+  //         textRef.current.scrollWidth > containerRef.current.clientWidth
+  //       );
+  //     }
+  //   };
 
-    startScroll();
-    window.addEventListener("resize", startScroll);
-    return () => window.removeEventListener("resize", startScroll);
-  }, []);
-  // Animate ends//
+  //   startScroll();
+  //   window.addEventListener("resize", startScroll);
+  //   return () => window.removeEventListener("resize", startScroll);
+  // }, []);
+  // // Animate ends//
 
   const redirectToNowPlaying = () => {
     navigate("/nowPlaying");
@@ -109,44 +111,41 @@ const refineDuration = formatTime(duration)
           appearance-none cursor-pointer rounded-[8px] h-[2px] 
           [&::-webkit-slider-thumb]:appearance-none
             [&::-webkit-slider-thumb]:w-[6px] [&::-webkit-slider-thumb]:h-[6px] 
-        [&::-webkit-slider-thumb]:bg-[#9c227c] [&::-webkit-slider-thumb]:rounded-full                                                                                                                                                                                             
+                                                                                                                                                                                                    
           "
           style={{background:`linear-gradient(to right, #9c226c ${progress}%,#636366 ${progress}% )`}}
             />
-            <div className="flex font-jost text-[8px] mt-1">
+            <div className="flex font-jost text-[8px] mt-1 ">
             <span className="absolute left-0">{refineCurrentTime}</span>
            <span className="absolute right-0">{refineDuration}</span>
             </div>
           </div>
         </div>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            closeBar();
-          }}
-          className="absolute top-0 right-4"
-        >
-          <FontAwesomeIcon
-            icon={faMultiply}
-            className="text-white  text-sm font-light"
-          />
-        </button>
+       
 
-        <div className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 right-0 space-x-6">
+        <div className=" flex absolute top-1/2 -translate-x-1/2 -translate-y-1/2 -right-7 gap-2">
           <button
             onClick={(e) => {
               e.stopPropagation();
             }}
+            className="h-8 w-8 bg-[#636366] flex justify-center items-center rounded-[4px]"
           >
             <FontAwesomeIcon
               icon={isPlaying ? faPlay : faPause}
-              className="text-white text-xl"
+              className="text-white "
             />
           </button>
-          <button>
+          <button 
+          onClick={(e)=>{
+            e.stopPropagation();
+            closeBar();
+          }}
+
+          className="h-8 w-8 bg-[#636366] flex justify-center items-center rounded-[4px]"
+          >
             <FontAwesomeIcon
-              icon={faCloudDownload}
-              className="text-white text-xl"
+              icon={faMultiply}
+              className="text-white font-extralight"
             />
           </button>
         </div>

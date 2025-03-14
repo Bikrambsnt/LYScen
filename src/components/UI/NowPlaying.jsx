@@ -16,7 +16,7 @@ import { useAudioProvider } from "../../context/AudioContext";
 
 function NowPlaying({}) {
   const navigate = useNavigate();
-  const {songData,progress,isPlaying} = useAudioProvider();
+  const {songData,progress,isPlaying,playSong} = useAudioProvider();
   const [storedSongData , setStoredSongdata] = useState(null);
 
 // Retrieve song form local Storage
@@ -30,16 +30,15 @@ if(savedData){
 },[])
 
 
-const currentSong = songData || storedSongData 
-console.log("currentSong is" , currentSong)
+const currentSong = songData || storedSongData;
+// console.log("currentSong is" , currentSong)
 if(!currentSong){
-  console.log('No song Data Found')
+  // console.log('No song Data Found')
+  return <div className="w-full h-dvh flex items-center justify-center ">
+    <p className=" font-jost text-2xl ">Please Play a song First.</p>
+
+  </div>
 }
-
-
-
-
-
 
   return (
     <div
@@ -102,7 +101,8 @@ if(!currentSong){
           <button>
             <FontAwesomeIcon icon={faBackward} className="text-2xl" />
           </button>
-          <button className=" flex items-center justify-center w-14 h-14 rounded-full border-[1px] border-[#9c227c] bg-white/20 backdrop-blur-[3px]">
+          <button onClick={playSong}
+           className=" flex items-center justify-center w-14 h-14 rounded-full border-[1px] border-[#9c227c] bg-white/20 backdrop-blur-[3px]">
             <FontAwesomeIcon icon={faPlay} className="text-xl" />
           </button>
           <button>
