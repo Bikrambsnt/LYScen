@@ -1,5 +1,5 @@
 import { useState, useEffect, React } from "react";
-import SongsCard from "./UI/songsCard";
+import SongsCard from "./UI/SongsCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";

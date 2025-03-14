@@ -1,5 +1,5 @@
 import { React, useState, useEffect, lazy } from "react";
-import SongsCard from "./UI/songsCard";
+import SongsCard from "./UI/SongsCard";
 import { searchForTrending } from "../config/fetch";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
