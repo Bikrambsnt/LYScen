@@ -11,11 +11,12 @@ export const AudioProvider = (
 ) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
-  // const [songData, setSongData] = useState(null);
+  const [songData, setSongData] = useState(null);
   const [showProgressBar, setShowProgressBar] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  
   
   const audioRef = useRef(new Audio()); //Initialize audio Ref but no file assign
   
@@ -31,8 +32,9 @@ export const AudioProvider = (
       return;
     }
 
+    setSongData(songData)
 
-    console.log("Song Data:", songData);
+    // console.log("Song Data:", songData);
     // console.log("Song URL:", songUrl);
 
     try {
@@ -103,6 +105,7 @@ export const AudioProvider = (
   return(
     <AudioContext.Provider
     value={{
+     songData,
       playSong,
       isPlaying,
       setCurrentlyPlaying,

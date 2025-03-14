@@ -8,11 +8,7 @@ import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
 import SkeletonCard from "./UI/skeleton/SkeletonCard";
 
-function TrendingSongs({
- 
-  setSongMetaData,
-  
-}) {
+function TrendingSongs() {
   const [englishSong, setEnglishSong] = useState([]);
   const [hindiSong, setHindiSong] = useState([]);
   const [nepaliSong, setNepaliSong] = useState([]);
@@ -86,7 +82,7 @@ function TrendingSongs({
             //passing prop to get the song url in CardButton
             songUrl={songs}
             key={songs.id}
-            setSongMetaData={setSongMetaData}
+        
        
           >
             <img

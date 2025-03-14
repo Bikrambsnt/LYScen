@@ -7,18 +7,20 @@ import {
   faCloudDownload,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAudioProvider } from "../../../context/AudioContext";
-import CardBtn from "../SongCardBtn";
 import { useNavigate } from "react-router-dom";
 
-function SongProgressBar({
-  songMetaData,
-}) {
+function SongProgressBar({}) {
   //   To animate  the overflow text
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const [scrollText, setScrollText] = useState(false);
-  const {progress,isPlaying,currentTime,duration,closeBar} = useAudioProvider();
+  const {songData,progress,isPlaying,currentTime,duration,closeBar} = useAudioProvider();
   const navigate = useNavigate();
+
+  
+  if(!songData){
+    console.log('No SongData Found')
+  }
 
   useEffect(() => {
     const startScroll = () => {
@@ -30,7 +32,6 @@ function SongProgressBar({
     };
 
     startScroll();
-
     window.addEventListener("resize", startScroll);
     return () => window.removeEventListener("resize", startScroll);
   }, []);
@@ -64,7 +65,7 @@ const refineDuration = formatTime(duration)
       <div className="relative h-20 w-full p-2">
         <div className=" absolute w-14 h-14 top-1/2 left-10 -translate-x-1/2 -translate-y-1/2 border-[1px]  rounded-[4px]">
           <img
-            src={songMetaData.image[2]?.url}
+            src={songData.image[2]?.url}
             className="w-full h-full rounded-[4px]"
           />
         </div>
@@ -77,11 +78,11 @@ const refineDuration = formatTime(duration)
                 scrollText ? "animate-scroll" : ""
               }`}
             >
-              {songMetaData.name}
+              {songData.name}
             </h1>
 
             <p className="text-xs font-light whitespace-nowrap text-ellipsis font-jost">
-              {songMetaData.artists.primary
+              {songData.artists.primary
                 .map((artists) => artists.name)
                 .join(", ")}
             </p>

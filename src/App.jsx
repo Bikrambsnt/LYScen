@@ -11,7 +11,7 @@ import { SearchBar } from "./components/index";
 import SongProgressBar from "./components/UI/playingProgressBar/SongProgressBar";
 import NowPlaying from "./components/UI/NowPlaying";
 import { useAudioProvider } from "./context/AudioContext";
-import { AudioProvider } from "./hook/useAudioProvider";
+import { AudioProvider } from "./hook/AudioProvider";
 
 function App() {
   // Toggle Bg theme
@@ -34,7 +34,7 @@ function App() {
   }, [darkMode]);
 
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
-  const [songMetaData, setSongMetaData] = useState([]);
+
 
   return (
     <AudioProvider>
@@ -44,8 +44,7 @@ function App() {
           setDarkMode={setDarkMode}
           currentlyPlaying={currentlyPlaying}
           setCurrentlyPlaying={setCurrentlyPlaying}
-          songMetaData={songMetaData}
-          setSongMetaData={setSongMetaData}
+     
         />
       </Router>
     </AudioProvider>
@@ -58,19 +57,11 @@ function Content({
   setDarkMode,
   setCurrentlyPlaying,
   currentlyPlaying,
-  songMetaData,
-  setSongMetaData,
+ 
 }) {
   const location = useLocation();
   const hideHeader = ["/search", "/nowPlaying"];
   const { showProgressBar } = useAudioProvider();
-
-  const { songValue, progressVal } = useAudioProvider(songMetaData);
-
-  useEffect(() => {
-    console.log("SongData in App.jsx is", songValue);
-    console.log("ProgressVal is:", progressVal);
-  }, [songValue, darkMode, progressVal]);
 
   //Ressetting The scroll to 0 when Navigation from another page..
   useEffect(() => {
@@ -94,7 +85,7 @@ function Content({
             <Home
               currentlyPlaying={currentlyPlaying}
               setCurrentlyPlaying={setCurrentlyPlaying}
-              setSongMetaData={setSongMetaData}
+         
             />
           }
         />
@@ -109,12 +100,12 @@ function Content({
         />
         <Route
           path="/nowPlaying"
-          element={<NowPlaying songMetaData={songMetaData} />}
+          element={<NowPlaying />}
         />
       </Routes>
 
       {/* Display progress bar when Music play*/}
-      {showProgressBar && <SongProgressBar songMetaData={songMetaData} />}
+      {showProgressBar && <SongProgressBar/>}
     </div>
   );
 }

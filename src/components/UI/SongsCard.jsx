@@ -6,8 +6,7 @@ function SongsCard({
   name,
   artists,
   songUrl,
-  setSongMetaData,
- 
+
 }) {
   return (
     <div className="relative group">

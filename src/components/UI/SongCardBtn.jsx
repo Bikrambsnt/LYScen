@@ -4,9 +4,7 @@ import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import { useAudioProvider } from "../../context/AudioContext";
 
 export default function CardBtn({
-  songData,
-  setSongMetaData,
-
+  songData
 }) {
 
   const { playSong,isPlaying } = useAudioProvider();
@@ -14,9 +12,8 @@ export default function CardBtn({
 
 
   const getMetaData = useCallback(() => {
-    playSong(songData);
-    setSongMetaData(songData);
-  }, [playSong, songData, setSongMetaData]);
+    playSong(songData); 
+  }, [playSong, songData]);
   
 
   return (

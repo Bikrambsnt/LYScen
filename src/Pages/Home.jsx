@@ -1,16 +1,16 @@
 import { React, useState } from "react";
 import { Song, Artist, Trending } from "../components/index";
 
-function Home({ setSongMetaData }) {
+function Home() {
   return (
     <div>
       <Song
 
-        setSongMetaData={setSongMetaData}
+        
       />
       <Trending
     
-        setSongMetaData={setSongMetaData}
+        
       />
       <Artist />
     </div>

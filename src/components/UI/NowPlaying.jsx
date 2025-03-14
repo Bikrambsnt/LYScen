@@ -16,18 +16,18 @@ import { useAudioProvider } from "../../context/AudioContext";
 
 function NowPlaying({}) {
   const navigate = useNavigate();
-  const {progress,isPlaying} = useAudioProvider();
+  const {songData,progress,isPlaying} = useAudioProvider();
 
 
-  useEffect(()=>{
-    console.log('Progress ',progress)
+  // useEffect(()=>{
+  //   console.log('Progress ',progress)
 
-  },[])
+  // },[])
   return (
     <div
       className=" relative w-full h-dvh text-white overflow-hidden"
       style={{
-        backgroundImage: `url(${songMetaData.image[2].url} )`,
+        backgroundImage: `url(${songData.image[2].url} )`,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
@@ -42,23 +42,23 @@ function NowPlaying({}) {
             <FontAwesomeIcon icon={faArrowLeft} className="active:scale-75 " />
           </button>
           <p className="text-base font-jost font-normal text-[#b9b9b9] max-w-[300px] whitespace-nowrap text-ellipsis overflow-hidden px-4 animate-pulse ">
-            Now Playing {songMetaData.name}
+            Now Playing {songData.name}
           </p>
           <FontAwesomeIcon icon={faSearch} className="active:scale-75 " />
         </div>
 
         <div className="flex w-full justify-center mt-16 overflow-hidden">
           <img
-            src={songMetaData.image[2].url}
+            src={songData.image[2].url}
             className="w-72 h-72 border-[1px] border-white rounded-[8px]"
             loading="lazy"
           />
         </div>
 
         <div className="mt-8 px-2 ">
-          <p className="text-lg font-roboto font-bold">{songMetaData.name}</p>
+          <p className="text-lg font-roboto font-bold">{songData.name}</p>
           <p className="text-sm font-rubik font-light">
-            {songMetaData.artists.primary
+            {songData.artists.primary
               .map((artists) => artists.name)
               .join(" ,")}
           </p>
