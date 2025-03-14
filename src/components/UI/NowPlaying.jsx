@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   faSearch,
   faArrowLeft,
@@ -17,17 +17,35 @@ import { useAudioProvider } from "../../context/AudioContext";
 function NowPlaying({}) {
   const navigate = useNavigate();
   const {songData,progress,isPlaying} = useAudioProvider();
+  const [storedSongData , setStoredSongdata] = useState(null);
+
+// Retrieve song form local Storage
+
+useEffect(()=>{
+const savedData = localStorage.getItem('songData');
+if(savedData){
+  setStoredSongdata(JSON.parse(savedData))
+}
+
+},[])
 
 
-  // useEffect(()=>{
-  //   console.log('Progress ',progress)
+const currentSong = songData || storedSongData 
+console.log("currentSong is" , currentSong)
+if(!currentSong){
+  console.log('No song Data Found')
+}
 
-  // },[])
+
+
+
+
+
   return (
     <div
       className=" relative w-full h-dvh text-white overflow-hidden"
       style={{
-        backgroundImage: `url(${songData.image[2].url} )`,
+        backgroundImage: `url(${currentSong.image[2].url} )`,
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
@@ -42,23 +60,23 @@ function NowPlaying({}) {
             <FontAwesomeIcon icon={faArrowLeft} className="active:scale-75 " />
           </button>
           <p className="text-base font-jost font-normal text-[#b9b9b9] max-w-[300px] whitespace-nowrap text-ellipsis overflow-hidden px-4 animate-pulse ">
-            Now Playing {songData.name}
+            Now Playing {currentSong.name}
           </p>
           <FontAwesomeIcon icon={faSearch} className="active:scale-75 " />
         </div>
 
         <div className="flex w-full justify-center mt-16 overflow-hidden">
           <img
-            src={songData.image[2].url}
+            src={currentSong.image[2].url}
             className="w-72 h-72 border-[1px] border-white rounded-[8px]"
             loading="lazy"
           />
         </div>
 
         <div className="mt-8 px-2 ">
-          <p className="text-lg font-roboto font-bold">{songData.name}</p>
+          <p className="text-lg font-roboto font-bold">{currentSong.name}</p>
           <p className="text-sm font-rubik font-light">
-            {songData.artists.primary
+            {currentSong.artists.primary
               .map((artists) => artists.name)
               .join(" ,")}
           </p>

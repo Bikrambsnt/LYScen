@@ -9,16 +9,28 @@ import {
 import { useAudioProvider } from "../../../context/AudioContext";
 import { useNavigate } from "react-router-dom";
 
-function SongProgressBar({}) {
+function SongProgressBar() {
   //   To animate  the overflow text
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const [scrollText, setScrollText] = useState(false);
   const {songData,progress,isPlaying,currentTime,duration,closeBar} = useAudioProvider();
   const navigate = useNavigate();
+  const [storedSongData , setStoredSongdata] = useState(null);
 
-  
-  if(!songData){
+// fetch the songData from local storage on mount
+
+useEffect(()=>{
+ const savedSong =  localStorage.getItem('songData')
+ if(savedSong){
+  setStoredSongdata(JSON.parse(savedSong))
+ }
+},[])
+
+const currentSong = songData || storedSongData //If song data is not available then fall back to localStorage
+console.log('CurrentSong is:' , currentSong)
+
+  if(!currentSong){
     console.log('No SongData Found')
   }
 
@@ -65,7 +77,7 @@ const refineDuration = formatTime(duration)
       <div className="relative h-20 w-full p-2">
         <div className=" absolute w-14 h-14 top-1/2 left-10 -translate-x-1/2 -translate-y-1/2 border-[1px]  rounded-[4px]">
           <img
-            src={songData.image[2]?.url}
+            src={currentSong.image[2]?.url}
             className="w-full h-full rounded-[4px]"
           />
         </div>
@@ -78,11 +90,11 @@ const refineDuration = formatTime(duration)
                 scrollText ? "animate-scroll" : ""
               }`}
             >
-              {songData.name}
+              {currentSong.name}
             </h1>
 
             <p className="text-xs font-light whitespace-nowrap text-ellipsis font-jost">
-              {songData.artists.primary
+              {currentSong.artists.primary
                 .map((artists) => artists.name)
                 .join(", ")}
             </p>

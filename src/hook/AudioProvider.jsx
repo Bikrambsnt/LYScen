@@ -32,7 +32,10 @@ export const AudioProvider = (
       return;
     }
 
+    // set songData and store it in local storage..
     setSongData(songData)
+    localStorage.setItem('songData' ,JSON.stringify(songData))
+
 
     // console.log("Song Data:", songData);
     // console.log("Song URL:", songUrl);

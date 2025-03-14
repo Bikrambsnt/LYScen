@@ -11,15 +11,10 @@ export default function CardBtn({
 
 
 
-  const getMetaData = useCallback(() => {
-    playSong(songData); 
-  }, [playSong, songData]);
-  
-
   return (
     <div>
       <button
-        onClick={getMetaData}
+        onClick={()=>playSong(songData)}//pass the songData
         className="h-12 w-12 rounded-full border-[1px] border-[#9c227c] bg-white/40 backdrop-blur-[3px] flex justify-center items-center cursor-pointer "
       >
         <FontAwesomeIcon

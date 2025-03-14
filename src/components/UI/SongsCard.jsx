@@ -19,7 +19,7 @@ function SongsCard({
       <div className="absolute inset-0 flex justify-start items-end m-2">
         <CardBtn
           songData={songUrl}
-          setSongMetaData={setSongMetaData}
+         
       
         />
       </div>
