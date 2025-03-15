@@ -7,14 +7,14 @@ export default function CardBtn({
   songData
 }) {
 
-  const { playSong,isPlaying } = useAudioProvider();
+  const { playSongOnly,isPlaying } = useAudioProvider();
 
 
 
   return (
     <div>
       <button
-        onClick={()=>playSong(songData)}//pass the songData
+        onClick={()=>playSongOnly(songData)}//pass the songData
         className="h-12 w-12 rounded-full border-[1px] border-[#9c227c] bg-white/40 backdrop-blur-[3px] flex justify-center items-center cursor-pointer "
       >
         <FontAwesomeIcon

@@ -16,7 +16,7 @@ function SongProgressBar() {
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const [scrollText, setScrollText] = useState(false);
-  const {playSong,songData,progress,isPlaying,currentTime,duration,closeBar} = useAudioProvider();
+  const {togglePlayPause,songData,progress,isPlaying,currentTime,duration,closeBar} = useAudioProvider();
   const navigate = useNavigate();
   const [storedSongData , setStoredSongdata] = useState(null);
 
@@ -37,24 +37,24 @@ const currentSong = songData || storedSongData //If song data is not available t
     return <div>Something went wrong</div>
   }
 
-  useEffect(() => {
-    const startScroll = () => {
-      if (containerRef.current && textRef.current) {
-        setScrollText(
-          textRef.current.scrollWidth > containerRef.current.clientWidth
-        );
-      }
-    };
+  // useEffect(() => {
+  //   const startScroll = () => {
+  //     if (containerRef.current && textRef.current) {
+  //       setScrollText(
+  //         textRef.current.scrollWidth > containerRef.current.clientWidth
+  //       );
+  //     }
+  //   };
 
     
-    setTimeout(()=>{
+  //   setTimeout(()=>{
 
-      startScroll();
-    },2000)
-    window.addEventListener("resize", startScroll);
-    return () => window.removeEventListener("resize", startScroll);
-  }, []);
-  // Animate ends//
+  //     startScroll();
+  //   },2000)
+  //   window.addEventListener("resize", startScroll);
+  //   return () => window.removeEventListener("resize", startScroll);
+  // }, []);
+  // // Animate ends//
 
   const redirectToNowPlaying = () => {
     navigate("/nowPlaying");
@@ -97,9 +97,9 @@ const refineDuration = formatTime(duration)
                 scrollText ? "animate-scroll" : ""
               }`}
             >
-              <span>{currentSong.name} <FontAwesomeIcon icon={faCircle} className="text-[6px] mx-2" /></span>
+              <span>{currentSong.name}</span>
               {/* Duplicate name is used to animate the scrolling text smoothly */}
-              <span>{currentSong.name} <FontAwesomeIcon icon={faCircle} /></span>
+              {/* <span>{currentSong.name} <FontAwesomeIcon icon={faCircle} /></span> */}
             </h1>
 
             <p className={`text-xs font-light whitespace-nowrap text-ellipsis font-jost`}>
@@ -133,7 +133,7 @@ const refineDuration = formatTime(duration)
           <button
             onClick={(e) => {
               e.stopPropagation();
-              playSong(storedSongData)
+              togglePlayPause(currentSong)
             }}
             className="h-8 w-8 bg-[#636366]  flex justify-center items-center rounded-[4px]"
           >
