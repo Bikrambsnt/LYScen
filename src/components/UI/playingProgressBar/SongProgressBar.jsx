@@ -33,8 +33,7 @@ const currentSong = songData || storedSongData //If song data is not available t
 // console.log('CurrentSong is:' , currentSong)
 
   if(!currentSong){
-    console.log('No SongData Found')
-    return <div>Something went wrong</div>
+    return;
   }
 
   // useEffect(() => {
@@ -104,7 +103,7 @@ const refineDuration = formatTime(duration)
 
             <p className={`text-xs font-light whitespace-nowrap text-ellipsis font-jost`}>
               
-             <sapn>{currentSong.artists.primary[0].name} </sapn>
+             <span>{currentSong.artists.primary[0].name} </span>
             </p>
 
             <input

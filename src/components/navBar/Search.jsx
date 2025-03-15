@@ -14,7 +14,7 @@ function SearchBar({ }) {
   const [results, setResults] = useState([]); // Store search results
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
-  const { playSong } = useAudioProvider();
+  const { playSongOnly } = useAudioProvider();
 // to store recently searched history
   const [recentlySearched , setRecentlySearched] = useState([])
 
@@ -82,7 +82,8 @@ function SearchBar({ }) {
   },[])
   //play song on click and store recently search hisory
   const startPlay = (result) => {
-    playSong(result.downloadUrl[4]?.url);
+    playSongOnly(result);
+    console.log('Clicked',result)
     
 
     //retrive the store data
@@ -217,7 +218,7 @@ function SearchBar({ }) {
                 <button
                   //pass the logic to play current music on click...
 
-                  // onClick={() => startPlay(savedData)}
+                  onClick={() => startPlay(savedData)}
                   
                   className="w-full h-14 flex space-x-16 text-left items-center  active:bg-[#63636642] rounded-md"
                 >

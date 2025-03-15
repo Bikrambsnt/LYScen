@@ -6,7 +6,7 @@ function Home() {
     <div>
       <Song />
       <Trending />
-      <Artist />
+      {/* <Artist /> */}
     </div>
   );
 }
