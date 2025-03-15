@@ -6,6 +6,7 @@ import {
   faPause,
   faCloudDownload,
   faDownload,
+  faCircle
 } from "@fortawesome/free-solid-svg-icons";
 import { useAudioProvider } from "../../../context/AudioContext";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +16,7 @@ function SongProgressBar() {
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const [scrollText, setScrollText] = useState(false);
-  const {songData,progress,isPlaying,currentTime,duration,closeBar} = useAudioProvider();
+  const {playSong,songData,progress,isPlaying,currentTime,duration,closeBar} = useAudioProvider();
   const navigate = useNavigate();
   const [storedSongData , setStoredSongdata] = useState(null);
 
@@ -36,20 +37,24 @@ const currentSong = songData || storedSongData //If song data is not available t
     return <div>Something went wrong</div>
   }
 
-  // useEffect(() => {
-  //   const startScroll = () => {
-  //     if (containerRef.current && textRef.current) {
-  //       setScrollText(
-  //         textRef.current.scrollWidth > containerRef.current.clientWidth
-  //       );
-  //     }
-  //   };
+  useEffect(() => {
+    const startScroll = () => {
+      if (containerRef.current && textRef.current) {
+        setScrollText(
+          textRef.current.scrollWidth > containerRef.current.clientWidth
+        );
+      }
+    };
 
-  //   startScroll();
-  //   window.addEventListener("resize", startScroll);
-  //   return () => window.removeEventListener("resize", startScroll);
-  // }, []);
-  // // Animate ends//
+    
+    setTimeout(()=>{
+
+      startScroll();
+    },2000)
+    window.addEventListener("resize", startScroll);
+    return () => window.removeEventListener("resize", startScroll);
+  }, []);
+  // Animate ends//
 
   const redirectToNowPlaying = () => {
     navigate("/nowPlaying");
@@ -92,13 +97,14 @@ const refineDuration = formatTime(duration)
                 scrollText ? "animate-scroll" : ""
               }`}
             >
-              {currentSong.name}
+              <span>{currentSong.name} <FontAwesomeIcon icon={faCircle} className="text-[6px] mx-2" /></span>
+              {/* Duplicate name is used to animate the scrolling text smoothly */}
+              <span>{currentSong.name} <FontAwesomeIcon icon={faCircle} /></span>
             </h1>
 
-            <p className="text-xs font-light whitespace-nowrap text-ellipsis font-jost">
-              {currentSong.artists.primary
-                .map((artists) => artists.name)
-                .join(", ")}
+            <p className={`text-xs font-light whitespace-nowrap text-ellipsis font-jost`}>
+              
+             <sapn>{currentSong.artists.primary[0].name} </sapn>
             </p>
 
             <input
@@ -127,12 +133,13 @@ const refineDuration = formatTime(duration)
           <button
             onClick={(e) => {
               e.stopPropagation();
+              playSong(storedSongData)
             }}
-            className="h-8 w-8 bg-[#636366] flex justify-center items-center rounded-[4px]"
+            className="h-8 w-8 bg-[#636366]  flex justify-center items-center rounded-[4px]"
           >
             <FontAwesomeIcon
-              icon={isPlaying ? faPlay : faPause}
-              className="text-white "
+              icon={isPlaying ? faPause : faPlay}
+              className="text-white transition-all duration-300 active:scale-90"
             />
           </button>
           <button 
@@ -141,7 +148,7 @@ const refineDuration = formatTime(duration)
             closeBar();
           }}
 
-          className="h-8 w-8 bg-[#636366] flex justify-center items-center rounded-[4px]"
+          className="h-8 w-8 bg-[#636366] flex justify-center items-center rounded-[4px] transition-all duration-300 active:scale-90"
           >
             <FontAwesomeIcon
               icon={faMultiply}

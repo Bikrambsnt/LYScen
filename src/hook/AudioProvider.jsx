@@ -12,7 +12,7 @@ export const AudioProvider = (
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
   const [songData, setSongData] = useState(null);
-  const [showProgressBar, setShowProgressBar] = useState(true);
+  const [showProgressBar, setShowProgressBar] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -21,6 +21,7 @@ export const AudioProvider = (
   const audioRef = useRef(new Audio()); //Initialize audio Ref but no file assign
   
   const playSong = async (songData) => {
+    try {
     if (!songData || !songData.downloadUrl?.[4]?.url) {
       console.log("Error: Song Data is missing or invalid");
       return;
@@ -32,6 +33,22 @@ export const AudioProvider = (
       return;
     }
 
+
+    //toggle icons
+
+    if(currentlyPlaying && currentlyPlaying.src ===songUrl){
+      if(isPlaying){
+        currentlyPlaying.pause()
+        setIsPlaying(false)
+      }
+      else{
+        currentlyPlaying.play()
+        setIsPlaying(true)
+      }
+      return;
+    }
+
+
     // set songData and store it in local storage..
     setSongData(songData)
     localStorage.setItem('songData' ,JSON.stringify(songData))
@@ -40,7 +57,6 @@ export const AudioProvider = (
     // console.log("Song Data:", songData);
     // console.log("Song URL:", songUrl);
 
-    try {
       if (currentlyPlaying && currentlyPlaying !== audioRef.current) {
         currentlyPlaying.pause();
         currentlyPlaying.currentTime = 0;
@@ -52,8 +68,14 @@ export const AudioProvider = (
       setIsPlaying(true);
       setCurrentlyPlaying(audioRef.current);
       setShowProgressBar(true);
+
+      
+      // audioRef.current.pause();
+      // setIsPlaying(false)
       
     }
+
+
     catch (error) {
       console.error("ERROR: While playing music", error);
     }
@@ -97,6 +119,8 @@ export const AudioProvider = (
     setShowProgressBar(false)
     currentlyPlaying.pause();
     currentlyPlaying.currentTime = 0;
+
+    localStorage.removeItem('songData')
 
   };
 

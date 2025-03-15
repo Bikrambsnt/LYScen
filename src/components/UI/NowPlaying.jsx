@@ -7,7 +7,8 @@ import {
   faForward,
   faRepeat,
   faDownload,
-  faShareNodes
+  faShareNodes,
+  faPause
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
@@ -103,7 +104,7 @@ if(!currentSong){
           </button>
           <button onClick={playSong}
            className=" flex items-center justify-center w-14 h-14 rounded-full border-[1px] border-[#9c227c] bg-white/20 backdrop-blur-[3px]">
-            <FontAwesomeIcon icon={faPlay} className="text-xl" />
+            <FontAwesomeIcon icon={isPlaying? faPause : faPlay} className="text-xl" />
           </button>
           <button>
             <FontAwesomeIcon icon={faForward} className="text-2xl" />
