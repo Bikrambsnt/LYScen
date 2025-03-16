@@ -12,6 +12,7 @@ import SongProgressBar from "./components/UI/playingProgressBar/SongProgressBar"
 import NowPlaying from "./components/UI/NowPlaying";
 import { useAudioProvider } from "./context/AudioContext";
 import { AudioProvider } from "./hook/AudioProvider";
+import Spectrum from "./components/Spectrum/Spectrum";
 
 function App() {
   // Toggle Bg theme
@@ -103,6 +104,8 @@ function Content({
           element={<NowPlaying />}
         />
       </Routes>
+
+
 
       {/* Display progress bar when Music play*/}
       {showProgressBar && <SongProgressBar/>}

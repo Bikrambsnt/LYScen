@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useAudioProvider } from "../../../context/AudioContext";
 import { useNavigate } from "react-router-dom";
+import Spectrum from "../../Spectrum/Spectrum";
 
 function SongProgressBar() {
   //   To animate  the overflow text
@@ -89,11 +90,10 @@ const refineDuration = formatTime(duration)
         </div>
 
         <div className=" relative ml-16   flex flex-col justify-center h-full text-white overflow-hidden ">
-          <div ref={containerRef} className=" w-[60%] overflow-hidden">
+          <div ref={containerRef} className=" w-[50%] overflow-hidden">
             <h1
               ref={textRef}
-              className={`text-sm font-[400]  font-roboto mt-1 whitespace-nowrap   ${
-                scrollText ? "animate-scroll" : ""
+              className={`text-sm font-[400]  font-roboto mt-1 whitespace-nowrap overflow-hidden text-ellipsis  
               }`}
             >
               <span>{currentSong.name}</span>
@@ -101,7 +101,7 @@ const refineDuration = formatTime(duration)
               {/* <span>{currentSong.name} <FontAwesomeIcon icon={faCircle} /></span> */}
             </h1>
 
-            <p className={`text-xs font-light whitespace-nowrap text-ellipsis font-jost`}>
+            <p className={`text-xs font-light whitespace-nowrap text-ellipsis font-jost overflow-hidden`}>
               
              <span>{currentSong.artists.primary[0].name} </span>
             </p>
@@ -128,7 +128,12 @@ const refineDuration = formatTime(duration)
         </div>
        
 
-        <div className=" flex absolute top-1/2 -translate-x-1/2 -translate-y-1/2 -right-7 gap-2">
+        <div className=" flex absolute top-1/2 -translate-x-1/2 -translate-y-1/2 -right-14   gap-1">
+          <div>
+            <Spectrum/>
+          </div>
+          
+          
           <button
             onClick={(e) => {
               e.stopPropagation();

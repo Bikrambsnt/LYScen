@@ -124,7 +124,7 @@ export const AudioProvider = ({ children }) => {
     currentlyPlaying.pause();
     currentlyPlaying.currentTime = 0;
 
-    localStorage.removeItem("songData");
+    // localStorage.removeItem("songData");
   };
 
   //   useEffect(()=>{
@@ -136,6 +136,7 @@ export const AudioProvider = ({ children }) => {
     <AudioContext.Provider
       value={{
         songData,
+        audioRef,
         togglePlayPause,
         playSongOnly,
         isPlaying,
