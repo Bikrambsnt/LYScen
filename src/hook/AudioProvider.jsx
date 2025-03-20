@@ -20,10 +20,15 @@ export const AudioProvider = ({ children }) => {
       }
 
       const songUrl = songData.downloadUrl?.[4]?.url;
+      
+      if(!audioRef.current){
+        console.error('Audio Ref is not initialize');
+        return;
+      }
 
       if (currentlyPlaying && currentlyPlaying !== audioRef.current) {
         currentlyPlaying.pause();
-        currentTime.currentTime = 0;
+        currentlyPlaying.currentTime = 0;
       }
 
       // set songData and store it in local storage..

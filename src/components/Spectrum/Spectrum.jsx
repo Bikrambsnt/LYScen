@@ -21,14 +21,14 @@ function Spectrum() {
 
   return (
     <div>
-      <audio
+      {/* <audio
         id="audio-element3"
         src={songUrl}
         // controls
         ref={audioRef} //Getting play song Ref
         // autoPlay
         crossOrigin="anonymous"
-      />
+      /> */}
 
       <ReactAudioSpectrum
         id="audio-canvas3"
@@ -37,8 +37,8 @@ function Spectrum() {
         audioId={"audio-element3"}
         capColor={"aqua"}
         capHeight={2}
-        meterWidth={3}
-        meterCount={300}
+        meterWidth={5}
+        meterCount={512}
         meterColor={[
           { stop: 0, color: "#f00" },
           { stop: 0.5, color: "yellow" },

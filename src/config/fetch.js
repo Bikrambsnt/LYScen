@@ -12,7 +12,7 @@ export const globalSearch = async (query,limit,page) => {
       throw new Error("throw new Error");
     }
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.log(`ERROR: While Fetching for ${query}`);
@@ -28,7 +28,7 @@ export const searchSongsByQuery = async (query,limit,page) => {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.log("ERROR ON Search Query", error);
@@ -43,7 +43,7 @@ export const searchById = async (id) => {
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.log("Error: while Finding song with id", error);
@@ -95,7 +95,7 @@ export const searchForTrending = async (trending, limit, page) => {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.log("ERROR: while fetching Trending songs", error);
