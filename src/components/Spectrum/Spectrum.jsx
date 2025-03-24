@@ -6,35 +6,32 @@ function Spectrum() {
   const { songData,audioRef } = useAudioProvider();
   const [song, setSong] = useState(null);
 
-  useEffect(()=>{
-      const getSong = JSON.parse(localStorage.getItem("songData"));
+//   useEffect(()=>{
+//       const getSong = JSON.parse(localStorage.getItem("songData"));
     
-      if (getSong) {
-        setSong(getSong.downloadUrl[4]?.url);
-      }
-  },[])
+//       if (getSong) {
+//         setSong(getSong.downloadUrl[4]?.url);
+//       }
+//   },[])
 
-  const songUrl = songData || song;
+//   const songUrl = audioRef.current || song;
 
+// //   console.log(audioRef.current)
+
+  if(!audioRef.current){
+    console.error('Audio Ref is not present in Spectrum')
+    return null;
+  }
 
 //   console.log(songUrl)
 
   return (
     <div>
-      {/* <audio
-        id="audio-element3"
-        src={songUrl}
-        // controls
-        ref={audioRef} //Getting play song Ref
-        // autoPlay
-        crossOrigin="anonymous"
-      /> */}
-
       <ReactAudioSpectrum
         id="audio-canvas3"
         height={30}
         width={40}
-        audioId={"audio-element3"}
+        audioEle={audioRef.current}
         capColor={"aqua"}
         capHeight={2}
         meterWidth={5}
