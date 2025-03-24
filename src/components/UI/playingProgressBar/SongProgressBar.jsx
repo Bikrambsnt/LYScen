@@ -33,9 +33,7 @@ useEffect(()=>{
 const currentSong = songData || storedSongData //If song data is not available then fall back to localStorage
 // console.log('CurrentSong is:' , currentSong)
 
-  if(!currentSong){
-    return;
-  }
+  if(!currentSong) return;
 
   // useEffect(() => {
   //   const startScroll = () => {
