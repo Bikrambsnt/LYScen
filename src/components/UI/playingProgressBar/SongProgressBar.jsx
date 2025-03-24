@@ -11,6 +11,7 @@ import {
 import { useAudioProvider } from "../../../context/AudioContext";
 import { useNavigate } from "react-router-dom";
 import Spectrum from "../../Spectrum/Spectrum";
+import { cleanSongName } from "../../../utils/textUtils";
 
 function SongProgressBar() {
   //   To animate  the overflow text
@@ -94,7 +95,7 @@ const refineDuration = formatTime(duration)
               className={`text-sm font-[400]  font-roboto mt-1 whitespace-nowrap overflow-hidden text-ellipsis  
               }`}
             >
-              <span>{currentSong.name}</span>
+              <span>{cleanSongName(currentSong.name)}</span>
               {/* Duplicate name is used to animate the scrolling text smoothly */}
               {/* <span>{currentSong.name} <FontAwesomeIcon icon={faCircle} /></span> */}
             </h1>

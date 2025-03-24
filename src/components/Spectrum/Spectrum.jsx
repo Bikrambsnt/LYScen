@@ -31,7 +31,7 @@ function Spectrum() {
         id="audio-canvas3"
         height={30}
         width={40}
-        audioEle={audioRef.current}
+        // audioEle={audioRef.current}
         capColor={"aqua"}
         capHeight={2}
         meterWidth={5}

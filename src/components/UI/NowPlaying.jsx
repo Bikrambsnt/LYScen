@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import CardBtn from "./SongCardBtn";
 import { useAudioProvider } from "../../context/AudioContext";
+import { cleanSongName } from "../../utils/textUtils";
 
 function NowPlaying({}) {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ if(!currentSong){
             <FontAwesomeIcon icon={faArrowLeft} className="active:scale-75 " />
           </button>
           <p className="text-base font-jost font-normal text-[#b9b9b9] max-w-[300px] whitespace-nowrap text-ellipsis overflow-hidden px-4 animate-pulse ">
-            Now Playing {currentSong.name}
+            Now Playing {cleanSongName(currentSong.name)}
           </p>
           <FontAwesomeIcon icon={faSearch} className="active:scale-75 " />
         </div>
@@ -74,8 +75,8 @@ if(!currentSong){
         </div>
 
         <div className="mt-8 px-2 ">
-          <p className="text-lg font-roboto font-bold">{currentSong.name}</p>
-          <p className="text-sm font-rubik font-light">
+          <p className="text-lg font-roboto font-bold whitespace-nowrap overflow-hidden text-ellipsis">{cleanSongName(currentSong.name)}</p>
+          <p className="text-sm font-rubik font-light whitespace-nowrap overflow-hidden text-ellipsis">
             {currentSong.artists.primary
               .map((artists) => artists.name)
               .join(" ,")}

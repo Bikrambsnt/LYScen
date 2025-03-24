@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import SkeletonSearch from "../UI/skeleton/SkeletonSearch";
 import { useAudioProvider } from "../../context/AudioContext";
 import { TypeAnimation } from "react-type-animation";
+import { cleanSongName } from "../../utils/textUtils";
 
 function SearchBar({ }) {
   const [query, setQuery] = useState("");
@@ -225,14 +226,14 @@ function SearchBar({ }) {
                   <span className="absolute left-3 w-12 h-12 rounded-[4px] border-[1px] border-[white]">
                     <img
                       src={savedData.image[2]?.url}
-                      alt={savedData.name}
+                      alt={cleanSongName(savedData.name)}
                       loading="lazy"
                       className="h-full w-full object-cover"
                     />
                   </span>
                   <span className="w-full max-w-[65%]">
                     <h3 className="font-[500] text-sm font-poppins whitespace-nowrap text-ellipsis overflow-hidden ">
-                      {savedData.name}
+                      {cleanSongName(savedData.name)}
                     </h3>
                     <p className="font-light text-xs font-poppins whitespace-nowrap text-ellipsis overflow-hidden ">
                       {savedData.artists.primary
@@ -280,13 +281,13 @@ function SearchBar({ }) {
                   <span className="absolute left-3 w-12 h-12 rounded-[4px] border-[1px] border-[white]">
                     <img
                       src={result.image[2]?.url}
-                      alt={result.name}
+                      alt={cleanSongName(result.name)}
                       className="h-full w-full object-cover"
                     />
                   </span>
                   <span className="w-full max-w-[75%]">
                     <h3 className="font-[500] text-sm font-poppins whitespace-nowrap text-ellipsis overflow-hidden ">
-                      {result.name}
+                      {cleanSongName(result.name)}
                     </h3>
                     <p className="font-light text-xs font-poppins whitespace-nowrap text-ellipsis overflow-hidden ">
                       {result.artists.primary

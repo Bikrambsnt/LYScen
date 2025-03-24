@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import { FreeMode } from "swiper/modules";
 import { searchSongsByQuery } from "../config/fetch";
 import SkeletonCard from "./UI/skeleton/SkeletonCard";
+import { cleanSongName } from "../utils/textUtils";
 
 function Songs() {
   const [songs, setSongs] = useState([]);
@@ -101,12 +102,12 @@ function Songs() {
               <SongsCard songUrl={songs}>
                 <img
                   src={songs.image[2]?.url}
-                  alt={songs.name}
+                  alt={cleanSongName(songs.name)}
                   loading="lazy"
                   className="h-[100%] w-[100%] text-center  object-cover rounded-[4px] shadow-md hover:scale-105 hover:rounded-[4px] transition duration-300 ease-in-out"
                 />
                 <p className=" text-base font-[400] text-left font-roboto mt-1 overflow-hidden whitespace-nowrap text-ellipsis">
-                  {songs.name}
+                  {cleanSongName(songs.name)}
                 </p>
                 <p className="text-xs font-[300] text-left font-jost tracking-wide  whitespace-nowrap overflow-hidden text-ellipsis">
                   {songs.artists.primary
