@@ -11,6 +11,7 @@ export const AudioProvider = ({ children }) => {
   const [currentTime, setCurrentTime] = useState(0);
 
   const audioRef = useRef(new Audio()); //Initialize audio Ref but no file assign
+ 
 
   const playSongOnly = async (songData) => {
     try {

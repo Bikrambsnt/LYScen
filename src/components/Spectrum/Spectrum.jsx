@@ -6,24 +6,19 @@ function Spectrum() {
   const { songData,audioRef } = useAudioProvider();
   const [song, setSong] = useState(null);
 
-//   useEffect(()=>{
-//       const getSong = JSON.parse(localStorage.getItem("songData"));
+  useEffect(()=>{
+      const getSong = JSON.parse(localStorage.getItem("songData"));
     
-//       if (getSong) {
-//         setSong(getSong.downloadUrl[4]?.url);
-//       }
-//   },[])
+      if (getSong) {
+        setSong(getSong.downloadUrl[4]?.url);
+      }
+  },[])
 
-//   const songUrl = audioRef.current || song;
+  const songUrl = audioRef.current || songData
+  //fix cross origin
+  audioRef.current.crossOrigin = "anonymous";
 
-// //   console.log(audioRef.current)
-
-  if(!audioRef.current){
-    console.error('Audio Ref is not present in Spectrum')
-    return null;
-  }
-
-//   console.log(songUrl)
+  if(!songUrl) return "No audio Found"
 
   return (
     <div>
@@ -31,7 +26,7 @@ function Spectrum() {
         id="audio-canvas3"
         height={30}
         width={40}
-        // audioEle={audioRef.current}
+        audioEle={songUrl}
         capColor={"aqua"}
         capHeight={2}
         meterWidth={5}
