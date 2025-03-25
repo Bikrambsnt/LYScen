@@ -18,7 +18,7 @@ function SongProgressBar() {
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const [scrollText, setScrollText] = useState(false);
-  const {togglePlayPause,songData,progress,isPlaying,currentTime,duration,closeBar} = useAudioProvider();
+  const {togglePlayPause,songData,progress,isPlaying,currentTime,duration} = useAudioProvider();
   const navigate = useNavigate();
   const [storedSongData , setStoredSongdata] = useState(null);
 
@@ -78,9 +78,9 @@ const refineDuration = formatTime(duration)
     <div
       role="button"
       onClick={redirectToNowPlaying}
-      className="fixed z-10 bottom-0 left-0 w-full bg-black/60 backdrop-blur-xl"
+      className="fixed z-10 bottom-2 w-full  backdrop-blur-xl"
     >
-      <div className="relative h-20 w-full p-2">
+      <div className="relative h-20 w-full p-2 ">
         <div className=" absolute w-14 h-14 top-1/2 left-10 -translate-x-1/2 -translate-y-1/2 border-[1px]  rounded-[4px]">
           <img
             src={currentSong.image[2]?.url}
@@ -121,17 +121,17 @@ const refineDuration = formatTime(duration)
             />
             <div className="flex font-jost text-[8px] mt-1 ">
             <span className="absolute left-0">{refineCurrentTime}</span>
-           <span className="absolute right-0">{refineDuration}</span>
+           <span className="absolute right-0 ">{refineDuration}</span>
             </div>
           </div>
         </div>
        
 
-        <div className=" flex absolute top-1/2 -translate-x-1/2 -translate-y-1/2 -right-14   gap-1">
+        <div className="px-1 flex absolute top-1/2 -translate-x-1/2 -translate-y-1/2 -right-14   gap-1">
           <div>
             <Spectrum/>
           </div>
-          
+{/*           
           
           <button
             onClick={(e) => {
@@ -144,8 +144,8 @@ const refineDuration = formatTime(duration)
               icon={isPlaying ? faPause : faPlay}
               className="text-white transition-all duration-300 active:scale-90"
             />
-          </button>
-          <button 
+          </button> */}
+          {/* <button 
           onClick={(e)=>{
             e.stopPropagation();
             closeBar();
@@ -157,7 +157,7 @@ const refineDuration = formatTime(duration)
               icon={faMultiply}
               className="text-white font-extralight"
             />
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

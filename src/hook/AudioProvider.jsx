@@ -124,14 +124,14 @@ export const AudioProvider = ({ children }) => {
     };
   }, []);
 
-  // Define for closing ProgressBar and stop currentlyPlaying music.
-  const closeBar = () => {
-    setShowProgressBar(false);
-    currentlyPlaying.pause();
-    currentlyPlaying.currentTime = 0;
+  // // Define for closing ProgressBar and stop currentlyPlaying music.
+  // const closeBar = () => {
+  //   setShowProgressBar(false);
+  //   currentlyPlaying.pause();
+  //   currentlyPlaying.currentTime = 0;
 
-    // localStorage.removeItem("songData");
-  };
+  //   // localStorage.removeItem("songData");
+  // };
 
   //   useEffect(()=>{
   // console.log('Progress value:' ,progress);
@@ -155,7 +155,7 @@ export const AudioProvider = ({ children }) => {
         setDuration,
         currentTime,
         setCurrentTime,
-        closeBar,
+       
       }}
     >
       {children}

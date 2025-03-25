@@ -84,7 +84,7 @@ function SearchBar({ }) {
   //play song on click and store recently search hisory
   const startPlay = (result) => {
     playSongOnly(result);
-    console.log('Clicked',result)
+    // console.log('Clicked',result)
     
 
     //retrive the store data
@@ -179,7 +179,7 @@ function SearchBar({ }) {
           <span className="font-poppins font-bold text-base text-center">
             {" "}
             What's playing in your mind?
-            <p className="pt-1 font-jost font-normal text-[#b9b9b9] tracking-wide text-xs text-center text-clip">
+            <p className="pt-1 font-jost font-normal text-[rgb(158,33,121)] tracking-wide text-xs text-center text-clip">
               {/* Search for your favourite artist ,songs and many more */}
               <TypeAnimation
               sequence={[
@@ -205,17 +205,17 @@ function SearchBar({ }) {
  {/* Display the Recently search songs */}
 
       {!loading && results.length === 0 && recentlySearched.length > 0 &&(
-          <div className="mt-1 p-2">
+          <div className="p-2">
             <div className="flex w-full items-center mb-2">
-              <h3 className="text-lg font-jost">Recently search {`${query}`}</h3>
+              <h3 className="text-base font-poppins font-semibold ml-2">Recently search</h3>
               <button 
               onClick={clearAll}
-              className="font-jost text-base w-16  rounded-[4px] ml-auto mr-1 transition-transform duration-150 active:scale-90 active:bg-[#63636642]"
+              className="font-jost text-base w-16  rounded-[4px] ml-auto  transition-transform duration-150 active:scale-90 active:bg-[#63636642]"
               >Clear all</button>
               </div>
           <ul className="relative h-screen overflow-scroll">
             {recentlySearched.map((savedData) => (
-              <li key={savedData.id} className="p-2 mb-3">
+              <li key={savedData.id} className="p-1">
                 <button
                   //pass the logic to play current music on click...
 
@@ -223,12 +223,12 @@ function SearchBar({ }) {
                   
                   className="w-full h-14 flex space-x-16 text-left items-center  active:bg-[#63636642] rounded-md"
                 >
-                  <span className="absolute left-3 w-12 h-12 rounded-[4px] border-[1px] border-[white]">
+                  <span className="absolute left-2 w-12 h-12 rounded-[4px] border-[1px] border-[white]">
                     <img
                       src={savedData.image[2]?.url}
                       alt={cleanSongName(savedData.name)}
                       loading="lazy"
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover rounded-[4px]"
                     />
                   </span>
                   <span className="w-full max-w-[65%]">
@@ -250,7 +250,7 @@ function SearchBar({ }) {
                   }}
                  className="flex  items-center"
                   >
-                    <FontAwesomeIcon icon={faMultiply} className="text-sm pr-1  absolute right-2 transition-transform  delay-300 active:scale-90"/>
+                    <FontAwesomeIcon icon={faMultiply} className="text-sm   absolute right-1 transition-transform  delay-300 active:scale-90"/>
 
                   </span>
                 </button>
@@ -282,7 +282,7 @@ function SearchBar({ }) {
                     <img
                       src={result.image[2]?.url}
                       alt={cleanSongName(result.name)}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover rounded-[4px]"
                     />
                   </span>
                   <span className="w-full max-w-[75%]">

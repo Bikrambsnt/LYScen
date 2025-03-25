@@ -28,13 +28,13 @@ function Spectrum() {
         width={40}
         audioEle={songUrl}
         capColor={"aqua"}
-        capHeight={2}
+        capHeight={3}
         meterWidth={5}
         meterCount={512}
         meterColor={[
           { stop: 0, color: "#f00" },
-          { stop: 0.5, color: "yellow" },
-          { stop: 1, color: "#9c227c" },
+          { stop: 0.5, color: "#9c227c" },
+          { stop: 1, color: "rgb(165,33,126)" },
         ]}
         gap={2}
       />
