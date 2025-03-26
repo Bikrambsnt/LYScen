@@ -6,35 +6,45 @@ import {
   faPause,
   faCloudDownload,
   faDownload,
-  faCircle
+  faCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAudioProvider } from "../../../context/AudioContext";
 import { useNavigate } from "react-router-dom";
 import Spectrum from "../../Spectrum/Spectrum";
 import { cleanSongName } from "../../../utils/textUtils";
+import { colorUtils } from "../../../utils/colorUtils";
 
 function SongProgressBar() {
   //   To animate  the overflow text
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const [scrollText, setScrollText] = useState(false);
-  const {togglePlayPause,songData,progress,isPlaying,currentTime,duration} = useAudioProvider();
+  const {
+    togglePlayPause,
+    songData,
+    progress,
+    isPlaying,
+    currentTime,
+    duration,
+  } = useAudioProvider();
   const navigate = useNavigate();
-  const [storedSongData , setStoredSongdata] = useState(null);
+  const [storedSongData, setStoredSongdata] = useState(null);
+  const vibrantColor = colorUtils();
+  console.log(vibrantColor);
 
-// fetch the songData from local storage on mount
+  // fetch the songData from local storage on mount
 
-useEffect(()=>{
- const savedSong =  localStorage.getItem('songData')
- if(savedSong){
-  setStoredSongdata(JSON.parse(savedSong))
- }
-},[])
+  useEffect(() => {
+    const savedSong = localStorage.getItem("songData");
+    if (savedSong) {
+      setStoredSongdata(JSON.parse(savedSong));
+    }
+  }, []);
 
-const currentSong = songData || storedSongData //If song data is not available then fall back to localStorage
-// console.log('CurrentSong is:' , currentSong)
+  const currentSong = songData || storedSongData; //If song data is not available then fall back to localStorage
+  // console.log('CurrentSong is:' , currentSong)
 
-  if(!currentSong) return;
+  if (!currentSong) return;
 
   // useEffect(() => {
   //   const startScroll = () => {
@@ -45,7 +55,6 @@ const currentSong = songData || storedSongData //If song data is not available t
   //     }
   //   };
 
-    
   //   setTimeout(()=>{
 
   //     startScroll();
@@ -59,28 +68,29 @@ const currentSong = songData || storedSongData //If song data is not available t
     navigate("/nowPlaying");
   };
 
-
   // Display current Time and Duration of song
-const formatTime= (timeInSec)=>{
-  if(isNaN(timeInSec) || timeInSec < 0) return '00:00';
+  const formatTime = (timeInSec) => {
+    if (isNaN(timeInSec) || timeInSec < 0) return "00:00";
 
-  const min = Math.floor(timeInSec /60); //since 1 min is 60 sec so divide by 60
-  const sec = Math.floor(timeInSec % 60); //gives the remaining of sec after dividing by 60 (ex.if timeInSec =185 then 180/60 = 3 then remaining 5%60 = 3:5 , as Math.floor removes decimal)
+    const min = Math.floor(timeInSec / 60); //since 1 min is 60 sec so divide by 60
+    const sec = Math.floor(timeInSec % 60); //gives the remaining of sec after dividing by 60 (ex.if timeInSec =185 then 180/60 = 3 then remaining 5%60 = 3:5 , as Math.floor removes decimal)
 
-  return `${min.toString().padStart(2,'0')} : ${sec.toString().padStart(2,'0')}`;
+    return `${min.toString().padStart(2, "0")} : ${sec
+      .toString()
+      .padStart(2, "0")}`;
+  };
 
-}
-
-const refineCurrentTime= formatTime(currentTime);
-const refineDuration = formatTime(duration)
+  const refineCurrentTime = formatTime(currentTime);
+  const refineDuration = formatTime(duration);
 
   return (
     <div
       role="button"
       onClick={redirectToNowPlaying}
-      className="fixed z-10 bottom-2 w-full  backdrop-blur-xl"
+      className="fixed z-10 bottom-2 w-full"
+      style={{ backgroundColor: vibrantColor}}
     >
-      <div className="relative h-20 w-full p-2 ">
+      <div className={`relative h-20 w-full p-2`}>
         <div className=" absolute w-14 h-14 top-1/2 left-10 -translate-x-1/2 -translate-y-1/2 border-[1px]  rounded-[4px]">
           <img
             src={currentSong.image[2]?.url}
@@ -100,9 +110,10 @@ const refineDuration = formatTime(duration)
               {/* <span>{currentSong.name} <FontAwesomeIcon icon={faCircle} /></span> */}
             </h1>
 
-            <p className={`text-xs font-light whitespace-nowrap text-ellipsis font-jost overflow-hidden`}>
-              
-             <span>{currentSong.artists.primary[0].name} </span>
+            <p
+              className={`text-xs font-light whitespace-nowrap text-ellipsis font-jost overflow-hidden`}
+            >
+              <span>{currentSong.artists.primary[0].name} </span>
             </p>
 
             <input
@@ -117,26 +128,26 @@ const refineDuration = formatTime(duration)
             [&::-webkit-slider-thumb]:w-[6px] [&::-webkit-slider-thumb]:h-[6px] 
                                                                                                                                                                                                     
           "
-          style={{background:`linear-gradient(to right, #9c226c ${progress}%,#636366 ${progress}% )`}}
+              style={{
+                background: `linear-gradient(to right, #9c226c ${progress}%,#636366 ${progress}% )`,
+              }}
             />
             <div className="flex font-jost text-[8px] mt-1 ">
-            <span className="absolute left-0">{refineCurrentTime}</span>
-           <span className="absolute right-0 ">{refineDuration}</span>
+              <span className="absolute left-0">{refineCurrentTime}</span>
+              <span className="absolute right-0 ">{refineDuration}</span>
             </div>
           </div>
         </div>
-       
 
         <div className="px-1 flex absolute top-1/2 -translate-x-1/2 -translate-y-1/2 -right-14   gap-1">
           <div>
-            <Spectrum/>
+            <Spectrum />
           </div>
-{/*           
-          
+
           <button
             onClick={(e) => {
               e.stopPropagation();
-              togglePlayPause(currentSong)
+              togglePlayPause(currentSong);
             }}
             className="h-8 w-8 bg-[#636366]  flex justify-center items-center rounded-[4px]"
           >
@@ -144,7 +155,7 @@ const refineDuration = formatTime(duration)
               icon={isPlaying ? faPause : faPlay}
               className="text-white transition-all duration-300 active:scale-90"
             />
-          </button> */}
+          </button>
           {/* <button 
           onClick={(e)=>{
             e.stopPropagation();

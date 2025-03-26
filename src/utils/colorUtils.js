@@ -1,28 +1,48 @@
 import { Vibrant } from "node-vibrant/browser";
-import { useState, useEffect, React } from "react";
+import { useState, useEffect } from "react";
 import { useAudioProvider } from "../context/AudioContext";
 
-export const ColorUtils = async () => {
-  const [image, setImage] = useState(null);
+ const darkenHex = (hex, factor = 0.9) => {
+  if (!hex) return "#222222";
+  const color = hex.replace("#", "");
+  const num = parseInt(color, 16);
+  const r = Math.floor(((num >> 16) & 0xff) * factor);
+  const g = Math.floor(((num >> 8) & 0xff) * factor);
+  const b = Math.floor((num & 0xff) * factor);
+  return `rgb(${r}, ${g}, ${b})`;
+};
+
+export const colorUtils = () => {
+  const [color, setColor] = useState("#222222");
   const { songData } = useAudioProvider();
-  const img = songData.image[2]?.url; //extract image from songData
+
   useEffect(() => {
-    const getImage = JSON.parse(localStorage.getItem("songData"));
+    const getColorPalette = async () => {
+      // Get image from context or fallback to localStorage
+      const imageUrl =
+        songData?.image?.[2]?.url ||
+        JSON.parse(localStorage.getItem("songData"))?.image?.[2]?.url;
+      if (!imageUrl) return;
 
-    if (getImage) {
-      setImage(getImage.image[2]?.url);
-    }
+      try {
+        const palette = await Vibrant.from(imageUrl).getPalette();
+
+        const baseColor =
+          palette.DarkMuted?.hex ||
+          palette.Muted?.hex ||
+          palette.Vibrant?.hex ||
+          "#222222";
+
+        const smoothDarkColor = darkenHex(baseColor, 0.9);
+        setColor(smoothDarkColor);
+      } catch (error) {
+        console.log("ERROR: While getting color palette", error);
+        setColor("#222222");
+      }
+    };
+
+    getColorPalette();
   }, [songData]);
-  const imageUrl = img || image;
 
-  try {
-    if(!imageUrl) return;
-
-    const pallete = await Vibrant.from(imageUrl).getPalette();
-    return pallete?.Vibrant?.hex || '#000000'
-  } catch (error) {
-    console.log('ERROR: while getting pallete' , error);
-    return '#000000'
-  }
-
+  return color;
 };
