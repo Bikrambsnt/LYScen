@@ -2,7 +2,7 @@ import { Vibrant } from "node-vibrant/browser";
 import { useState, useEffect } from "react";
 import { useAudioProvider } from "../context/AudioContext";
 
- const darkenHex = (hex, factor = 0.9) => {
+ const darkenHex = (hex, factor = 1) => {
   if (!hex) return "#222222";
   const color = hex.replace("#", "");
   const num = parseInt(color, 16);
@@ -31,9 +31,10 @@ export const colorUtils = () => {
           palette.DarkMuted?.hex ||
           palette.Muted?.hex ||
           palette.Vibrant?.hex ||
+        
           "#222222";
 
-        const smoothDarkColor = darkenHex(baseColor, 0.9);
+        const smoothDarkColor = darkenHex(baseColor, 1);
         setColor(smoothDarkColor);
       } catch (error) {
         console.log("ERROR: While getting color palette", error);

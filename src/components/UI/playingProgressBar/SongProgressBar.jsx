@@ -30,7 +30,7 @@ function SongProgressBar() {
   const navigate = useNavigate();
   const [storedSongData, setStoredSongdata] = useState(null);
   const vibrantColor = colorUtils();
-  console.log(vibrantColor);
+  // console.log(vibrantColor);
 
   // fetch the songData from local storage on mount
 
@@ -87,10 +87,12 @@ function SongProgressBar() {
     <div
       role="button"
       onClick={redirectToNowPlaying}
-      className="fixed z-10 bottom-2 w-full"
-      style={{ backgroundColor: vibrantColor}}
+      className="fixed z-10 bottom-0 w-full h-[85px] px-1 bg-transparent backdrop-blur-sm"
     >
-      <div className={`relative h-20 w-full p-2`}>
+      <div
+        className={`relative h-20 w-full p-2 rounded-md transition-colors duration-700 ease-in-out`}
+        style={{ backgroundColor: vibrantColor }}
+      >
         <div className=" absolute w-14 h-14 top-1/2 left-10 -translate-x-1/2 -translate-y-1/2 border-[1px]  rounded-[4px]">
           <img
             src={currentSong.image[2]?.url}
@@ -98,7 +100,7 @@ function SongProgressBar() {
           />
         </div>
 
-        <div className=" relative ml-16   flex flex-col justify-center h-full text-white overflow-hidden ">
+        <div className=" relative ml-16 -mt-1  flex flex-col justify-center h-full text-white overflow-hidden ">
           <div ref={containerRef} className=" w-[50%] overflow-hidden">
             <h1
               ref={textRef}
@@ -129,7 +131,7 @@ function SongProgressBar() {
                                                                                                                                                                                                     
           "
               style={{
-                background: `linear-gradient(to right, #9c226c ${progress}%,#636366 ${progress}% )`,
+                background: `linear-gradient(to right, #9c226c ${progress}%,#FFFFFF ${progress}% )`,
               }}
             />
             <div className="flex font-jost text-[8px] mt-1 ">
@@ -139,21 +141,19 @@ function SongProgressBar() {
           </div>
         </div>
 
-        <div className="px-1 flex absolute top-1/2 -translate-x-1/2 -translate-y-1/2 -right-14   gap-1">
-          <div>
-            <Spectrum />
-          </div>
+        <div className="px-1 flex -mt-1 items-end absolute top-1/2 -translate-x-1/2 -translate-y-1/2 right-0   gap-2">
+          <Spectrum />
 
           <button
             onClick={(e) => {
               e.stopPropagation();
               togglePlayPause(currentSong);
             }}
-            className="h-8 w-8 bg-[#636366]  flex justify-center items-center rounded-[4px]"
+            className="h-8 w-8 bg-[#FFFFFF]  flex justify-center items-center rounded-[4px]"
           >
             <FontAwesomeIcon
               icon={isPlaying ? faPause : faPlay}
-              className="text-white transition-all duration-300 active:scale-90"
+              className="text-black  transition-all duration-300 active:scale-90"
             />
           </button>
           {/* <button 

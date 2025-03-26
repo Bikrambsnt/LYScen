@@ -27,7 +27,7 @@ function Spectrum() {
         height={30}
         width={40}
         audioEle={songUrl}
-        capColor={"aqua"}
+        capColor={"white"}
         capHeight={3}
         meterWidth={5}
         meterCount={512}
