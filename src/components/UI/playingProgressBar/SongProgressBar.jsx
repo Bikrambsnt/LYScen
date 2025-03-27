@@ -29,7 +29,7 @@ function SongProgressBar() {
   } = useAudioProvider();
   const navigate = useNavigate();
   const [storedSongData, setStoredSongdata] = useState(null);
-  const vibrantColor = colorUtils();
+  const {color} = colorUtils();
   // console.log(vibrantColor);
 
   // fetch the songData from local storage on mount
@@ -91,7 +91,7 @@ function SongProgressBar() {
     >
       <div
         className={`relative h-20 w-full p-2 rounded-md transition-colors duration-700 ease-in-out`}
-        style={{ backgroundColor: vibrantColor }}
+        style={{ backgroundColor: color }}
       >
         <div className=" absolute w-14 h-14 top-1/2 left-10 -translate-x-1/2 -translate-y-1/2 border-[1px]  rounded-[4px]">
           <img
@@ -142,7 +142,7 @@ function SongProgressBar() {
         </div>
 
         <div className="px-1 flex -mt-1 items-end absolute top-1/2 -translate-x-1/2 -translate-y-1/2 right-0   gap-2">
-          <Spectrum />
+          <Spectrum/>
 
           <button
             onClick={(e) => {

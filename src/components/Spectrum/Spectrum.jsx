@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactAudioSpectrum from "react-audio-spectrum";
 import { useAudioProvider } from "../../context/AudioContext";
+import { colorUtils } from "../../utils/colorUtils";
 
 function Spectrum() {
   const { songData,audioRef } = useAudioProvider();
@@ -24,19 +25,19 @@ function Spectrum() {
     <div>
       <ReactAudioSpectrum
         id="audio-canvas3"
-        height={30}
+        height={25}
         width={40}
         audioEle={songUrl}
         capColor={"white"}
-        capHeight={3}
-        meterWidth={5}
+        capHeight={4}
+        meterWidth={8}
         meterCount={512}
         meterColor={[
-          { stop: 0, color: "#f00" },
-          { stop: 0.5, color: "#9c227c" },
-          { stop: 1, color: "rgb(165,33,126)" },
+          { stop: 0, color: "yellow" },
+          { stop: 0.5, color: "yellow" },
+          { stop: 1, color: "red" },
         ]}
-        gap={2}
+        gap={2.5}
       />
     </div>
   );

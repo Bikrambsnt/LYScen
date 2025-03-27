@@ -15,6 +15,7 @@ import { useAudioProvider } from "../context/AudioContext";
 export const colorUtils = () => {
   const [color, setColor] = useState("#222222");
   const { songData } = useAudioProvider();
+  const [barColor , setBarColor] = useState('#9c227c')
 
   useEffect(() => {
     const getColorPalette = async () => {
@@ -34,6 +35,8 @@ export const colorUtils = () => {
         
           "#222222";
 
+        setBarColor(`linear-gradient(to bottom, ${palette.Vibrant.hex}, ${palette.DarkVibrant.hex})`);
+
         const smoothDarkColor = darkenHex(baseColor, 1);
         setColor(smoothDarkColor);
       } catch (error) {
@@ -45,5 +48,5 @@ export const colorUtils = () => {
     getColorPalette();
   }, [songData]);
 
-  return color;
+  return {color,barColor};
 };
