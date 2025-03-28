@@ -16,6 +16,7 @@ export const colorUtils = () => {
   const [color, setColor] = useState("#222222");
   const { songData } = useAudioProvider();
 
+
   useEffect(() => {
     const getColorPalette = async () => {
       // Get image from context or fallback to localStorage

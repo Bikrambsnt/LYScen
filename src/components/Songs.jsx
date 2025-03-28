@@ -24,7 +24,7 @@ function Songs() {
         setLoading(false);
       } catch (error) {
         console.log("ERROR while fetching latest Hindi songs", error);
-        setLoading(false);
+        setLoading(true);
       }
     };
 

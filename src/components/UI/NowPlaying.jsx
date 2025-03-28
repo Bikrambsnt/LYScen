@@ -15,11 +15,13 @@ import { useNavigate } from "react-router-dom";
 import CardBtn from "./SongCardBtn";
 import { useAudioProvider } from "../../context/AudioContext";
 import { cleanSongName } from "../../utils/textUtils";
+import { colorUtils } from "../../utils/colorUtils";
 
 function NowPlaying({}) {
   const navigate = useNavigate();
   const {songData,progress,isPlaying,playSong} = useAudioProvider();
   const [storedSongData , setStoredSongdata] = useState(null);
+  const color = colorUtils()
 
 // Retrieve song form local Storage
 
@@ -46,21 +48,21 @@ if(!currentSong){
     <div
       className=" relative w-full h-dvh text-white overflow-hidden"
       style={{
-        backgroundImage: `url(${currentSong.image[2].url} )`,
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundAttachment: "fixed",
-        height: "100%",
-        width: "100%",
+        background:color
+        // backgroundPosition: "center",
+        // backgroundRepeat: "no-repeat",
+        // backgroundSize: "cover",
+        // backgroundAttachment: "fixed",
+        // height: "100%",
+        // width: "100%",
       }}
     >
-      <div className="w-full h-dvh bg-black/60 backdrop-blur-xl p-3">
+      <div className="w-full h-dvh bg-black/10  p-3">
         <div className="text-xl font-bold w-full flex items-center mt-2 justify-between px-1 cursor-pointer">
           <button onClick={() => navigate("/")}>
             <FontAwesomeIcon icon={faArrowLeft} className="active:scale-75 " />
           </button>
-          <p className="text-base font-jost font-normal text-[#b9b9b9] max-w-[300px] whitespace-nowrap text-ellipsis overflow-hidden px-4 animate-pulse ">
+          <p className="text-base font-jost font-normal text-white max-w-[300px] whitespace-nowrap text-ellipsis overflow-hidden px-4 animate-pulse ">
             Now Playing {cleanSongName(currentSong.name)}
           </p>
           <FontAwesomeIcon icon={faSearch} className="active:scale-75 " />

@@ -15,8 +15,8 @@ function Spectrum() {
   },[])
 
   const songUrl = audioRef.current || song;
-  console.log('ausioRef' , audioRef.current)
-  console.log('song',song)
+  // console.log('ausioRef' , audioRef.current)
+  // console.log('song',song)
   //fix cross origin
   audioRef.current.crossOrigin = "anonymous";
 

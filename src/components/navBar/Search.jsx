@@ -179,7 +179,7 @@ function SearchBar({ }) {
           <span className="font-poppins font-bold text-base text-center">
             {" "}
             What's playing in your mind?
-            <p className="pt-1 font-jost font-normal text-[rgb(158,33,121)] tracking-wide text-xs text-center text-clip">
+            <p className="pt-1 font-jost font-normal text-[#636366] tracking-wide text-xs text-center text-clip">
               {/* Search for your favourite artist ,songs and many more */}
               <TypeAnimation
               sequence={[

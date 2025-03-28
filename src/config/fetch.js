@@ -95,17 +95,21 @@ export const searchForArtist = async (artist, limit, page) => {
 //serch for Trending songs
 
 export const searchForTrending = async (trending, limit, page) => {
-  try {
+ 
     const response = await fetch(
       `${apiUrl}search/songs?query=${trending}&limit=${limit}&page=${page}`
     );
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error(`Network response was not ok: ${response.status}`);
     }
-    const data = await response.json();
-    // console.log(data);
-    return data;
-  } catch (error) {
-    console.log("ERROR: while fetching Trending songs", error);
+
+    const contentType = response.headers.get('content-type');
+    if(!contentType || !contentType.includes('application/json')){
+      const text =await response.text();
+      console.log('Non Json Response:' , text)
+      throw new Error('Invalid JSON response');
+    }
+
+    return await response.json()
+
   }
-};

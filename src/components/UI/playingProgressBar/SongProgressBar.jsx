@@ -31,7 +31,7 @@ function SongProgressBar() {
   const navigate = useNavigate();
   const [storedSongData, setStoredSongdata] = useState(null);
   const color = colorUtils();
-  // console.log(barColor);
+
 
   // fetch the songData from local storage on mount
 
@@ -150,7 +150,8 @@ function SongProgressBar() {
               e.stopPropagation();
               togglePlayPause(currentSong);
             }}
-            className="h-8 w-8 bg-[#FFFFFF]  flex justify-center items-center rounded-[4px]"
+            className="h-8 w-8 bg-white flex justify-center items-center rounded-[4px]"
+           
           >
             <FontAwesomeIcon
               icon={isPlaying ? faPause : faPlay}

@@ -45,7 +45,7 @@ function TrendingSongs() {
         setLoading(false);
       } catch (error) {
         console.log("Error:While getting Trending Songs", error);
-        setLoading(false);
+        setLoading(true);
       }
     };
     getTrending();
