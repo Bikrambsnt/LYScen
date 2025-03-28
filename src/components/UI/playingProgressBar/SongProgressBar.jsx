@@ -14,6 +14,7 @@ import Spectrum from "../../Spectrum/Spectrum";
 import { cleanSongName } from "../../../utils/textUtils";
 import { colorUtils } from "../../../utils/colorUtils";
 
+
 function SongProgressBar() {
   //   To animate  the overflow text
   const containerRef = useRef(null);
@@ -29,8 +30,8 @@ function SongProgressBar() {
   } = useAudioProvider();
   const navigate = useNavigate();
   const [storedSongData, setStoredSongdata] = useState(null);
-  const {color} = colorUtils();
-  // console.log(vibrantColor);
+  const color = colorUtils();
+  // console.log(barColor);
 
   // fetch the songData from local storage on mount
 
@@ -91,7 +92,7 @@ function SongProgressBar() {
     >
       <div
         className={`relative h-20 w-full p-2 rounded-md transition-colors duration-700 ease-in-out`}
-        style={{ backgroundColor: color }}
+        style={{ backgroundColor: color}}
       >
         <div className=" absolute w-14 h-14 top-1/2 left-10 -translate-x-1/2 -translate-y-1/2 border-[1px]  rounded-[4px]">
           <img

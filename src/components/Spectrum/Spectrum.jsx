@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactAudioSpectrum from "react-audio-spectrum";
 import { useAudioProvider } from "../../context/AudioContext";
-import { colorUtils } from "../../utils/colorUtils";
 
 function Spectrum() {
   const { songData,audioRef } = useAudioProvider();
@@ -15,7 +14,9 @@ function Spectrum() {
       }
   },[])
 
-  const songUrl = audioRef.current || songData
+  const songUrl = audioRef.current || song;
+  console.log('ausioRef' , audioRef.current)
+  console.log('song',song)
   //fix cross origin
   audioRef.current.crossOrigin = "anonymous";
 
