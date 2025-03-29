@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { Song, Artist, Trending } from "../components/index";
+import Footer from "../components/UI/footer/Footer";
 
 function Home() {
   return (
@@ -7,6 +8,7 @@ function Home() {
       <Song />
       <Trending />
       {/* <Artist /> */}
+      <Footer/>
     </div>
   );
 }
