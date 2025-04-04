@@ -3,14 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
   faPause,
-  faHeart
+  faHeart,
+  faCircleArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAudioProvider } from "../../../context/AudioContext";
 import { useNavigate } from "react-router-dom";
 import Spectrum from "../../Spectrum/Spectrum";
 import { cleanSongName } from "../../../utils/textUtils";
 import { colorUtils } from "../../../utils/colorUtils";
-
 
 function SongProgressBar() {
   //   To animate  the overflow text
@@ -28,7 +28,6 @@ function SongProgressBar() {
   const navigate = useNavigate();
   const [storedSongData, setStoredSongdata] = useState(null);
   const color = colorUtils();
-
 
   // fetch the songData from local storage on mount
 
@@ -81,6 +80,11 @@ function SongProgressBar() {
   const refineCurrentTime = formatTime(currentTime);
   const refineDuration = formatTime(duration);
 
+  // add to fav
+  const addFavourite = () => {
+    //function
+  };
+
   return (
     <div
       role="button"
@@ -89,7 +93,7 @@ function SongProgressBar() {
     >
       <div
         className={`relative h-20 w-full p-2 rounded-md transition-colors duration-700 ease-in-out`}
-        style={{ backgroundColor: color}}
+        style={{ backgroundColor: color }}
       >
         <div className=" absolute w-14 h-14 top-1/2 left-10 -translate-x-1/2 -translate-y-1/2 border-[1px]  rounded-[4px]">
           <img
@@ -139,36 +143,30 @@ function SongProgressBar() {
           </div>
         </div>
 
-        <div className="flex items-center absolute top-1/2 -translate-x-1/2 -translate-y-1/2 right-0   gap-0">
-          <div className="flex mb-1">
-
-          <Spectrum/>
-          </div>
-
+        <div className="flex items-center absolute top-1/2 -translate-x-1/2 -translate-y-1/2 -right-14 gap-4 ">
           <button
             onClick={(e) => {
               e.stopPropagation();
               togglePlayPause(currentSong);
             }}
-            className="w-8 "
-           
+            className="w-8"
           >
             <FontAwesomeIcon
               icon={isPlaying ? faPause : faPlay}
-              className="text-white text-2xl transition-all "
-            />
-          </button>
-          <button 
-          onClick={(e)=>{
-            e.stopPropagation();
-            
-          }}
-          >
-            <FontAwesomeIcon
-              icon={faHeart}
               className="text-white text-2xl"
             />
           </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              addFavourite();
+            }}
+          >
+            <FontAwesomeIcon icon={faHeart} className="text-white text-2xl" />
+          </button>
+          <div className="flex mb-2">
+            <Spectrum />
+          </div>
         </div>
       </div>
     </div>
