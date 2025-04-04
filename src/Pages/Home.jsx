@@ -8,7 +8,6 @@ function Home() {
       <Song />
       <Trending />
       {/* <Artist /> */}
-      <Footer/>
     </div>
   );
 }

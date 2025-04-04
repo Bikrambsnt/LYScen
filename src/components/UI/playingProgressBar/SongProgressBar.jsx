@@ -1,12 +1,9 @@
 import { React, useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faMultiply,
   faPlay,
   faPause,
-  faCloudDownload,
-  faDownload,
-  faCircle,
+  faHeart
 } from "@fortawesome/free-solid-svg-icons";
 import { useAudioProvider } from "../../../context/AudioContext";
 import { useNavigate } from "react-router-dom";
@@ -142,35 +139,36 @@ function SongProgressBar() {
           </div>
         </div>
 
-        <div className="px-1 flex -mt-1 items-end absolute top-1/2 -translate-x-1/2 -translate-y-1/2 right-0   gap-2">
+        <div className="flex items-center absolute top-1/2 -translate-x-1/2 -translate-y-1/2 right-0   gap-0">
+          <div className="flex mb-1">
+
           <Spectrum/>
+          </div>
 
           <button
             onClick={(e) => {
               e.stopPropagation();
               togglePlayPause(currentSong);
             }}
-            className="h-8 w-8 bg-white flex justify-center items-center rounded-[4px]"
+            className="w-8 "
            
           >
             <FontAwesomeIcon
               icon={isPlaying ? faPause : faPlay}
-              className="text-black  transition-all duration-300 active:scale-90"
+              className="text-white text-2xl transition-all "
             />
           </button>
-          {/* <button 
+          <button 
           onClick={(e)=>{
             e.stopPropagation();
-            closeBar();
+            
           }}
-
-          className="h-8 w-8 bg-[#636366] flex justify-center items-center rounded-[4px] transition-all duration-300 active:scale-90"
           >
             <FontAwesomeIcon
-              icon={faMultiply}
-              className="text-white font-extralight"
+              icon={faHeart}
+              className="text-white text-2xl"
             />
-          </button> */}
+          </button>
         </div>
       </div>
     </div>
