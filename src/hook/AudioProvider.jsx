@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { AudioContext } from "../context/AudioContext";
+import { songSuggestionsById } from "../config/fetch";
 
 export const AudioProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -9,9 +10,9 @@ export const AudioProvider = ({ children }) => {
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [queue, setQueue] = useState([]);
 
   const audioRef = useRef(new Audio()); //Initialize audio Ref but no file assign
- 
 
   const playSongOnly = async (songData) => {
     try {
@@ -21,15 +22,21 @@ export const AudioProvider = ({ children }) => {
       }
 
       const songUrl = songData.downloadUrl?.[4]?.url;
-      
-      if(!audioRef.current){
-        console.error('Audio Ref is not initialize');
+
+      if (!audioRef.current) {
+        console.error("Audio Ref is not initialize");
         return;
       }
 
       if (currentlyPlaying && currentlyPlaying !== audioRef.current) {
         currentlyPlaying.pause();
         currentlyPlaying.currentTime = 0;
+      }
+
+      //get suggested song according to currently playing song ID
+      const suggestionSong = await songSuggestionsById(songData.id);
+      if (suggestionSong) {
+        setQueue(suggestionSong);
       }
 
       // set songData and store it in local storage..
@@ -45,6 +52,18 @@ export const AudioProvider = ({ children }) => {
       console.error("ERROR: While playing music", error);
     }
   };
+
+// play next song according to queue and get new suggestion
+
+const playNext = async () =>{
+
+
+
+
+}
+console.log(queue)
+console.log(queue.length)
+
 
   const togglePlayPause = async (songData) => {
     try {
@@ -138,6 +157,8 @@ export const AudioProvider = ({ children }) => {
   // console.log('ShowProgressBar' ,showProgressBar)
   //   },[progress])
 
+
+  
   return (
     <AudioContext.Provider
       value={{
@@ -155,7 +176,6 @@ export const AudioProvider = ({ children }) => {
         setDuration,
         currentTime,
         setCurrentTime,
-       
       }}
     >
       {children}

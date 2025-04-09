@@ -19,6 +19,7 @@ function SearchBar() {
 // to store recently searched history
   const [recentlySearched , setRecentlySearched] = useState([])
 
+
   // Debounced search function
   const debouncedSearch = useCallback(
     debounce(async (searchQuery) => {
@@ -84,10 +85,8 @@ function SearchBar() {
   //play song on click and store recently search hisory
   const startPlay =async (result) => {
     playSongOnly(result);
-   const data= await  songSuggestionsById(result.id)
-   console.log(data)
-    
-    
+
+ 
 
     //retrive the store data
     let recentlySearched = JSON.parse(localStorage.getItem('id') || []);
@@ -102,6 +101,8 @@ function SearchBar() {
       setRecentlySearched(recentlySearched)
 
     };
+ 
+
 
     //update the changes
     useEffect (()=>{
@@ -123,6 +124,8 @@ function SearchBar() {
       setRecentlySearched([])
     }
     
+
+
   return (
     <div className="">
       <div
