@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMultiply, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { searchSongsByQuery } from "../../config/fetch";
+import { searchSongsByQuery, songSuggestionsById } from "../../config/fetch";
 import { debounce} from "lodash";
 import { useNavigate } from "react-router-dom";
 import SkeletonSearch from "../UI/skeleton/SkeletonSearch";
@@ -9,7 +9,7 @@ import { useAudioProvider } from "../../context/AudioContext";
 import { TypeAnimation } from "react-type-animation";
 import { cleanSongName } from "../../utils/textUtils";
 
-function SearchBar({ }) {
+function SearchBar() {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]); // Store search results
@@ -82,9 +82,11 @@ function SearchBar({ }) {
     }
   },[])
   //play song on click and store recently search hisory
-  const startPlay = (result) => {
+  const startPlay =async (result) => {
     playSongOnly(result);
-    console.log(result)
+   const data= await  songSuggestionsById(result.id)
+   console.log(data)
+    
     
 
     //retrive the store data

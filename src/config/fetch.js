@@ -30,7 +30,7 @@ export const searchSongsByQuery = async (query,limit,page) => {
 
     const contentType = response.headers.get('content-type');
     if(!contentType || !contentType.includes('application/json')){
-      const text =await response.text();
+      const text = await response.text();
       console.log('Non Json Response:' , text)
       throw new Error('Invalid JSON response');
     }
@@ -43,16 +43,18 @@ export const searchSongsByQuery = async (query,limit,page) => {
  
 };
 
-//Search song by ID
+//Search suggested song by ID
 
-export const searchById = async (id) => {
+export const songSuggestionsById = async (id) => {
   try {
-    const data = await fetch(`${apiUrl}songs/${id}`);
+    const response = await fetch(`${apiUrl}songs/${id}/suggestions`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
-    // console.log(data);
-    return data;
+   
+   return await response.json();
+   
+
   } catch (error) {
     console.log("Error: while Finding song with id", error);
   }
@@ -60,7 +62,7 @@ export const searchById = async (id) => {
 
 //Search for albums
 
-export const searchForAlbum = async (album, limit, page) => {
+export const searchForAlbum = async (album,limit,page) => {
   try {
     const response = await fetch(
       `${apiUrl}search/albums?query=${album}&limit=${limit}&page=${page}`
