@@ -143,7 +143,7 @@ function SongProgressBar() {
           </div>
         </div>
 
-        <div className="flex items-center absolute top-1/2 -translate-x-1/2 -translate-y-1/2 -right-14 gap-4 ">
+        <div className="flex items-center absolute top-1/2 -translate-x-1/2 -translate-y-1/2 -right-[54px] gap-[14px] ">
           <button
             onClick={(e) => {
               e.stopPropagation();

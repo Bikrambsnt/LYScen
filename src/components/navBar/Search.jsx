@@ -84,7 +84,7 @@ function SearchBar({ }) {
   //play song on click and store recently search hisory
   const startPlay = (result) => {
     playSongOnly(result);
-    // console.log('Clicked',result)
+    console.log(result)
     
 
     //retrive the store data

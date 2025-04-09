@@ -28,6 +28,7 @@ function Spectrum() {
         id="audio-canvas3"
         height={25}
         width={40}
+        crossOrigin="anonymous"
         audioEle={songUrl}
         capColor={"white"}
         capHeight={4}
