@@ -8,7 +8,6 @@ import SkeletonSearch from "../UI/skeleton/SkeletonSearch";
 import { useAudioProvider } from "../../context/AudioContext";
 import { TypeAnimation } from "react-type-animation";
 import { cleanSongName } from "../../utils/textUtils";
-
 function SearchBar() {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
@@ -241,9 +240,9 @@ function SearchBar() {
                       {cleanSongName(savedData.name)}
                     </h3>
                     <p className="font-light text-xs font-poppins whitespace-nowrap text-ellipsis overflow-hidden ">
-                      {savedData.artists.primary
+                      {cleanSongName(savedData.artists.primary
                         .map((artists) => artists.name)
-                        .join(",")}
+                        .join(","))}
                     </p>
                   </span>
 
@@ -295,9 +294,9 @@ function SearchBar() {
                       {cleanSongName(result.name)}
                     </h3>
                     <p className="font-light text-xs font-poppins whitespace-nowrap text-ellipsis overflow-hidden ">
-                      {result.artists.primary
+                      {cleanSongName(result.artists.primary
                         .map((artists) => artists.name)
-                        .join(",")}
+                        .join(","))}
                     </p>
                   </span>
                 </button>

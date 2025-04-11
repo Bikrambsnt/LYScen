@@ -35,8 +35,8 @@ export const AudioProvider = ({ children }) => {
 
       //get suggested song according to currently playing song ID
       const suggestionSong = await songSuggestionsById(songData.id);
-      if (suggestionSong) {
-        setQueue(suggestionSong);
+      if (suggestionSong?.success && Array.isArray(suggestionSong.data)) {
+        setQueue(suggestionSong.data);
       }
 
       // set songData and store it in local storage..
@@ -53,16 +53,8 @@ export const AudioProvider = ({ children }) => {
     }
   };
 
-// play next song according to queue and get new suggestion
-
-const playNext = async () =>{
 
 
-
-
-}
-console.log(queue)
-console.log(queue.length)
 
 
   const togglePlayPause = async (songData) => {
@@ -176,6 +168,7 @@ console.log(queue.length)
         setDuration,
         currentTime,
         setCurrentTime,
+        queue,
       }}
     >
       {children}
