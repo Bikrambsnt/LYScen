@@ -53,10 +53,6 @@ export const AudioProvider = ({ children }) => {
     }
   };
 
-
-
-
-
   const togglePlayPause = async (songData) => {
     try {
       if (!songData || !songData.downloadUrl?.[4]?.url) {
@@ -104,6 +100,18 @@ export const AudioProvider = ({ children }) => {
     }
     // setIsPlaying(false)
   };
+
+  // Play next Song
+ 
+  const playNext = () =>{
+    if(queue.length === 0) return;
+    const nextSong = queue[0];
+    console.log(nextSong)
+    setQueue([])
+    playSongOnly(nextSong)
+    console.log(queue)
+}
+console.log(queue)
 
   const updateProgress = () => {
     if (!audioRef.current || isNaN(audioRef.current.duration)) {
@@ -168,7 +176,7 @@ export const AudioProvider = ({ children }) => {
         setDuration,
         currentTime,
         setCurrentTime,
-        queue,
+        playNext
       }}
     >
       {children}

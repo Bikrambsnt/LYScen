@@ -24,6 +24,7 @@ function SongProgressBar() {
     isPlaying,
     currentTime,
     duration,
+   playNext,
   } = useAudioProvider();
   const navigate = useNavigate();
   const [storedSongData, setStoredSongdata] = useState(null);
@@ -93,7 +94,7 @@ function SongProgressBar() {
     >
       <div
         className={`relative h-20 w-full p-2 rounded-md transition-colors duration-700 ease-in-out`}
-        style={{ backgroundColor: color }}
+        style={{backgroundColor: color}}
       >
         <div className=" absolute w-14 h-14 top-1/2 left-10 -translate-x-1/2 -translate-y-1/2 border-[1px]  rounded-[4px]">
           <img
@@ -133,7 +134,7 @@ function SongProgressBar() {
                                                                                                                                                                                                     
           "
               style={{
-                background: `linear-gradient(to right, #9c226c ${progress}%,#FFFFFF ${progress}% )`,
+                background:`linear-gradient(to right, #9c226c ${progress}%,#FFFFFF ${progress}% )`,
               }}
             />
             <div className="flex font-jost text-[8px] mt-1 ">
@@ -159,7 +160,9 @@ function SongProgressBar() {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              addFavourite();
+              playNext();
+              console.log('Clicked')
+              
             }}
           >
             <FontAwesomeIcon icon={faHeart} className="text-white text-2xl" />
