@@ -11,7 +11,7 @@ export const AudioProvider = ({ children }) => {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [queue, setQueue] = useState([]);
-  const [playedSong , setPlayedSong] = useState([]);
+  const [playedSong, setPlayedSong] = useState([]);
 
   const audioRef = useRef(new Audio()); //Initialize audio Ref but no file assign
 
@@ -35,14 +35,16 @@ export const AudioProvider = ({ children }) => {
       }
 
       // list the last played song to prevent same song to played infinitely
-      setPlayedSong((prev)=>[...prev , songData.id])
-      
+      setPlayedSong((prev) => [...prev, songData.id]);
+
       //get suggested song according to currently playing song ID
       const suggestionSong = await songSuggestionsById(songData.id);
       if (suggestionSong?.success && Array.isArray(suggestionSong.data)) {
-        const filterSuggestion = suggestionSong.data.filter((suggestion)=> suggestion.id !== songData.id);
+        const filterSuggestion = suggestionSong.data.filter(
+          (suggestion) => suggestion.id !== songData.id
+        );
         setQueue(filterSuggestion);
-        console.log('Filter suggestion ',filterSuggestion)
+       
       }
       // set songData and store it in local storage..
       setSongData(songData);
@@ -57,6 +59,38 @@ export const AudioProvider = ({ children }) => {
       console.error("ERROR: While playing music", error);
     }
   };
+
+// check and play next song if playing song ended
+
+const autoPlayNext = ()=>{
+
+
+  useEffect(()=>{
+
+    if(!audioRef.current) return;
+
+    
+    const nextSong =()=>{
+      //playNext function called here
+      playNext()
+    }
+
+    audioRef.current.addEventListener('ended' , nextSong);
+    console.log('ended activate')
+
+    return ()=>{
+      audioRef.current.removeEventListener('ended' , nextSong);
+    }
+
+  },[audioRef])
+
+}
+
+
+
+
+
+
 
   const togglePlayPause = async (songData) => {
     try {
@@ -107,20 +141,19 @@ export const AudioProvider = ({ children }) => {
   };
 
   // Play next Song
- 
-  const playNext = () =>{
-    if(queue.length === 0) return;
-    
-    const nextSong = queue.find((song)=> !playedSong.includes(song.id));
 
-    if(!nextSong){
-      console.log('No more song to play')
+  const playNext = () => {
+    if (queue.length === 0) return;
+
+    const nextSong = queue.find((song) => !playedSong.includes(song.id));
+
+    if (!nextSong) {
+      console.log("No more song to play");
       return;
     }
 
     playSongOnly(nextSong);
-}
-
+  };
 
   const updateProgress = () => {
     if (!audioRef.current || isNaN(audioRef.current.duration)) {
@@ -167,7 +200,6 @@ export const AudioProvider = ({ children }) => {
   //   },[progress])
 
 
-  // console.log(queue)
   return (
     <AudioContext.Provider
       value={{
@@ -185,7 +217,8 @@ export const AudioProvider = ({ children }) => {
         setDuration,
         currentTime,
         setCurrentTime,
-        playNext
+        playNext,
+        autoPlayNext,
       }}
     >
       {children}

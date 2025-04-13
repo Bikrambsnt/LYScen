@@ -25,11 +25,13 @@ function SongProgressBar() {
     currentTime,
     duration,
    playNext,
+  autoPlayNext,
   } = useAudioProvider();
   const navigate = useNavigate();
   const [storedSongData, setStoredSongdata] = useState(null);
   const color = colorUtils();
-
+  
+  autoPlayNext()
   // fetch the songData from local storage on mount
 
   useEffect(() => {
