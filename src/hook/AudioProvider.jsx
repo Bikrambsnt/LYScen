@@ -44,7 +44,6 @@ export const AudioProvider = ({ children }) => {
           (suggestion) => suggestion.id !== songData.id
         );
         setQueue(filterSuggestion);
-       
       }
       // set songData and store it in local storage..
       setSongData(songData);
@@ -60,42 +59,28 @@ export const AudioProvider = ({ children }) => {
     }
   };
 
-// check and play next song if playing song ended
+  // check and play next song if playing song ended
 
-const autoPlayNext = ()=>{
+  const autoPlayNext = () => {
+    useEffect(() => {
+      if (!audioRef.current) {
+        console.log(audioRef.current);
+        console.log("No audio found");
+      }
 
+      const nextSong = () => {
+        //playNext function called here
+        playNext();
+      };
 
-  useEffect(()=>{
+      audioRef.current.addEventListener("ended", nextSong);
+      console.log("ended activate");
 
-    if(!audioRef.current) {
-      console.log(audioRef.current)
-      console.log('No audio found')
-    };
-
-    
-    const nextSong =()=>{
-      //playNext function called here
-      playNext()
-    }
-
-
-
-    audioRef.current.addEventListener('ended' , nextSong);
-    console.log('ended activate')
-
-    return ()=>{
-      audioRef.current.removeEventListener('ended' , nextSong);
-    }
-    
-  },[audioRef])
-
-}
-
-
-
-
-
-
+      return () => {
+        audioRef.current.removeEventListener("ended", nextSong);
+      };
+    }, [audioRef]);
+  };
 
   const togglePlayPause = async (songData) => {
     try {
@@ -149,9 +134,8 @@ const autoPlayNext = ()=>{
 
   const playNext = () => {
     if (queue.length === 0) return;
-    const nextSong = queue;
     // console.log(queue)
-    const suffleSong = nextSong[Math.floor(Math.random()*nextSong.length)] //randomly pick song from array
+    const suffleSong = queue[Math.floor(Math.random() * queue.length)]; //randomly pick song from array
     if (!suffleSong) {
       console.log("No more song to play");
       return;
@@ -160,7 +144,6 @@ const autoPlayNext = ()=>{
     playSongOnly(suffleSong);
   };
 
-    
   const updateProgress = () => {
     if (!audioRef.current || isNaN(audioRef.current.duration)) {
       console.log("AudioRef is not initialized or has no valid duration");
@@ -205,7 +188,7 @@ const autoPlayNext = ()=>{
   // console.log('ShowProgressBar' ,showProgressBar)
   //   },[progress])
 
-console.log(queue)
+  // console.log(queue)
   return (
     <AudioContext.Provider
       value={{
