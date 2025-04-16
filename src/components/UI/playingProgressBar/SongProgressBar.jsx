@@ -30,8 +30,8 @@ function SongProgressBar() {
   const navigate = useNavigate();
   const [storedSongData, setStoredSongdata] = useState(null);
   const color = colorUtils();
+  autoPlayNext(songData)
   
-  autoPlayNext()
   // fetch the songData from local storage on mount
 
   useEffect(() => {
@@ -68,6 +68,8 @@ function SongProgressBar() {
     navigate("/nowPlaying");
   };
 
+  
+
   // Display current Time and Duration of song
   const formatTime = (timeInSec) => {
     if (isNaN(timeInSec) || timeInSec < 0) return "00:00";
@@ -88,6 +90,7 @@ function SongProgressBar() {
     //function
   };
 
+ 
   return (
     <div
       role="button"
@@ -120,7 +123,7 @@ function SongProgressBar() {
             <p
               className={`text-xs font-light whitespace-nowrap text-ellipsis font-jost overflow-hidden`}
             >
-              <span>{currentSong.artists.primary[0].name} </span>
+              <span>{cleanSongName(currentSong.artists.primary[0].name)} </span>
             </p>
 
             <input

@@ -11,7 +11,7 @@ export const AudioProvider = ({ children }) => {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [queue, setQueue] = useState([]);
-  const [playedSong, setPlayedSong] = useState([]);
+  // const [playedSong, setPlayedSong] = useState([]);
 
   const audioRef = useRef(new Audio()); //Initialize audio Ref but no file assign
 
@@ -35,7 +35,7 @@ export const AudioProvider = ({ children }) => {
       }
 
       // list the last played song to prevent same song to played infinitely
-      setPlayedSong((prev) => [...prev, songData.id]);
+      // setPlayedSong((prev) => [...prev, songData.id]);
 
       //get suggested song according to currently playing song ID
       const suggestionSong = await songSuggestionsById(songData.id);
@@ -67,7 +67,10 @@ const autoPlayNext = ()=>{
 
   useEffect(()=>{
 
-    if(!audioRef.current) return;
+    if(!audioRef.current) {
+      console.log(audioRef.current)
+      console.log('No audio found')
+    };
 
     
     const nextSong =()=>{
@@ -75,13 +78,15 @@ const autoPlayNext = ()=>{
       playNext()
     }
 
+
+
     audioRef.current.addEventListener('ended' , nextSong);
     console.log('ended activate')
 
     return ()=>{
       audioRef.current.removeEventListener('ended' , nextSong);
     }
-
+    
   },[audioRef])
 
 }
@@ -144,17 +149,18 @@ const autoPlayNext = ()=>{
 
   const playNext = () => {
     if (queue.length === 0) return;
-
-    const nextSong = queue.find((song) => !playedSong.includes(song.id));
-
-    if (!nextSong) {
+    const nextSong = queue;
+    // console.log(queue)
+    const suffleSong = nextSong[Math.floor(Math.random()*nextSong.length)] //randomly pick song from array
+    if (!suffleSong) {
       console.log("No more song to play");
       return;
     }
 
-    playSongOnly(nextSong);
+    playSongOnly(suffleSong);
   };
 
+    
   const updateProgress = () => {
     if (!audioRef.current || isNaN(audioRef.current.duration)) {
       console.log("AudioRef is not initialized or has no valid duration");
@@ -199,7 +205,7 @@ const autoPlayNext = ()=>{
   // console.log('ShowProgressBar' ,showProgressBar)
   //   },[progress])
 
-
+console.log(queue)
   return (
     <AudioContext.Provider
       value={{
