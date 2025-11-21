@@ -43,6 +43,7 @@ export const AudioProvider = ({ children }) => {
         const filterSuggestion = suggestionSong.data.filter(
           (suggestion) => suggestion.id !== songData.id
         );
+        
         setQueue(filterSuggestion);
       }
       // set songData and store it in local storage..

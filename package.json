@@ -17,6 +17,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@mui/material": "^6.4.1",
     "color-thief-browser": "^2.0.2",
+    "i": "^0.3.7",
     "lodash": "^4.17.21",
     "node-vibrant": "^4.0.3",
     "react": "^18.3.1",

@@ -30,8 +30,8 @@ export const searchSongsByQuery = async (query,limit,page) => {
 
     const contentType = response.headers.get('content-type');
     if(!contentType || !contentType.includes('application/json')){
-      const text = await response.text();
-      console.log('Non Json Response:' , text)
+      // const text = await response.text();
+      // console.log('Non Json Response:' , text)
       throw new Error('Invalid JSON response');
     }
 
@@ -107,11 +107,12 @@ export const searchForTrending = async (trending, limit, page) => {
 
     const contentType = response.headers.get('content-type');
     if(!contentType || !contentType.includes('application/json')){
-      const text =await response.text();
-      console.log('Non Json Response:' , text)
+      // const text =await response.text();
+      // console.log('Non Json Response:' , text)
       throw new Error('Invalid JSON response');
     }
-
+    
     return await response.json()
+    
 
   }
