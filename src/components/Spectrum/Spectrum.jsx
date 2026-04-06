@@ -35,9 +35,9 @@ function Spectrum() {
         meterWidth={8}
         meterCount={512}
         meterColor={[
-          { stop: 0, color: "red" },
-          { stop: 0.5, color: "red" },
-          { stop: 1, color: "red" },
+          { stop: 0, color: "#9c227c" },
+          { stop: 0.5, color: "#9c227c" },
+          { stop: 1, color: "#9c227c" },
         ]}
         gap={2.5}
       />

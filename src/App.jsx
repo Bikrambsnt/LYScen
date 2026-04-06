@@ -22,7 +22,7 @@ function App() {
     let savedTheme = localStorage.getItem("theme");
     return savedTheme ? savedTheme === "dark" : true;
   });
-
+  
   // Toggle Theme
   useEffect(() => {
     if (darkMode) {

@@ -12,7 +12,7 @@ import Spectrum from "../../Spectrum/Spectrum";
 import { cleanSongName } from "../../../utils/textUtils";
 import { colorUtils } from "../../../utils/colorUtils";
 
-function SongProgressBar() {
+function SongProgressBar() { 
   //   To animate  the overflow text
   const containerRef = useRef(null);
   const textRef = useRef(null);

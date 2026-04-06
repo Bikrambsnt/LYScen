@@ -23,6 +23,7 @@ export const AudioProvider = ({ children }) => {
       }
 
       const songUrl = songData.downloadUrl?.[4]?.url;
+      console.log("Song Url is geeeing this file from Song data", songUrl);
 
       if (!audioRef.current) {
         console.error("Audio Ref is not initialize");
@@ -45,6 +46,7 @@ export const AudioProvider = ({ children }) => {
         );
         
         setQueue(filterSuggestion);
+        console.log("Now Next Queue Song which is stored in setQueue is : ", filterSuggestion);
       }
       // set songData and store it in local storage..
       setSongData(songData);
