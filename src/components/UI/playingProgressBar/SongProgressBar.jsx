@@ -25,12 +25,12 @@ function SongProgressBar() {
     currentTime,
     duration,
    playNext,
-  autoPlayNext,
+  // autoPlayNext,
   } = useAudioProvider();
   const navigate = useNavigate();
   const [storedSongData, setStoredSongdata] = useState(null);
   const color = colorUtils();
-  autoPlayNext(songData)
+  // autoPlayNext(songData)
   
   // fetch the songData from local storage on mount
 
@@ -166,7 +166,8 @@ function SongProgressBar() {
             onClick={(e) => {
               e.stopPropagation();
               playNext();
-              console.log('Clicked')
+              
+              console.log('Next Play Clicked')
               
             }}
           >

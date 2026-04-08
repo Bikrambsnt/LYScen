@@ -47,6 +47,7 @@ export const AudioProvider = ({ children }) => {
         
         setQueue(filterSuggestion);
         console.log("Now Next Queue Song which is stored in setQueue is : ", filterSuggestion);
+        console.log("Queue is storing:",queue)
       }
       // set songData and store it in local storage..
       setSongData(songData);
@@ -61,29 +62,37 @@ export const AudioProvider = ({ children }) => {
       console.error("ERROR: While playing music", error);
     }
   };
+// Play Next function to play a next song
+  const playNext = () => {
+    if (queue.length === 0) return;
+    // console.log(queue)
+    console.log("Play Next function has been triggered");
+    const suffleSong = queue[Math.floor(Math.random() * queue.length)]; //randomly pick song from array
+    if (!suffleSong) {
+      console.log("No more song to play");
+      return;
+    }
 
+    playSongOnly(suffleSong);
+  };
+
+  // console.log(playNext())
   // check and play next song if playing song ended
-
-  const autoPlayNext = () => {
     useEffect(() => {
-      if (!audioRef.current) {
-        console.log(audioRef.current);
-        console.log("No audio found");
-      }
+      if (!audioRef.current) return;
+      
+    const nextSong =() => playNext()
 
-      const nextSong = () => {
-        //playNext function called here
-        playNext();
-      };
-
-      audioRef.current.addEventListener("ended", nextSong);
-      console.log("ended activate");
+      const audio = audioRef.current;
+      audio.addEventListener("ended", nextSong);
+      console.log("New song playing Automatically after finishig the playing song");
 
       return () => {
-        audioRef.current.removeEventListener("ended", nextSong);
+        audio.removeEventListener("ended", nextSong);
+        console.log("Auto Playing next song event has been removed and returned")
       };
-    }, [audioRef]);
-  };
+    }, [audioRef,playNext]);
+  
 
   const togglePlayPause = async (songData) => {
     try {
@@ -135,17 +144,6 @@ export const AudioProvider = ({ children }) => {
 
   // Play next Song
 
-  const playNext = () => {
-    if (queue.length === 0) return;
-    // console.log(queue)
-    const suffleSong = queue[Math.floor(Math.random() * queue.length)]; //randomly pick song from array
-    if (!suffleSong) {
-      console.log("No more song to play");
-      return;
-    }
-
-    playSongOnly(suffleSong);
-  };
 
   const updateProgress = () => {
     if (!audioRef.current || isNaN(audioRef.current.duration)) {
@@ -210,7 +208,7 @@ export const AudioProvider = ({ children }) => {
         currentTime,
         setCurrentTime,
         playNext,
-        autoPlayNext,
+        
       }}
     >
       {children}
