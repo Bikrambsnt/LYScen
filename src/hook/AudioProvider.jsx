@@ -81,7 +81,10 @@ export const AudioProvider = ({ children }) => {
     useEffect(() => {
       if (!audioRef.current) return;
       
-    const nextSong =() => playNext()
+    const nextSong =() =>{
+      console.log("Song Finished ---> Playing New Song");
+      playNext()
+    } 
 
       const audio = audioRef.current;
       audio.addEventListener("ended", nextSong);
