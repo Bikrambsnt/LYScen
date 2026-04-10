@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { AudioContext } from "../context/AudioContext";
 import { songSuggestionsById } from "../config/fetch";
 
@@ -63,7 +63,8 @@ export const AudioProvider = ({ children }) => {
     }
   };
 // Play Next function to play a next song
-  const playNext = () => {
+// here useCallback fix the problem of rerendering continuosly playNext function on useEffect.
+  const playNext =useCallback(() => {
     if (queue.length === 0) return;
     // console.log(queue)
     console.log("Play Next function has been triggered");
@@ -74,7 +75,7 @@ export const AudioProvider = ({ children }) => {
     }
 
     playSongOnly(suffleSong);
-  };
+  },[])
 
   // console.log(playNext())
   // check and play next song if playing song ended
