@@ -12,6 +12,8 @@ export const AudioProvider = ({ children }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [queue, setQueue] = useState([]);
   // const [playedSong, setPlayedSong] = useState([]);
+   // useState to detect swap function
+  const [startX,setStartX]= useState(0);
 
   const audioRef = useRef(new Audio()); //Initialize audio Ref but no file assign
 
@@ -179,6 +181,24 @@ export const AudioProvider = ({ children }) => {
     };
   }, []);
 
+  // Swap Detection Function....
+const detectTouchStart = (e)=>{
+setStartX(e.touches[0].clientX);
+}
+
+const detectTouchEnd = (e)=>{
+const endX = e.changedTouches[0].clientX;
+
+if(startX-endX >50){
+  playNext(songData);
+  console.log("Play next song detected");
+
+}
+else if(endX-startX >50){
+  console.log("Previous song play detected");
+
+}
+};
   // // Define for closing ProgressBar and stop currentlyPlaying music.
   // const closeBar = () => {
   //   setShowProgressBar(false);
@@ -212,6 +232,8 @@ export const AudioProvider = ({ children }) => {
         currentTime,
         setCurrentTime,
         playNext,
+        detectTouchEnd,
+        detectTouchStart
         
       }}
     >

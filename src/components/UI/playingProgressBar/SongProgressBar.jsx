@@ -26,11 +26,15 @@ function SongProgressBar() {
     duration,
    playNext,
   // autoPlayNext,
+  detectTouchEnd,
+  detectTouchStart
   } = useAudioProvider();
   const navigate = useNavigate();
   const [storedSongData, setStoredSongdata] = useState(null);
   const color = colorUtils();
   // autoPlayNext(songData)
+
+ 
   
   // fetch the songData from local storage on mount
 
@@ -90,6 +94,10 @@ function SongProgressBar() {
     //function
   };
 
+
+
+
+
  
   return (
     <div
@@ -98,6 +106,8 @@ function SongProgressBar() {
       className="fixed z-10 bottom-0 w-full h-[85px] px-1 bg-transparent backdrop-blur-sm"
     >
       <div
+      onTouchStart={detectTouchStart}
+      onTouchEnd={detectTouchEnd}
         className={`relative h-20 w-full p-2 rounded-md transition-colors duration-700 ease-in-out`}
         style={{backgroundColor: color}}
       >
@@ -163,13 +173,13 @@ function SongProgressBar() {
             />
           </button>
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              playNext();
+            // onClick={(e) => {
+            //   // e.stopPropagation();
+            //   // playNext()
               
-              console.log('Next Play Clicked')
+            //   console.log('Next Play Clicked')
               
-            }}
+            // }}
           >
             <FontAwesomeIcon icon={faHeart} className="text-white text-2xl" />
           </button>
