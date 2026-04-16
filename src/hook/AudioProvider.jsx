@@ -13,7 +13,7 @@ export const AudioProvider = ({ children }) => {
   const [queue, setQueue] = useState([]);
   // const [playedSong, setPlayedSong] = useState([]);
    // useState to detect swap function
-  const [startX,setStartX]= useState(0);
+  const startX = useRef(0);
 
   const audioRef = useRef(new Audio()); //Initialize audio Ref but no file assign
 
@@ -66,7 +66,7 @@ export const AudioProvider = ({ children }) => {
   };
 // Play Next function to play a next song
 // here useCallback fix the problem of rerendering continuosly playNext function on useEffect.
-  const playNext =useCallback(() => {
+  const playNext = useCallback (() => {
     if (queue.length === 0) return;
     // console.log(queue)
     console.log("Play Next function has been triggered");
@@ -183,19 +183,21 @@ export const AudioProvider = ({ children }) => {
 
   // Swap Detection Function....
 const detectTouchStart = (e)=>{
-setStartX(e.touches[0].clientX);
+  startX.current = e.touches[0].clientX;
 }
 
 const detectTouchEnd = (e)=>{
 const endX = e.changedTouches[0].clientX;
 
-if(startX-endX >50){
-  playNext(songData);
+if(startX.current-endX > 50){
+  playNext();
   console.log("Play next song detected");
+  console.log(startX.current)
 
 }
-else if(endX-startX >50){
+else if(endX-startX.current >50){
   console.log("Previous song play detected");
+  console.log(startX,endX)
 
 }
 };
