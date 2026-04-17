@@ -159,7 +159,7 @@ function SongProgressBar() {
           </div>
         </div>
 
-        <div className="flex items-center absolute top-1/2 -translate-x-1/2 -translate-y-1/2 -right-[54px] gap-[14px] ">
+        <div className="flex items-center absolute top-1/2 -translate-x-1/2 -translate-y-1/2 -right-[42px] gap-[14px] ">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -169,7 +169,7 @@ function SongProgressBar() {
           >
             <FontAwesomeIcon
               icon={isPlaying ? faPause : faPlay}
-              className="text-white text-2xl"
+              className="text-white text-2xl ml-3"
             />
           </button>
           <button

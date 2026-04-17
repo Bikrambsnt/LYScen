@@ -49,7 +49,7 @@ export const AudioProvider = ({ children }) => {
         
         setQueue(filterSuggestion);
         console.log("Now Next Queue Song which is stored in setQueue is : ", filterSuggestion);
-        console.log("Queue is storing:",queue)
+        // console.log("Queue is storing:",)
       }
       // set songData and store it in local storage..
       setSongData(songData);
@@ -65,8 +65,8 @@ export const AudioProvider = ({ children }) => {
     }
   };
 // Play Next function to play a next song
-// here useCallback fix the problem of rerendering continuosly playNext function on useEffect.
-  const playNext = useCallback (() => {
+
+  const playNext =() => {
     if (queue.length === 0) return;
     // console.log(queue)
     console.log("Play Next function has been triggered");
@@ -77,7 +77,7 @@ export const AudioProvider = ({ children }) => {
     }
 
     playSongOnly(suffleSong);
-  },[])
+  }
 
   // console.log(playNext())
   // check and play next song if playing song ended
@@ -97,7 +97,7 @@ export const AudioProvider = ({ children }) => {
         audio.removeEventListener("ended", nextSong);
         console.log("Auto Playing next song event has been removed and returned")
       };
-    }, [audioRef,playNext]);
+    }, [audioRef]);
   
 
   const togglePlayPause = async (songData) => {
