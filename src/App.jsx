@@ -61,7 +61,20 @@ function Content({
  
 }) {
   const location = useLocation();
-  const hideHeader = ["/search", "/nowPlaying"];
+  // const hideHeader = ["/search", "/nowPlaying"];
+// Logic to hide and show the UI on specific path..
+ const routeConfig ={
+ "/" :{showHeader:true , showProgressBar:true},
+ "/search" : {showHeader:false , showProgressBar:true},
+ "/nowPlaying" :{showHeader:false , showProgressBar:false},
+ }
+
+ const config =routeConfig[location.pathname] || {
+  showHeader:true,
+  showProgressBar:true
+ }
+
+
   const { showProgressBar } = useAudioProvider();
 
   //Ressetting The scroll to 0 when Navigation from another page..
@@ -75,7 +88,7 @@ function Content({
         darkMode ? "bg-[#080808] text-white" : "bg-white text-black"
       }`}
     >
-      {!hideHeader.includes(location.pathname) && (
+      {config.showHeader&& (
         <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       )}
 
@@ -101,14 +114,14 @@ function Content({
         />
         <Route
           path="/nowPlaying"
-          element={<NowPlaying />}
+          element={<NowPlaying/>}
         />
       </Routes>
 
 
 
       {/* Display progress bar when Music play*/}
-      {showProgressBar && <SongProgressBar/>}
+      {showProgressBar && config.showProgressBar && <SongProgressBar/>}
     </div>
   );
 }
